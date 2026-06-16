@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Cairo:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+@keyframes aurora{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(22px,-15px) scale(1.07)}}
+@keyframes dp{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.55);opacity:.6}}
+@keyframes sb{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+@keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes railIn{from{opacity:0;transform:translate(14px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+@keyframes iL{from{opacity:0;transform:translateX(-38px)}to{opacity:1;transform:translateX(0)}}
+@keyframes iU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes iP{0%{opacity:0;transform:scale(.8)}65%{transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+@keyframes lG{from{width:0;opacity:0}to{width:72px;opacity:1}}
+@keyframes noiseShift{0%{transform:translate(0,0)}33%{transform:translate(-3%,-1.5%)}66%{transform:translate(1.5%,3%)}100%{transform:translate(0,0)}}
+@keyframes purBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-16px,11px) scale(1.05)}}
+@keyframes purTileFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes purDotPulse{0%,100%{transform:translate(-50%,-50%) scale(1);box-shadow:0 3px 0 #8C5C08,0 6px 22px rgba(245,166,35,.72)}50%{transform:translate(-50%,-50%) scale(1.28);box-shadow:0 4px 0 #8C5C08,0 12px 34px rgba(245,166,35,.95)}}
+@keyframes purCardIn{from{opacity:0;transform:translateX(var(--card-from))}to{opacity:1;transform:translateX(0)}}
+
+@media(max-width:1100px){[data-bar]{padding:0 40px!important}[data-hero]{padding:90px 80px 56px 40px!important}[data-h1]{font-size:50px!important}}
+@media(max-width:900px){
+  [data-rail],[data-ctatop]{display:none!important}
+  [data-ham]{display:flex!important}
+  [data-bar]{padding:0 20px!important;height:60px!important}
+  [data-hero]{grid-template-columns:1fr!important;padding:76px 20px 48px!important;gap:0!important;text-align:center;min-height:0!important}
+  [data-txt]{order:2!important;align-items:center!important}
+  [data-sub]{margin:0 auto!important}
+  [data-stage]{order:1!important;height:300px!important}
+  [data-ctarow],[data-stats]{justify-content:center!important}
+  [data-h1]{font-size:40px!important}
+  [data-scroll]{display:none!important}
+  [data-tile]{display:none!important}
+}
+@media(max-width:480px){[data-h1]{font-size:33px!important}[data-stage]{height:240px!important}}
+@media(max-width:1200px){#purpose{padding:120px 150px 100px 40px!important}[data-pur-grid]{gap:36px!important}}
+@media(max-width:900px){#purpose{padding:80px 20px 80px!important}[data-pur-grid]{grid-template-columns:1fr!important;max-width:420px;margin-left:auto!important;margin-right:auto!important;}[data-pur-row]{flex-direction:column!important;gap:20px!important;}#purposeLogo div[style*='grid-template-columns']{grid-template-columns:96px 96px!important;grid-template-rows:96px 96px!important;}}
+/* Purpose symbols: initial off-screen state — JS inline overrides activate */
+.pur-sym{transform:translateY(-200px) scale(0.14);opacity:0;}
+@media(max-width:1200px){#usp{padding:80px 160px 100px 40px!important}[data-usp-grid]{gap:14px!important}[data-usp-h2]{font-size:40px!important}}
+@media(max-width:1000px){[data-usp-char]{display:none!important}[data-usp-grid]{grid-template-columns:repeat(3,1fr)!important}[data-usp-quiz]{grid-column:1 / span 3!important}}
+@media(max-width:900px){#usp{padding:70px 20px 80px!important}[data-usp-grid]{grid-template-columns:repeat(2,1fr)!important;grid-auto-flow:dense!important}[data-usp-quiz]{grid-column:1 / span 2!important}[data-usp-grades]{display:none!important}[data-usp-h2]{font-size:34px!important}}
+@media(max-width:480px){[data-usp-grid]{grid-template-columns:1fr!important}[data-usp-quiz]{grid-column:1 / span 1!important}[data-usp-h2]{font-size:28px!important}}
+@keyframes probQFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+@media(max-width:1100px){#problem{padding:90px 60px 100px!important}}
+@media(max-width:900px){#problem{padding:70px 20px 80px!important}[data-prob-grid]{grid-template-columns:1fr!important;gap:36px!important}[data-prob-char]{display:none!important}}
+@media(max-width:480px){#problem{padding:60px 16px 70px!important}}
+@media(max-width:1200px){#process{padding:100px 160px 120px 40px!important}}
+@media(max-width:1100px){#process{padding:90px 80px 100px 40px!important}}
+@media(max-width:900px){#process{padding:70px 20px 80px!important}[data-proc-grid]{grid-template-columns:1fr 1fr!important;row-gap:24px!important}[data-proc-conn]{display:none!important}}
+@media(max-width:520px){[data-proc-grid]{grid-template-columns:1fr!important}}
+@media(max-width:1100px){[data-ft-grid]{grid-template-columns:1fr 1fr 1fr!important;gap:40px!important}[data-ft-brand]{grid-column:1/-1!important}}
+@media(max-width:900px){#contact>[div:first-child]{padding:90px 24px 80px!important}[data-ft-grid]{grid-template-columns:1fr 1fr!important;gap:28px!important}[data-ft-brand]{grid-column:1/-1!important}[data-ft-wrap]{padding:60px 24px 0!important}[data-ft-nl]{flex-direction:column!important;align-items:flex-start!important;gap:20px!important}[data-ft-nl-form]{max-width:100%!important;width:100%!important}[data-ft-bottom]{flex-direction:column!important;align-items:flex-start!important;gap:14px!important}[data-ft-tile]{display:none!important}[data-ft-cta-h]{font-size:46px!important;letter-spacing:-.03em!important}}
+@media(max-width:560px){[data-ft-cta-h]{font-size:36px!important}}
+
+/* ════════════════════ RTL — Arabic ════════════════════ */
+@keyframes railInRTL{from{opacity:0;transform:translate(-14px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+@keyframes iLR{from{opacity:0;transform:translateX(38px)}to{opacity:1;transform:translateX(0)}}
+
+/* Arabic font — applies to all text nodes; JetBrains Mono kept for math */
+[dir="rtl"] *{font-family:'Cairo','Inter',sans-serif!important;}
+[dir="rtl"] [style*="JetBrains"]{font-family:'JetBrains Mono',monospace!important;}
+
+/* Side rail: mirror right → left */
+[dir="rtl"] [data-rail]{right:auto!important;left:26px!important;animation:railInRTL .65s ease both .35s!important;}
+
+/* Language dropdown: open toward the reading start (left in RTL) */
+[dir="rtl"] [data-lang-sel] div[style*="backdrop-filter"]{right:auto!important;left:0!important;}
+
+/* Hero h1 lines: slide in from right */
+[dir="rtl"] [data-h1] span[data-reveal]{animation-name:iLR!important;}
+
+/* Section padding: flip asymmetric padding (right-heavy→left-heavy for left rail) */
+[dir="rtl"] #purpose,[dir="rtl"] #usp,[dir="rtl"] #process{padding-left:240px!important;padding-right:64px!important;}
+[dir="rtl"] [data-hero]{padding-left:132px!important;padding-right:64px!important;}
+
+/* Problem section: visually-edited badge + h2 absolute positions mirror */
+[dir="rtl"] #problem [style*="left: 501px"]{left:auto!important;right:420px!important;}
+[dir="rtl"] #problem h2[style*="left: 216px"]{left:auto!important;right:180px!important;}
+
+/* Problem pain-chain spine: flip to right side */
+[dir="rtl"] #problem [style*="left:19px;top:21px"]{left:auto!important;right:19px!important;}
+
+/* Responsive RTL padding resets */
+@media(max-width:1200px){[dir="rtl"] #purpose{padding-left:150px!important;padding-right:40px!important;}[dir="rtl"] #usp,[dir="rtl"] #process{padding-left:160px!important;padding-right:40px!important;}}
+@media(max-width:900px){[dir="rtl"] #purpose,[dir="rtl"] #usp,[dir="rtl"] #process,[dir="rtl"] [data-hero]{padding-left:20px!important;padding-right:20px!important;}[dir="rtl"] [data-rail]{display:none!important;}}
+</style>
+</helmet>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ BACKGROUND ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+
+<!-- 1 · Solid base -->
+<div style="position:fixed;inset:0;z-index:-8;background:#070D1F;"></div>
+
+<!-- 2 · Mesh gradient blobs -->
+<div style="position:fixed;inset:0;z-index:-7;pointer-events:none;overflow:hidden;">
+  <div style="position:absolute;width:900px;height:900px;border-radius:50%;top:-280px;left:-240px;background:radial-gradient(circle,rgba(239,85,51,.16) 0%,rgba(239,85,51,.06) 32%,transparent 65%);filter:blur(2px);animation:aurora 26s ease-in-out infinite;"></div>
+  <div style="position:absolute;width:800px;height:800px;border-radius:50%;top:-200px;right:-220px;background:radial-gradient(circle,rgba(45,144,232,.13) 0%,rgba(45,144,232,.04) 36%,transparent 65%);filter:blur(2px);animation:aurora 31s ease-in-out infinite 4s reverse;"></div>
+  <div style="position:absolute;width:720px;height:720px;border-radius:50%;bottom:-180px;right:-120px;background:radial-gradient(circle,rgba(46,196,196,.11) 0%,rgba(46,196,196,.04) 38%,transparent 65%);filter:blur(2px);animation:aurora 35s ease-in-out infinite 9s;"></div>
+  <div style="position:absolute;width:560px;height:560px;border-radius:50%;top:38%;left:44%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(245,166,35,.08) 0%,rgba(245,166,35,.02) 44%,transparent 68%);filter:blur(3px);animation:aurora 40s ease-in-out infinite 14s;"></div>
+  <div style="position:absolute;width:500px;height:500px;border-radius:50%;bottom:-80px;left:-60px;background:radial-gradient(circle,rgba(139,92,246,.09) 0%,rgba(139,92,246,.02) 44%,transparent 68%);filter:blur(3px);animation:aurora 28s ease-in-out infinite 6s reverse;"></div>
+</div>
+
+<!-- 3 · Coordinate / graph-paper grid -->
+<svg style="position:fixed;inset:0;width:100%;height:100%;z-index:-6;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="sg" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0L0 0 0 36" fill="none" stroke="rgba(255,255,255,.028)" stroke-width="0.5"></path>
+    </pattern>
+    <pattern id="bg" width="180" height="180" patternUnits="userSpaceOnUse">
+      <rect width="180" height="180" fill="url(#sg)"></rect>
+      <path d="M180 0L0 0 0 180" fill="none" stroke="rgba(255,255,255,.066)" stroke-width="0.8"></path>
+    </pattern>
+    <radialGradient id="gf" cx="50%" cy="44%" r="62%">
+      <stop offset="10%" stop-color="white" stop-opacity="1"></stop>
+      <stop offset="100%" stop-color="white" stop-opacity="0"></stop>
+    </radialGradient>
+    <mask id="gm"><rect width="100%" height="100%" fill="url(#gf)"></rect></mask>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" mask="url(#gm)"></rect>
+</svg>
+
+<!-- 4 · Ghost math expressions -->
+<div style="position:fixed;inset:0;z-index:-5;pointer-events:none;overflow:hidden;font-family:'JetBrains Mono',monospace;font-weight:700;">
+  <span style="position:absolute;top:7%;left:4%;font-size:21px;color:rgba(239,85,51,.1);transform:rotate(-7deg);white-space:nowrap;">x² + 5x + 6 = 0</span>
+  <span style="position:absolute;top:16%;left:26%;font-size:15px;color:rgba(255,255,255,.042);transform:rotate(3deg);white-space:nowrap;">sin²θ + cos²θ = 1</span>
+  <span style="position:absolute;top:5%;right:5%;font-size:27px;color:rgba(45,144,232,.12);transform:rotate(6deg);white-space:nowrap;">a² + b² = c²</span>
+  <span style="position:absolute;top:35%;left:1%;font-size:17px;color:rgba(46,196,196,.09);transform:rotate(-3deg);white-space:nowrap;">f′(x) = lim(h→0)</span>
+  <span style="position:absolute;top:50%;left:6%;font-size:44px;color:rgba(245,166,35,.09);transform:rotate(8deg);white-space:nowrap;">∫₀^∞</span>
+  <span style="position:absolute;top:67%;left:2%;font-size:14px;color:rgba(255,255,255,.038);transform:rotate(-4deg);white-space:nowrap;">∑ n(n+1) / 2</span>
+  <span style="position:absolute;bottom:13%;left:17%;font-size:18px;color:rgba(239,85,51,.08);transform:rotate(2deg);white-space:nowrap;">e^(iπ) + 1 = 0</span>
+  <span style="position:absolute;top:24%;right:1%;font-size:13px;color:rgba(255,255,255,.038);transform:rotate(-9deg);white-space:nowrap;">x = (−b ± √(b²−4ac)) / 2a</span>
+  <span style="position:absolute;top:60%;right:3%;font-size:22px;color:rgba(46,196,196,.09);transform:rotate(5deg);white-space:nowrap;">∇²φ = 0</span>
+  <span style="position:absolute;bottom:10%;right:7%;font-size:16px;color:rgba(245,166,35,.09);transform:rotate(-5deg);white-space:nowrap;">y = mx + b</span>
+  <span style="position:absolute;top:78%;left:38%;font-size:13px;color:rgba(255,255,255,.032);transform:rotate(2deg);white-space:nowrap;">d/dx[xⁿ] = nxⁿ⁻¹</span>
+</div>
+
+<!-- 5 · Film grain noise -->
+<svg style="position:fixed;inset:-12%;width:124%;height:124%;z-index:-4;pointer-events:none;opacity:0.05;animation:noiseShift 9s ease-in-out infinite;" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grain" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch" result="noise"></feTurbulence>
+    <feColorMatrix type="saturate" values="0" in="noise"></feColorMatrix>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#grain)"></rect>
+</svg>
+
+<!-- 6 · Edge vignette -->
+<div style="position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(ellipse 76% 72% at 50% 44%,transparent 18%,rgba(7,13,31,.72) 58%,rgba(7,13,31,.97) 100%);"></div>
+
+<!-- 7 · Giant ghost π -->
+<span style="position:fixed;font-size:480px;font-weight:700;color:rgba(255,255,255,.015);right:2%;top:2%;z-index:-2;user-select:none;pointer-events:none;line-height:1;font-family:'JetBrains Mono',monospace;letter-spacing:-.06em;">π</span>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HEADER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<header data-bar="" style="position:fixed;top:0;left:0;right:0;z-index:300;height:70px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,13,31,.64);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.07);animation:navIn .5s ease both;">
+  <a href="#home" style="display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;transition:opacity .15s;" style-hover="opacity:.82;">
+    <img src="assets/MathMateIconLogo.png" alt="MathMate" style="height:34px;width:34px;object-fit:contain;border-radius:8px;transition:transform .22s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:rotate(-6deg) scale(1.1);">
+    <span style="font-size:20px;font-weight:800;letter-spacing:-.03em;color:#fff;">Math<span style="color:#F5A623;">Mate</span></span>
+  </a>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <!-- ── Language Selector ── -->
+    <div style="position:relative;" data-lang-sel="">
+      <button onClick="{{ toggleLang }}" style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:9999px;padding:9px 15px;font-size:13px;font-weight:600;color:rgba(255,255,255,.85);cursor:pointer;white-space:nowrap;letter-spacing:.01em;transition:background .15s,border-color .15s;" style-hover="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.24);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span>{{ currentLangLabel }}</span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:{{ langChevronRot }}"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+      <sc-if value="{{ langOpen }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ stopProp }}" style="position:absolute;top:calc(100% + 8px);right:0;min-width:158px;background:rgba(9,16,38,.97);border:1px solid rgba(255,255,255,.13);border-radius:14px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.6);z-index:500;backdrop-filter:blur(22px);">
+          <sc-for list="{{ langOptions }}" as="lo" hint-placeholder-count="3">
+            <button onClick="{{ lo.select }}" style="display:flex;align-items:center;gap:10px;width:100%;padding:12px 16px;background:{{ lo.bg }};border:none;cursor:pointer;color:{{ lo.color }};font-size:13.5px;font-weight:{{ lo.fw }};font-family:'Inter',sans-serif;text-align:left;transition:background .15s;" style-hover="background:rgba(255,255,255,.06);">
+              <span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;opacity:.48;min-width:22px;">{{ lo.code }}</span>
+              <span style="flex:1;">{{ lo.label }}</span>
+              <sc-if value="{{ lo.active }}" hint-placeholder-val="{{ false }}">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+    <a data-ctatop="" href="#process" style="display:inline-flex;align-items:center;gap:7px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:11px 24px;font-size:14.5px;font-weight:700;white-space:nowrap;box-shadow:0 6px 22px rgba(239,85,51,.32);transition:transform .15s,box-shadow .15s;" style-hover="transform:translateY(-2px);box-shadow:0 10px 28px rgba(239,85,51,.5);">{{ t.cta_getapp }}</a>
+    <button data-ham="" onClick="{{ toggleMenu }}" style="display:none;width:46px;height:46px;align-items:center;justify-content:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:12px;cursor:pointer;">
+      <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M0 1h20M0 7h20M0 13h20" stroke="#fff" stroke-width="1.8" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ SIDE RAIL — BUBBLE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<nav data-rail="" style="position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:280;animation:railIn .65s ease both .35s;">
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="6">
+      <a href="{{ s.href }}" style="display:flex;align-items:center;justify-content:flex-end;gap:9px;padding:4px 0;text-decoration:none;opacity:{{ s.itemOp }};transition:opacity 0.55s ease;">
+        <span style="font-size:{{ s.itemFs }};font-weight:{{ s.itemFw }};letter-spacing:.07em;text-transform:uppercase;color:{{ s.lc }};white-space:nowrap;background:{{ s.lbg }};border:{{ s.lborder }};box-shadow:{{ s.lshadow }};border-radius:9999px;padding:3px 10px;transition:font-size 0.55s ease,font-weight 0.55s ease,color 0.55s ease,background 0.55s ease,box-shadow 0.55s ease,border-color 0.55s ease;">{{ s.name }}</span>
+        <span style="width:{{ s.ds }};height:{{ s.ds }};border-radius:50%;flex-shrink:0;background:{{ s.dc }};box-shadow:{{ s.dg }};transition:all 0.55s ease;"></span>
+      </a>
+    </sc-for>
+  </div>
+</nav>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="home" data-screen-label="Hero" style="position:relative;min-height:100vh;">
+  <div data-hero="" style="display:grid;grid-template-columns:1.06fr .94fr;align-items:center;gap:32px;min-height:100vh;padding:90px 132px 60px 64px;max-width:1540px;margin:0 auto;">
+
+    <!-- LEFT: TEXT COLUMN -->
+    <div data-txt="" style="display:flex;flex-direction:column;align-items:flex-start;gap:24px;position:relative;z-index:2;">
+
+      <div data-reveal="" style="opacity:0;transform:scale(.8);animation:iP .56s cubic-bezier(.34,1.56,.64,1) forwards .1s;">
+        <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);border-radius:9999px;padding:7px 16px;transition:background .2s,border-color .2s,transform .2s;cursor:default;" style-hover="background:rgba(245,166,35,.18);border-color:rgba(245,166,35,.55);transform:translateY(-2px);">
+          <span style="width:7px;height:7px;border-radius:50%;background:#F5A623;flex-shrink:0;animation:dp 2s ease infinite;"></span>
+          <span style="font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#F5A623;white-space:nowrap;">{{ t.hero_badge }}</span>
+        </div>
+      </div>
+
+      <h1 data-h1="" style="font-size:60px;font-weight:900;line-height:1.06;letter-spacing:-.035em;color:#fff;margin:0;">
+        <span data-reveal="" style="display:block;opacity:0;transform:translateX(-38px);animation:iL .65s cubic-bezier(0,0,.2,1) forwards .2s;">{{ t.hero_h1_1 }}</span>
+        <span data-reveal="" style="display:block;opacity:0;transform:translateX(-38px);animation:iL .65s cubic-bezier(0,0,.2,1) forwards .32s;">{{ t.hero_h1_2 }}</span>
+        <span data-reveal="" style="display:block;background:linear-gradient(95deg,#F5A623 0%,#EF5533 50%,#2EC4C4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:0;transform:translateX(-38px);animation:iL .65s cubic-bezier(0,0,.2,1) forwards .44s;">MathMate.</span>
+      </h1>
+
+      <p data-reveal="" data-sub="" style="font-size:17px;line-height:1.66;color:rgba(255,255,255,.58);max-width:462px;opacity:0;transform:translateY(22px);animation:iU .65s ease forwards .55s;">
+        {{ t.hero_sub }}
+      </p>
+
+      <div data-reveal="" data-ctarow="" style="display:flex;gap:13px;flex-wrap:wrap;opacity:0;transform:translateY(22px);animation:iU .6s ease forwards .66s;">
+        <a href="#process" style="display:inline-flex;align-items:center;gap:8px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:15px 28px;font-size:15.5px;font-weight:700;box-shadow:0 10px 28px rgba(239,85,51,.36);transition:transform .15s,box-shadow .15s;" style-hover="transform:translateY(-2px);box-shadow:0 16px 36px rgba(239,85,51,.54);">
+          {{ t.cta_snap_solve }}
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+        <a href="#problem" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.85);text-decoration:none;border:1.5px solid rgba(255,255,255,.16);border-radius:9999px;padding:15px 24px;font-size:15.5px;font-weight:600;transition:background .15s,border-color .15s;" style-hover="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.36);">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="rgba(255,255,255,.65)" stroke-width="1.4"></circle><path d="M6.5 5.4l4 2.6-4 2.6V5.4z" fill="rgba(255,255,255,.8)"></path></svg>
+          {{ t.how_it_works }}
+        </a>
+      </div>
+
+      <div data-reveal="" style="height:2.5px;border-radius:9999px;background:linear-gradient(90deg,#EF5533,#F5A623 48%,rgba(46,196,196,.15));width:0;opacity:0;animation:lG .55s ease forwards .8s;"></div>
+
+      <div data-reveal="" data-stats="" style="display:flex;align-items:center;gap:26px;opacity:0;transform:translateY(22px);animation:iU .6s ease forwards .92s;">
+        <div style="display:flex;flex-direction:column;gap:3px;cursor:default;transition:transform .2s ease;" style-hover="transform:translateY(-3px);"><span style="font-size:30px;font-weight:800;letter-spacing:-.04em;color:#EF5533;line-height:1.1;">10K+</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.38);">{{ t.stat_students }}</span></div>
+        <div style="width:1px;height:32px;background:rgba(255,255,255,.1);"></div>
+        <div style="display:flex;flex-direction:column;gap:3px;cursor:default;transition:transform .2s ease;" style-hover="transform:translateY(-3px);"><span style="font-size:30px;font-weight:800;letter-spacing:-.04em;color:#2EC4C4;line-height:1.1;">50K+</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.38);">{{ t.stat_solved }}</span></div>
+        <div style="width:1px;height:32px;background:rgba(255,255,255,.1);"></div>
+        <div style="display:flex;flex-direction:column;gap:3px;cursor:default;transition:transform .2s ease;" style-hover="transform:translateY(-3px);"><span style="font-size:30px;font-weight:800;letter-spacing:-.04em;color:#F5A623;line-height:1.1;">4.9★</span><span style="font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.38);">{{ t.stat_rating }}</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: CHARACTER (static image) -->
+    <div data-stage="" style="position:relative;height:580px;display:flex;align-items:flex-end;justify-content:center;">
+
+      <!-- Soft radial glow behind character -->
+      <div style="position:absolute;width:130%;height:120%;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(ellipse 52% 48% at 50% 52%,rgba(245,166,35,.09) 0%,rgba(46,196,196,.05) 38%,rgba(45,144,232,.03) 58%,transparent 74%);pointer-events:none;z-index:1;"></div>
+
+      <!-- Operator tiles — decorative, static -->
+      <div data-tile="" style="position:absolute;top:6%;left:4%;width:52px;height:52px;border-radius:14px;background:#EF5533;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:rgba(255,255,255,.92);box-shadow:0 7px 0 #a82d15,0 10px 24px rgba(239,85,51,.4);z-index:8;user-select:none;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;" style-hover="transform:translateY(-7px) rotate(-9deg) scale(1.14);box-shadow:0 14px 0 #a82d15,0 22px 40px rgba(239,85,51,.7);">+</div>
+      <div data-tile="" style="position:absolute;top:2%;left:56%;width:46px;height:46px;border-radius:13px;background:#2EC4C4;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:rgba(255,255,255,.92);box-shadow:0 5px 0 #1a8a8a,0 8px 20px rgba(46,196,196,.4);z-index:8;user-select:none;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;" style-hover="transform:translateY(-7px) rotate(8deg) scale(1.14);box-shadow:0 13px 0 #1a8a8a,0 20px 36px rgba(46,196,196,.7);">−</div>
+      <div data-tile="" style="position:absolute;top:40%;left:4%;width:42px;height:42px;border-radius:12px;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:800;color:rgba(255,255,255,.92);box-shadow:0 5px 0 #a87015,0 7px 18px rgba(245,166,35,.4);z-index:8;user-select:none;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;" style-hover="transform:translateY(-7px) rotate(11deg) scale(1.14);box-shadow:0 13px 0 #a87015,0 18px 34px rgba(245,166,35,.7);">×</div>
+      <div data-tile="" style="position:absolute;bottom:24%;left:2%;width:46px;height:46px;border-radius:13px;background:#2D90E8;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:rgba(255,255,255,.92);box-shadow:0 5px 0 #1860a8,0 8px 20px rgba(45,144,232,.4);z-index:8;user-select:none;cursor:default;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;" style-hover="transform:translateY(-7px) rotate(-10deg) scale(1.14);box-shadow:0 13px 0 #1860a8,0 18px 34px rgba(45,144,232,.7);">÷</div>
+
+      <!-- Static character -->
+      <img src="assets/character-clean.png" alt="MathMate mascot" draggable="false" style="position:relative;z-index:5;height:520px;width:auto;object-fit:contain;-webkit-user-drag:none;user-select:none;display:block;transition:transform .45s cubic-bezier(.34,1.2,.64,1),filter .35s ease;" style-hover="transform:scale(1.04) translateY(-10px);filter:drop-shadow(0 24px 48px rgba(245,166,35,.28)) drop-shadow(0 0 32px rgba(46,196,196,.18));">
+
+      <!-- Floor shadow -->
+      <div style="position:absolute;bottom:3%;left:50%;width:260px;height:20px;border-radius:50%;background:radial-gradient(ellipse,rgba(46,196,196,.3) 0%,rgba(45,144,232,.14) 44%,transparent 70%);filter:blur(7px);transform:translateX(-50%);z-index:4;pointer-events:none;"></div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <a data-reveal="" data-scroll="" href="#problem" style="position:absolute;bottom:24px;left:50%;display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;opacity:0;transform:translateY(22px);animation:iU .6s ease forwards 1.1s;">
+    <span style="font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);">{{ t.scroll }}</span>
+    <span style="animation:sb 2.3s ease-in-out infinite;">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="rgba(255,255,255,.22)" stroke-width="1.2"></circle><path d="M7.5 9.5l3.5 3.5 3.5-3.5" stroke="rgba(255,255,255,.5)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </span>
+  </a>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PROBLEM SECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="problem" data-screen-label="Problem" style="position:relative;overflow:hidden;padding:120px 64px 130px;background:#080509;z-index:1;min-height:100vh;display:flex;align-items:center;">
+
+  <!-- BLEND: Home → Problem -->
+  <div style="position:absolute;top:0;left:0;right:0;height:220px;background:linear-gradient(180deg,#070D1F 0%,#080509 100%);z-index:0;pointer-events:none;"></div>
+
+  <!-- TOPOGRAPHIC CONTOUR LINES — unique texture, nothing like the other sections -->
+  <svg viewBox="0 0 1440 900" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Coral rings: left focal (student struggle origin) -->
+    <g stroke="rgba(239,85,51,.22)" fill="none" stroke-width="1.1">
+      <ellipse cx="290" cy="450" rx="52" ry="38"></ellipse>
+      <ellipse cx="290" cy="450" rx="115" ry="85" transform="rotate(14,290,450)"></ellipse>
+      <ellipse cx="290" cy="450" rx="192" ry="140" transform="rotate(21,290,450)"></ellipse>
+      <ellipse cx="290" cy="450" rx="278" ry="202" transform="rotate(27,290,450)"></ellipse>
+      <ellipse cx="290" cy="450" rx="372" ry="270" transform="rotate(31,290,450)"></ellipse>
+      <ellipse cx="290" cy="450" rx="476" ry="346" transform="rotate(34,290,450)"></ellipse>
+      <ellipse cx="290" cy="450" rx="592" ry="430" transform="rotate(36,290,450)"></ellipse>
+      <ellipse cx="290" cy="450" rx="720" ry="524" transform="rotate(37,290,450)"></ellipse>
+    </g>
+    <!-- Amber rings: lower-right focal -->
+    <g stroke="rgba(245,166,35,.16)" fill="none" stroke-width="1">
+      <ellipse cx="1180" cy="650" rx="44" ry="54" transform="rotate(-10,1180,650)"></ellipse>
+      <ellipse cx="1180" cy="650" rx="108" ry="130" transform="rotate(-17,1180,650)"></ellipse>
+      <ellipse cx="1180" cy="650" rx="188" ry="226" transform="rotate(-22,1180,650)"></ellipse>
+      <ellipse cx="1180" cy="650" rx="284" ry="340" transform="rotate(-27,1180,650)"></ellipse>
+      <ellipse cx="1180" cy="650" rx="396" ry="475" transform="rotate(-30,1180,650)"></ellipse>
+      <ellipse cx="1180" cy="650" rx="525" ry="630" transform="rotate(-32,1180,650)"></ellipse>
+      <ellipse cx="1180" cy="650" rx="670" ry="800" transform="rotate(-33,1180,650)"></ellipse>
+    </g>
+    <!-- Teal rings: upper-right, smaller scale -->
+    <g stroke="rgba(46,196,196,.11)" fill="none" stroke-width="0.9">
+      <ellipse cx="1090" cy="175" rx="60" ry="44"></ellipse>
+      <ellipse cx="1090" cy="175" rx="140" ry="102" transform="rotate(13,1090,175)"></ellipse>
+      <ellipse cx="1090" cy="175" rx="238" ry="172" transform="rotate(19,1090,175)"></ellipse>
+      <ellipse cx="1090" cy="175" rx="352" ry="254" transform="rotate(23,1090,175)"></ellipse>
+      <ellipse cx="1090" cy="175" rx="484" ry="350" transform="rotate(26,1090,175)"></ellipse>
+      <ellipse cx="1090" cy="175" rx="634" ry="460" transform="rotate(28,1090,175)"></ellipse>
+    </g>
+    <!-- Subtle purple rings: bottom-left -->
+    <g stroke="rgba(139,92,246,.08)" fill="none" stroke-width="0.8">
+      <ellipse cx="80" cy="820" rx="70" ry="50" transform="rotate(-5,80,820)"></ellipse>
+      <ellipse cx="80" cy="820" rx="170" ry="120" transform="rotate(-10,80,820)"></ellipse>
+      <ellipse cx="80" cy="820" rx="290" ry="206" transform="rotate(-14,80,820)"></ellipse>
+      <ellipse cx="80" cy="820" rx="430" ry="304" transform="rotate(-17,80,820)"></ellipse>
+    </g>
+  </svg>
+
+  <!-- DIRECTIONAL LIGHT WASHES — warm coral from left, amber from right -->
+  <div style="position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 55% 80% at 8% 50%,rgba(239,85,51,.14) 0%,transparent 60%),radial-gradient(ellipse 45% 65% at 94% 72%,rgba(245,166,35,.11) 0%,transparent 55%),radial-gradient(ellipse 40% 50% at 85% 14%,rgba(46,196,196,.07) 0%,transparent 50%);"></div>
+
+  <!-- STRUCK-OUT GHOST EQUATIONS — thematic to "wrong answers / confusion" -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;font-family:'JetBrains Mono',monospace;font-weight:700;">
+    <span style="position: absolute; top: 54px; left: 3%; font-size: 24px; color: rgba(239,85,51,.2); transform: rotate(-5deg); white-space: nowrap; text-decoration: line-through; text-decoration-color: rgba(239,85,51,.5); text-decoration-thickness: 2px">x² + 5x + 6 = 0</span>
+    <span style="position:absolute;bottom:18%;right:4%;font-size:22px;color:rgba(245,166,35,.18);transform:rotate(4deg);white-space:nowrap;text-decoration:line-through;text-decoration-color:rgba(245,166,35,.45);text-decoration-thickness:2px;">y = 2x + b</span>
+    <span style="position:absolute;top:58%;left:2%;font-size:86px;color:rgba(239,85,51,.12);transform:rotate(-2deg);line-height:1;">?</span>
+    <span style="position:absolute;top:20%;right:3%;font-size:18px;color:rgba(255,255,255,.09);transform:rotate(7deg);white-space:nowrap;">x = (−b ± √?) / 2a</span>
+    <span style="position:absolute;bottom:32%;left:7%;font-size:18px;color:rgba(245,166,35,.13);transform:rotate(-3deg);white-space:nowrap;text-decoration:line-through;text-decoration-color:rgba(245,166,35,.38);text-decoration-thickness:2px;">∫₀^∞ f(x) dx = ??</span>
+    <span style="position:absolute;top:38%;right:5%;font-size:20px;color:rgba(46,196,196,.12);transform:rotate(-5deg);white-space:nowrap;">sin²θ + cos²θ = ?</span>
+    <span style="position:absolute;bottom:11%;left:24%;font-size:17px;color:rgba(239,85,51,.1);transform:rotate(3deg);white-space:nowrap;text-decoration:line-through;text-decoration-color:rgba(239,85,51,.35);text-decoration-thickness:2px;">f′(x) = nxⁿ</span>
+  </div>
+
+  <!-- VIGNETTE: edge-only, leaves center open -->
+  <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 90% 78% at 46% 50%,transparent 28%,rgba(8,5,9,.18) 60%,rgba(8,5,9,.7) 100%);"><div style="display: inline-flex; align-items: center; gap: 9px; background: rgba(239,85,51,.1); border: 1px solid rgba(239,85,51,.28); border-radius: 9999px; padding: 7px 18px; margin-bottom: 22px; position: absolute; left: 501px; top: 43px">
+        <span style="width:6px;height:6px;border-radius:50%;background:#EF5533;flex-shrink:0;animation:dp 2s ease infinite;"></span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#EF5533;">{{ t.prob_badge }}</span>
+      </div><h2 style="font-size: 46px; font-weight: 900; letter-spacing: -.04em; line-height: 1.1; color: #fff; margin: 0; text-wrap: pretty; position: absolute; left: 216px; top: 90px">{{ t.prob_h2_1 }} <span style="background:linear-gradient(95deg,#EF5533 20%,#F5A623 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">{{ t.prob_h2_answers }}</span><br>{{ t.prob_h2_2 }} <span style="color:rgba(255,255,255,.3);font-style:italic;">{{ t.prob_h2_guidance }}</span></h2></div>
+
+  <!-- FILM GRAIN -->
+  <svg style="position:absolute;inset:-12%;width:124%;height:124%;z-index:0;pointer-events:none;opacity:0.038;animation:noiseShift 10s ease-in-out infinite 3s;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="probgrain"><feTurbulence type="fractalNoise" baseFrequency="0.71" numOctaves="4" stitchTiles="stitch" result="n"></feTurbulence><feColorMatrix type="saturate" values="0" in="n"></feColorMatrix></filter>
+    <rect width="100%" height="100%" filter="url(#probgrain)"></rect>
+  </svg>
+
+  <!-- MAIN CONTENT -->
+  <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;">
+
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:64px;">
+      
+      
+    </div>
+
+    <!-- 2-column grid -->
+    <div data-prob-grid="" style="display:grid;grid-template-columns:1fr 0.78fr;gap:88px;align-items:center;">
+
+    <!-- ━━ LEFT: CONNECTED CHAIN ━━ -->
+    <div style="display:flex;flex-direction:column;">
+
+      <!-- ━━ CONNECTED PAIN-POINT CHAIN ━━ -->
+      <div style="position:relative;display:flex;flex-direction:column;">
+
+        <!-- Dashed vertical spine -->
+        <div style="position:absolute;left:19px;top:21px;bottom:29px;width:2px;background:repeating-linear-gradient(180deg,rgba(239,85,51,.52) 0px,rgba(239,85,51,.52) 5px,transparent 5px,transparent 11px);border-radius:2px;z-index:0;"></div>
+
+        <!-- 01 -->
+        <div style="display:flex;align-items:flex-start;gap:20px;padding-bottom:16px;position:relative;z-index:1;opacity:{{ probOpacity }};transform:{{ probLTransform }};transition:{{ probTr0 }};">
+          <div style="width:40px;height:40px;min-width:40px;border-radius:50%;background:linear-gradient(145deg,#F4724A,#C8391A);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:900;color:#fff;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 0 #7A2210,0 5px 18px rgba(239,85,51,.55);position:relative;z-index:2;">01</div>
+          <div style="flex:1;background:rgba(239,85,51,.07);border:1px solid rgba(239,85,51,.17);border-radius:14px;padding:14px 20px;cursor:default;transition:background .22s,border-color .22s,transform .22s,box-shadow .22s;" style-hover="background:rgba(239,85,51,.14);border-color:rgba(239,85,51,.42);transform:translateX(6px);box-shadow:0 4px 24px rgba(239,85,51,.15);">
+            <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.88);margin:0 0 3px;line-height:1.4;">{{ t.prob_01_title }}</p>
+            <p style="font-size:12.5px;color:rgba(255,255,255,.34);margin:0;line-height:1.5;">{{ t.prob_01_sub }}</p>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div style="display:flex;align-items:flex-start;gap:20px;padding-bottom:16px;position:relative;z-index:1;opacity:{{ probOpacity }};transform:{{ probLTransform }};transition:{{ probTr1 }};">
+          <div style="width:40px;height:40px;min-width:40px;border-radius:50%;background:linear-gradient(145deg,#F8A060,#CF6818);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:900;color:#fff;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 0 #7A3A08,0 5px 18px rgba(207,104,24,.55);position:relative;z-index:2;">02</div>
+          <div style="flex:1;background:rgba(207,104,24,.07);border:1px solid rgba(207,104,24,.17);border-radius:14px;padding:14px 20px;cursor:default;transition:background .22s,border-color .22s,transform .22s,box-shadow .22s;" style-hover="background:rgba(207,104,24,.14);border-color:rgba(207,104,24,.42);transform:translateX(6px);box-shadow:0 4px 24px rgba(207,104,24,.15);">
+            <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.88);margin:0 0 3px;line-height:1.4;">{{ t.prob_02_title }}</p>
+            <p style="font-size:12.5px;color:rgba(255,255,255,.34);margin:0;line-height:1.5;">{{ t.prob_02_sub }}</p>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div style="display:flex;align-items:flex-start;gap:20px;padding-bottom:16px;position:relative;z-index:1;opacity:{{ probOpacity }};transform:{{ probLTransform }};transition:{{ probTr2 }};">
+          <div style="width:40px;height:40px;min-width:40px;border-radius:50%;background:linear-gradient(145deg,#F8C055,#CF9010);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:900;color:#fff;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 0 #7A5208,0 5px 18px rgba(207,144,16,.55);position:relative;z-index:2;">03</div>
+          <div style="flex:1;background:rgba(207,144,16,.07);border:1px solid rgba(207,144,16,.17);border-radius:14px;padding:14px 20px;cursor:default;transition:background .22s,border-color .22s,transform .22s,box-shadow .22s;" style-hover="background:rgba(207,144,16,.14);border-color:rgba(207,144,16,.42);transform:translateX(6px);box-shadow:0 4px 24px rgba(207,144,16,.15);">
+            <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.88);margin:0 0 3px;line-height:1.4;">{{ t.prob_03_title }}</p>
+            <p style="font-size:12.5px;color:rgba(255,255,255,.34);margin:0;line-height:1.5;">{{ t.prob_03_sub }}</p>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div style="display:flex;align-items:flex-start;gap:20px;padding-bottom:16px;position:relative;z-index:1;opacity:{{ probOpacity }};transform:{{ probLTransform }};transition:{{ probTr3 }};">
+          <div style="width:40px;height:40px;min-width:40px;border-radius:50%;background:linear-gradient(145deg,#6AB4F0,#1E6BB8);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:900;color:#fff;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 0 #0E3E78,0 5px 18px rgba(30,107,184,.55);position:relative;z-index:2;">04</div>
+          <div style="flex:1;background:rgba(30,107,184,.07);border:1px solid rgba(30,107,184,.17);border-radius:14px;padding:14px 20px;cursor:default;transition:background .22s,border-color .22s,transform .22s,box-shadow .22s;" style-hover="background:rgba(30,107,184,.14);border-color:rgba(30,107,184,.42);transform:translateX(6px);box-shadow:0 4px 24px rgba(30,107,184,.15);">
+            <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.88);margin:0 0 3px;line-height:1.4;">{{ t.prob_04_title }}</p>
+            <p style="font-size:12.5px;color:rgba(255,255,255,.34);margin:0;line-height:1.5;">{{ t.prob_04_sub }}</p>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div style="display:flex;align-items:flex-start;gap:20px;position:relative;z-index:1;opacity:{{ probOpacity }};transform:{{ probLTransform }};transition:{{ probTr4 }};">
+          <div style="width:40px;height:40px;min-width:40px;border-radius:50%;background:linear-gradient(145deg,#4FD4D4,#1A8E8E);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:900;color:#fff;font-family:'JetBrains Mono',monospace;box-shadow:0 4px 0 #0E5A5A,0 5px 18px rgba(46,196,196,.5);position:relative;z-index:2;">05</div>
+          <div style="flex:1;background:rgba(46,196,196,.07);border:1px solid rgba(46,196,196,.17);border-radius:14px;padding:14px 20px;cursor:default;transition:background .22s,border-color .22s,transform .22s,box-shadow .22s;" style-hover="background:rgba(46,196,196,.14);border-color:rgba(46,196,196,.42);transform:translateX(6px);box-shadow:0 4px 24px rgba(46,196,196,.12);">
+            <p style="font-size:15px;font-weight:700;color:rgba(255,255,255,.88);margin:0 0 3px;line-height:1.4;">{{ t.prob_05_title }}</p>
+            <p style="font-size:12.5px;color:rgba(255,255,255,.34);margin:0;line-height:1.5;">{{ t.prob_05_sub }}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SOLUTION CALLOUT -->
+      <div style="margin-top:32px;padding:22px 26px;background:linear-gradient(135deg,rgba(46,196,196,.07) 0%,rgba(45,144,232,.05) 100%);border:1px solid rgba(46,196,196,.2);border-radius:18px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:24px;right:24px;height:1px;background:linear-gradient(90deg,transparent,rgba(46,196,196,.45) 50%,transparent);"></div>
+        <p style="font-size:15.5px;line-height:1.74;color:rgba(255,255,255,.62);margin:0;"><span style="background:linear-gradient(90deg,#2EC4C4,#2D90E8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;">{{ t.prob_sol_bold }}</span>{{ t.prob_sol_rest }}</p>
+      </div>
+
+    </div>
+
+    <!-- ━━ RIGHT: CHARACTER ━━ -->
+    <div data-prob-char="" style="display:flex;align-items:center;justify-content:center;position:relative;height:640px;">
+
+      <!-- Floating question marks (matching character) -->
+      <span style="position: absolute; top: 9%; right: 89px; font-size: 60px; color: rgba(245,166,35,.78); font-family: 'JetBrains Mono',monospace; font-weight: 900; animation: probQFloat 3.2s ease-in-out infinite; filter: drop-shadow(0 4px 14px rgba(245,166,35,.6)); z-index: 6; user-select: none; pointer-events: none">?</span>
+      <span style="position: absolute; top: 184px; right: 91px; font-size: 33px; color: rgba(245,166,35,.46); font-family: 'JetBrains Mono',monospace; font-weight: 900; animation: probQFloat 4.1s ease-in-out infinite 0.9s; filter: drop-shadow(0 3px 8px rgba(245,166,35,.35)); z-index: 6; user-select: none; pointer-events: none">?</span>
+      <span style="position: absolute; top: 95px; font-size: 20px; color: rgba(245,166,35,.26); font-family: 'JetBrains Mono',monospace; font-weight: 900; animation: probQFloat 3.8s ease-in-out infinite 1.7s; z-index: 6; user-select: none; pointer-events: none; left: 259px">?</span>
+
+      <!-- Character entrance wrapper -->
+      <div style="position:relative;z-index:5;opacity:{{ probCharOpacity }};transform:{{ probCharTransform }};transition:{{ probCharTr }};">
+        
+      </div>
+
+      <!-- Floor shadow -->
+      <div style="position:absolute;bottom:4%;left:50%;width:190px;height:15px;border-radius:50%;background:radial-gradient(ellipse,rgba(239,85,51,.3) 0%,rgba(245,166,35,.1) 50%,transparent 70%);filter:blur(9px);transform:translateX(-50%);z-index:4;pointer-events:none;"></div>
+
+    <img src="assets/character-confused.png" alt="Confused MathMate" draggable="false" style="height: 500px; width: auto; object-fit: contain; -webkit-user-drag: none; user-select: none; display: block; animation: purTileFloat 5.5s ease-in-out infinite; filter: none; transition: transform .35s cubic-bezier(.34,1.56,.64,1),filter .35s ease; cursor: default; position: absolute; left: -42px; top: 168px" style-hover="transform:scale(1.07);filter:drop-shadow(0 20px 40px rgba(239,85,51,.45)) drop-shadow(0 0 32px rgba(245,166,35,.3));"></div>
+
+    </div>
+
+    </div>
+
+  
+
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PURPOSE SECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="purpose" data-screen-label="Purpose" style="position:relative;overflow:hidden;padding:70px 240px 130px 64px;background:#0C0909;z-index:1;min-height:100vh;display:flex;align-items:center;">
+
+  <!-- TOP BLEND: problem → purpose -->
+  <div style="position:absolute;top:0;left:0;right:0;height:240px;background:linear-gradient(180deg,#080509 0%,#0C0909 100%);z-index:0;pointer-events:none;"></div>
+
+  <!-- GHOST OPERATOR TILES: large translucent tiles visually bridge hero → purpose -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <div style="position:absolute;top:-90px;left:-110px;width:400px;height:400px;border-radius:76px;background:linear-gradient(145deg,rgba(244,114,74,.22) 0%,rgba(239,85,51,.14) 100%);animation:purBlob 22s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:-70px;right:-90px;width:360px;height:360px;border-radius:68px;background:linear-gradient(145deg,rgba(79,212,212,.18) 0%,rgba(46,196,196,.11) 100%);animation:purBlob 26s ease-in-out infinite 5s reverse;"></div>
+    <div style="position:absolute;bottom:-70px;left:-50px;width:310px;height:310px;border-radius:60px;background:linear-gradient(145deg,rgba(248,188,85,.17) 0%,rgba(245,166,35,.1) 100%);animation:purBlob 30s ease-in-out infinite 10s;"></div>
+    <div style="position:absolute;bottom:-90px;right:-50px;width:340px;height:340px;border-radius:64px;background:linear-gradient(145deg,rgba(82,168,240,.15) 0%,rgba(45,144,232,.09) 100%);animation:purBlob 24s ease-in-out infinite 15s reverse;"></div>
+  </div>
+
+  <!-- WARM AMBIENT BLOBS -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <div style="position:absolute;width:860px;height:860px;border-radius:50%;top:-260px;left:-240px;background:radial-gradient(circle,rgba(245,166,35,.11) 0%,rgba(245,166,35,.03) 40%,transparent 68%);filter:blur(3px);animation:purBlob 28s ease-in-out infinite;"></div>
+    <div style="position:absolute;width:740px;height:740px;border-radius:50%;bottom:-150px;right:-200px;background:radial-gradient(circle,rgba(239,85,51,.09) 0%,rgba(239,85,51,.02) 44%,transparent 68%);filter:blur(3px);animation:purBlob 34s ease-in-out infinite 7s reverse;"></div>
+    <div style="position:absolute;width:600px;height:600px;border-radius:50%;top:48%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(45,144,232,.07) 0%,rgba(46,196,196,.04) 50%,transparent 72%);filter:blur(5px);animation:purBlob 42s ease-in-out infinite 14s;"></div>
+  </div>
+
+  <!-- DOT GRID -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="purdpat" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="1" fill="rgba(255,255,255,.055)"></circle></pattern>
+      <radialGradient id="purdfade" cx="50%" cy="50%" r="54%"><stop offset="0%" stop-color="white" stop-opacity="1"></stop><stop offset="100%" stop-color="white" stop-opacity="0"></stop></radialGradient>
+      <mask id="purdmask"><rect width="100%" height="100%" fill="url(#purdfade)"></rect></mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#purdpat)" mask="url(#purdmask)"></rect>
+  </svg>
+
+  <!-- FILM GRAIN -->
+  <svg style="position:absolute;inset:-12%;width:124%;height:124%;z-index:0;pointer-events:none;opacity:0.042;animation:noiseShift 11s ease-in-out infinite 2s;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="purgrain"><feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch" result="n"></feTurbulence><feColorMatrix type="saturate" values="0" in="n"></feColorMatrix></filter>
+    <rect width="100%" height="100%" filter="url(#purgrain)"></rect>
+  </svg>
+
+  <!-- FLYING MATH SYMBOLS — zoom in from hero on scroll -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;" aria-hidden="true">
+    <span class="pur-sym" data-end-op="0.09" style="position:absolute;top:9%;left:4%;font-size:76px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(239,85,51,.09);white-space:nowrap;transition:transform 1.1s cubic-bezier(0.25,1,0.5,1),opacity 1.1s ease;">x²+5x+6=0</span>
+    <span class="pur-sym" data-end-op="0.08" style="position:absolute;top:13%;right:5%;font-size:60px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(46,196,196,.08);white-space:nowrap;transition:transform 1.2s cubic-bezier(0.25,1,0.5,1) .12s,opacity 1.2s ease .12s;">a²+b²=c²</span>
+    <span class="pur-sym" data-end-op="0.07" style="position:absolute;bottom:16%;left:2%;font-size:112px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(245,166,35,.07);transition:transform 1.3s cubic-bezier(0.25,1,0.5,1) .2s,opacity 1.3s ease .2s;">∫</span>
+    <span class="pur-sym" data-end-op="0.08" style="position:absolute;top:55%;right:3%;font-size:100px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(45,144,232,.08);transition:transform 1.1s cubic-bezier(0.25,1,0.5,1) .08s,opacity 1.1s ease .08s;">Σ</span>
+    <span class="pur-sym" data-end-op="0.04" style="position:absolute;bottom:9%;right:11%;font-size:52px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(255,255,255,.04);white-space:nowrap;transition:transform 1.2s cubic-bezier(0.25,1,0.5,1) .3s,opacity 1.2s ease .3s;">sin²θ+cos²θ=1</span>
+    <span class="pur-sym" data-end-op="0.07" style="position:absolute;top:33%;left:0%;font-size:80px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(139,92,246,.07);transition:transform 1.4s cubic-bezier(0.25,1,0.5,1) .18s,opacity 1.4s ease .18s;">π</span>
+    <span class="pur-sym" data-end-op="0.06" style="position:absolute;bottom:26%;right:2%;font-size:48px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(239,85,51,.06);white-space:nowrap;transition:transform 1.1s cubic-bezier(0.25,1,0.5,1) .25s,opacity 1.1s ease .25s;">e^(iπ)+1=0</span>
+    <span class="pur-sym" data-end-op="0.06" style="position:absolute;top:70%;left:9%;font-size:64px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(46,196,196,.06);white-space:nowrap;transition:transform 1.3s cubic-bezier(0.25,1,0.5,1) .35s,opacity 1.3s ease .35s;">∇²φ=0</span>
+  </div>
+
+  <!-- RADIAL VIGNETTE -->
+  <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 82% 74% at 50% 50%,transparent 18%,rgba(12,9,9,.52) 58%,rgba(12,9,9,.93) 100%);"></div>
+
+  <!-- ══ MAIN CONTENT ══ -->
+  <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;">
+
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:80px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.28);border-radius:9999px;padding:7px 18px;margin-bottom:22px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:#F5A623;flex-shrink:0;animation:dp 2s ease infinite;"></span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F5A623;">{{ t.pur_badge }}</span>
+      </div>
+      <h2 style="font-size:54px;font-weight:900;letter-spacing:-.04em;line-height:1.08;color:#fff;margin:0 0 16px;">{{ t.pur_h2 }} <span style="background:linear-gradient(95deg,#EF5533,#F5A623 48%,#2EC4C4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">{{ t.pur_goal }}</span></h2>
+      <p style="font-size:17px;color:rgba(255,255,255,.38);max-width:420px;margin:0 auto;line-height:1.62;">{{ t.pur_desc }}</p>
+    </div>
+
+    <!-- 2-COLUMN GRID: cards left · logo right -->
+    <div data-pur-grid="" style="display:grid;grid-template-columns:1fr;gap:40px;align-items:center;">
+
+      <!-- ── CARDS + CENTER IMAGE ── -->
+      <div data-pur-row="" style="display:flex;flex-direction:row;gap:22px;align-items:center;">
+
+        <!-- Left column: Clarity + Growth -->
+        <div style="display:flex;flex-direction:column;gap:22px;flex:1;">
+
+          <!-- Clarity (coral +) -->
+          <div class="pur-card-l" style="background:rgba(239,85,51,.07);border:1px solid rgba(239,85,51,.22);border-radius:18px;padding:26px 28px;cursor:default;opacity:{{ cardOpacity }};transform:{{ cardLTransform }};transition:{{ cardTr0 }};" style-hover="background:rgba(239,85,51,.14);border-color:rgba(239,85,51,.58);box-shadow:0 0 52px rgba(239,85,51,.18);transform:translateY(-6px) scale(1.02);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,#F4724A,#C8391A);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:rgba(255,255,255,.92);font-family:'JetBrains Mono',monospace;flex-shrink:0;box-shadow:0 4px 0 #7A2210,0 5px 14px rgba(239,85,51,.42);">+</div>
+              <span style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(239,85,51,.45);">01</span>
+            </div>
+            <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#EF5533;margin-bottom:5px;">{{ t.pur_c1_title }}</div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(239,85,51,.55);margin-bottom:12px;">{{ t.pur_c1_sub }}</div>
+            <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.46);margin:0;">{{ t.pur_c1_desc }}</p>
+          </div>
+
+          <!-- Growth (amber ×) -->
+          <div class="pur-card-l" style="background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.22);border-radius:18px;padding:26px 28px;cursor:default;opacity:{{ cardOpacity }};transform:{{ cardLTransform }};transition:{{ cardTr2 }};" style-hover="background:rgba(245,166,35,.14);border-color:rgba(245,166,35,.58);box-shadow:0 0 52px rgba(245,166,35,.18);transform:translateY(-6px) scale(1.02);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,#F8BC55,#CF8610);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:rgba(255,255,255,.92);font-family:'JetBrains Mono',monospace;flex-shrink:0;box-shadow:0 4px 0 #7E5008,0 5px 14px rgba(245,166,35,.42);">×</div>
+              <span style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,166,35,.45);">03</span>
+            </div>
+            <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#F5A623;margin-bottom:5px;">{{ t.pur_c3_title }}</div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(245,166,35,.55);margin-bottom:12px;">{{ t.pur_c3_sub }}</div>
+            <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.46);margin:0;">{{ t.pur_c3_desc }}</p>
+          </div>
+
+        </div>
+
+        <!-- Center: Logo -->
+        <div style="flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+          <div style="animation:purTileFloat 5s ease-in-out infinite;">
+            <div id="purposeLogo" style="position:relative;opacity:{{ logoOpacity }};transform:{{ logoTransform }};transition:{{ logoTransition }};">
+              <div style="display:grid;grid-template-columns:108px 108px;grid-template-rows:108px 108px;gap:8px;">
+
+                <div style="border-radius:30px;background:linear-gradient(145deg,#F4724A 0%,#EF5533 50%,#C8391A 100%);box-shadow:0 10px 0 #7A2210,0 18px 48px rgba(239,85,51,.55),inset 0 2px 0 rgba(255,255,255,.3),inset 0 -2px 5px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:default;transition:transform .28s cubic-bezier(0.34,1.56,.64,1),box-shadow .28s ease;" style-hover="transform:translateY(-14px) scale(1.08);box-shadow:0 24px 0 #7A2210,0 38px 72px rgba(239,85,51,.78),inset 0 2px 0 rgba(255,255,255,.3);">
+                  <span style="font-size:82px;font-weight:900;color:rgba(0,0,0,.72);font-family:'JetBrains Mono',monospace;line-height:1;user-select:none;">+</span>
+                </div>
+
+                <div style="border-radius:30px;background:linear-gradient(145deg,#4FD4D4 0%,#2EC4C4 50%,#1A8E8E 100%);box-shadow:0 10px 0 #0E5A5A,0 18px 48px rgba(46,196,196,.5),inset 0 2px 0 rgba(255,255,255,.3),inset 0 -2px 5px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:default;transition:transform .28s cubic-bezier(0.34,1.56,.64,1),box-shadow .28s ease;" style-hover="transform:translateY(-14px) scale(1.08);box-shadow:0 24px 0 #0E5A5A,0 38px 72px rgba(46,196,196,.72),inset 0 2px 0 rgba(255,255,255,.3);">
+                  <span style="font-size:82px;font-weight:900;color:rgba(0,0,0,.72);font-family:'JetBrains Mono',monospace;line-height:1;user-select:none;">−</span>
+                </div>
+
+                <div style="border-radius:30px;background:linear-gradient(145deg,#F8BC55 0%,#F5A623 50%,#CF8610 100%);box-shadow:0 10px 0 #7E5008,0 18px 48px rgba(245,166,35,.55),inset 0 2px 0 rgba(255,255,255,.3),inset 0 -2px 5px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:default;transition:transform .28s cubic-bezier(0.34,1.56,.64,1),box-shadow .28s ease;" style-hover="transform:translateY(-14px) scale(1.08);box-shadow:0 24px 0 #7E5008,0 38px 72px rgba(245,166,35,.78),inset 0 2px 0 rgba(255,255,255,.3);">
+                  <span style="font-size:68px;font-weight:900;color:rgba(0,0,0,.72);font-family:'JetBrains Mono',monospace;line-height:1;user-select:none;">×</span>
+                </div>
+
+                <div style="border-radius:30px;background:linear-gradient(145deg,#52A8F0 0%,#2D90E8 50%,#1868B8 100%);box-shadow:0 10px 0 #0E3E78,0 18px 48px rgba(45,144,232,.55),inset 0 2px 0 rgba(255,255,255,.3),inset 0 -2px 5px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:default;transition:transform .28s cubic-bezier(0.34,1.56,.64,1),box-shadow .28s ease;" style-hover="transform:translateY(-14px) scale(1.08);box-shadow:0 24px 0 #0E3E78,0 38px 72px rgba(45,144,232,.78),inset 0 2px 0 rgba(255,255,255,.3);">
+                  <span style="font-size:58px;font-weight:900;color:rgba(0,0,0,.72);font-family:'JetBrains Mono',monospace;line-height:1;user-select:none;">=</span>
+                </div>
+
+              </div>
+              <div style="position:absolute;top:50%;left:50%;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle,#F8C754 0%,#F5A623 55%,#D88A10 100%);z-index:10;animation:purDotPulse 2.4s ease-in-out infinite;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: Confidence + Mastery -->
+        <div style="display:flex;flex-direction:column;gap:22px;flex:1;">
+
+          <!-- Confidence (teal −) -->
+          <div class="pur-card-l" style="background:rgba(46,196,196,.07);border:1px solid rgba(46,196,196,.22);border-radius:18px;padding:26px 28px;cursor:default;opacity:{{ cardOpacity }};transform:{{ cardRTransform }};transition:{{ cardTr1 }};" style-hover="background:rgba(46,196,196,.14);border-color:rgba(46,196,196,.58);box-shadow:0 0 52px rgba(46,196,196,.18);transform:translateY(-6px) scale(1.02);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,#4FD4D4,#1A8E8E);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:rgba(255,255,255,.92);font-family:'JetBrains Mono',monospace;flex-shrink:0;box-shadow:0 4px 0 #0E5A5A,0 5px 14px rgba(46,196,196,.42);">−</div>
+              <span style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(46,196,196,.45);">02</span>
+            </div>
+            <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#2EC4C4;margin-bottom:5px;">{{ t.pur_c2_title }}</div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(46,196,196,.55);margin-bottom:12px;">{{ t.pur_c2_sub }}</div>
+            <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.46);margin:0;">{{ t.pur_c2_desc }}</p>
+          </div>
+
+          <!-- Mastery (blue =) -->
+          <div class="pur-card-l" style="background:rgba(45,144,232,.07);border:1px solid rgba(45,144,232,.22);border-radius:18px;padding:26px 28px;cursor:default;opacity:{{ cardOpacity }};transform:{{ cardRTransform }};transition:{{ cardTr3 }};" style-hover="background:rgba(45,144,232,.14);border-color:rgba(45,144,232,.58);box-shadow:0 0 52px rgba(45,144,232,.18);transform:translateY(-6px) scale(1.02);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,#52A8F0,#1868B8);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:rgba(255,255,255,.92);font-family:'JetBrains Mono',monospace;flex-shrink:0;box-shadow:0 4px 0 #0E3E78,0 5px 14px rgba(45,144,232,.42);">=</div>
+              <span style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(45,144,232,.45);">04</span>
+            </div>
+            <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#2D90E8;margin-bottom:5px;">{{ t.pur_c4_title }}</div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(45,144,232,.55);margin-bottom:12px;">{{ t.pur_c4_sub }}</div>
+            <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.46);margin:0;">{{ t.pur_c4_desc }}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ USP SECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="usp" data-screen-label="USP" style="position:relative;overflow:hidden;padding:100px 240px 120px 64px;background:#06091C;z-index:1;">
+
+  <!-- BLEND: purpose → USP -->
+  <div style="position:absolute;top:0;left:0;right:0;height:200px;background:linear-gradient(180deg,#0C0909 0%,#06091C 100%);z-index:0;pointer-events:none;"></div>
+
+  <!-- BACKGROUND: 45° diagonal stripe pattern -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="uspdiag" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="40" stroke="rgba(255,255,255,.08)" stroke-width="0.7"></line>
+      </pattern>
+      <radialGradient id="uspdfade" cx="50%" cy="50%" r="56%">
+        <stop offset="0%" stop-color="white" stop-opacity="1"></stop>
+        <stop offset="100%" stop-color="white" stop-opacity="0"></stop>
+      </radialGradient>
+      <mask id="uspdmask"><rect width="100%" height="100%" fill="url(#uspdfade)"></rect></mask>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#uspdiag)" mask="url(#uspdmask)"></rect>
+  </svg>
+
+  <!-- AMBIENT COLOR BLOBS -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <div style="position:absolute;width:920px;height:920px;border-radius:50%;top:-290px;left:-220px;background:radial-gradient(circle,rgba(239,85,51,.26) 0%,rgba(239,85,51,.09) 36%,transparent 64%);filter:blur(2px);animation:purBlob 28s ease-in-out infinite;"></div>
+    <div style="position:absolute;width:820px;height:820px;border-radius:50%;top:-200px;right:-200px;background:radial-gradient(circle,rgba(45,144,232,.22) 0%,rgba(45,144,232,.07) 36%,transparent 64%);filter:blur(2px);animation:purBlob 34s ease-in-out infinite 7s reverse;"></div>
+    <div style="position:absolute;width:740px;height:740px;border-radius:50%;bottom:-190px;left:-80px;background:radial-gradient(circle,rgba(139,92,246,.2) 0%,rgba(139,92,246,.06) 40%,transparent 64%);filter:blur(3px);animation:purBlob 30s ease-in-out infinite 3s;"></div>
+    <div style="position:absolute;width:720px;height:720px;border-radius:50%;bottom:-160px;right:-60px;background:radial-gradient(circle,rgba(46,196,196,.2) 0%,rgba(46,196,196,.06) 40%,transparent 64%);filter:blur(3px);animation:purBlob 40s ease-in-out infinite 11s reverse;"></div>
+    <div style="position:absolute;width:640px;height:640px;border-radius:50%;top:42%;left:47%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(245,166,35,.16) 0%,rgba(245,166,35,.05) 46%,transparent 68%);filter:blur(4px);animation:purBlob 46s ease-in-out infinite 18s;"></div>
+  </div>
+
+  <!-- GHOST MATH SYMBOLS -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;font-family:'JetBrains Mono',monospace;font-weight:700;">
+    <span style="position:absolute;top:10%;left:3%;font-size:23px;color:rgba(46,196,196,.15);transform:rotate(-4deg);white-space:nowrap;">f(x) = mx + b</span>
+    <span style="position:absolute;top:6%;right:7%;font-size:18px;color:rgba(45,144,232,.14);transform:rotate(5deg);white-space:nowrap;">P(A|B) = P(A∩B)/P(B)</span>
+    <span style="position:absolute;bottom:14%;left:1%;font-size:64px;color:rgba(139,92,246,.15);transform:rotate(8deg);">∮</span>
+    <span style="position:absolute;bottom:8%;right:5%;font-size:23px;color:rgba(245,166,35,.15);transform:rotate(-3deg);white-space:nowrap;">lim(x→∞) = 0</span>
+    <span style="position:absolute;top:48%;left:1%;font-size:54px;color:rgba(239,85,51,.14);transform:rotate(-6deg);">Δx</span>
+    <span style="position:absolute;top:21%;right:2%;font-size:16px;color:rgba(255,255,255,.08);transform:rotate(7deg);white-space:nowrap;">det(A) = ad − bc</span>
+    <span style="position:absolute;top:33%;left:2%;font-size:20px;color:rgba(46,196,196,.12);transform:rotate(-2deg);white-space:nowrap;">∇²φ = 0</span>
+    <span style="position:absolute;bottom:28%;right:3%;font-size:27px;color:rgba(245,166,35,.12);transform:rotate(4deg);white-space:nowrap;">y = ax² + bx + c</span>
+    <span style="position:absolute;top:67%;right:1%;font-size:21px;color:rgba(239,85,51,.11);transform:rotate(-5deg);white-space:nowrap;">e^(iπ) + 1 = 0</span>
+  </div>
+
+  <!-- GIANT GHOST SYMBOL -->
+  <span style="position:absolute;font-size:520px;font-weight:700;color:rgba(255,255,255,.019);right:3%;top:2%;z-index:0;user-select:none;pointer-events:none;line-height:1;font-family:'JetBrains Mono',monospace;letter-spacing:-.06em;">Σ</span>
+
+  <!-- FILM GRAIN -->
+  <svg style="position:absolute;inset:-12%;width:124%;height:124%;z-index:0;pointer-events:none;opacity:0.042;animation:noiseShift 13s ease-in-out infinite 4s;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="uspgrain"><feTurbulence type="fractalNoise" baseFrequency="0.69" numOctaves="4" stitchTiles="stitch" result="n"></feTurbulence><feColorMatrix type="saturate" values="0" in="n"></feColorMatrix></filter>
+    <rect width="100%" height="100%" filter="url(#uspgrain)"></rect>
+  </svg>
+
+  <!-- VIGNETTE -->
+  
+
+  <!-- MAIN CONTENT -->
+  <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;">
+
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:68px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(46,196,196,.1);border:1px solid rgba(46,196,196,.28);border-radius:9999px;padding:7px 18px;margin-bottom:22px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:#2EC4C4;flex-shrink:0;animation:dp 2s ease infinite .4s;"></span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2EC4C4;">{{ t.usp_badge }}</span>
+      </div>
+      <h2 data-usp-h2="" style="font-size:52px;font-weight:900;letter-spacing:-.04em;line-height:1.08;color:#fff;margin:0 0 14px;">{{ t.usp_h2_1 }} <span style="background:linear-gradient(95deg,#2EC4C4,#2D90E8 48%,#8B5CF6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">{{ t.usp_h2_grad }}</span> {{ t.usp_h2_2 }}</h2>
+      <p style="font-size:17px;color:rgba(255,255,255,.42);max-width:500px;margin:0 auto;line-height:1.62;">{{ t.usp_sub }}</p>
+    </div>
+
+    <!-- BENTO CARD GRID: 4-col -->
+    <div data-usp-grid="" style="display:grid;grid-template-columns:repeat(3,1fr) 300px;gap:18px;">
+
+      <!-- 1. Chat (span 2) -->
+      <div style="position:relative;border-radius:22px;overflow:hidden;height:300px;cursor:default;opacity:{{ uspOpacity }};transform:{{ uspTransform }};transition:{{ uspTr0 }};" style-hover="transform:translateY(-8px) scale(1.015);box-shadow:0 28px 60px rgba(239,85,51,.38);">
+        <div style="position:absolute;inset:0;background:linear-gradient(145deg,#F4724A 0%,#C8391A 45%,#7A1208 100%);"></div>
+        <span style="position:absolute;right:-20px;top:-32px;font-size:230px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.18);line-height:1;user-select:none;pointer-events:none;letter-spacing:-.05em;">?</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 10%,rgba(0,0,0,.87) 100%);"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,.22) 50%,transparent 95%);"></div>
+        <div style="position:absolute;top:22px;left:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 26px;">
+          <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.6);">{{ t.usp_chat_title }}</div>
+          <p style="font-size:15px;line-height:1.58;color:rgba(255,255,255,.92);margin:0;">{{ t.usp_chat_desc }}</p>
+        </div>
+      </div>
+
+      <!-- 2. Guidance -->
+      <div style="position:relative;border-radius:22px;overflow:hidden;height:300px;cursor:default;opacity:{{ uspOpacity }};transform:{{ uspTransform }};transition:{{ uspTr1 }};" style-hover="transform:translateY(-8px) scale(1.015);box-shadow:0 28px 60px rgba(245,166,35,.34);">
+        <div style="position:absolute;inset:0;background:linear-gradient(145deg,#F8BC55 0%,#CF8610 45%,#7E5008 100%);"></div>
+        <span style="position:absolute;right:-18px;top:-24px;font-size:210px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.18);line-height:1;user-select:none;pointer-events:none;">→</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 10%,rgba(0,0,0,.87) 100%);"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,.22) 50%,transparent 95%);"></div>
+        <div style="position:absolute;top:22px;left:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 26px;">
+          <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.6);">{{ t.usp_guid_title }}</div>
+          <p style="font-size:15px;line-height:1.58;color:rgba(255,255,255,.92);margin:0;">{{ t.usp_guid_desc }}</p>
+        </div>
+      </div>
+
+      <!-- 3. Languages -->
+      <div style="position:relative;border-radius:22px;overflow:hidden;height:300px;cursor:default;opacity:{{ uspOpacity }};transform:{{ uspTransform }};transition:{{ uspTr2 }};" style-hover="transform:translateY(-8px) scale(1.015);box-shadow:0 28px 60px rgba(46,196,196,.34);">
+        <div style="position:absolute;inset:0;background:linear-gradient(145deg,#4FD4D4 0%,#1A8E8E 45%,#0A5252 100%);"></div>
+        <span style="position:absolute;right:-12px;top:-20px;font-size:200px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.18);line-height:1;user-select:none;pointer-events:none;">Σ</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 10%,rgba(0,0,0,.87) 100%);"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,.22) 50%,transparent 95%);"></div>
+        <div style="position:absolute;top:22px;left:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 26px;">
+          <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.6);">{{ t.usp_lang_title }}</div>
+          <p style="font-size:15px;line-height:1.58;color:rgba(255,255,255,.92);margin:0;">{{ t.usp_lang_desc }}</p>
+        </div>
+      </div>
+
+      <!-- MathMate Character -->
+      <div data-usp-char="" style="grid-column:4;grid-row:1 / span 2;display:flex;align-items:flex-end;justify-content:center;overflow:visible;z-index:10;cursor:default;">
+        <img src="assets/character-holding-hands.png" alt="MathMate character" draggable="false" style="height:560px;width:auto;object-fit:contain;-webkit-user-drag:none;user-select:none;display:block;filter:none;transition:transform .45s cubic-bezier(.34,1.2,.64,1),filter .4s ease;" style-hover="transform:translateY(-8px) scale(1.025);filter:drop-shadow(0 24px 48px rgba(245,166,35,.52)) drop-shadow(0 0 28px rgba(46,196,196,.28));">
+      </div>
+
+      <!-- 4. Roadmap -->
+      <div style="position:relative;border-radius:22px;overflow:hidden;height:300px;cursor:default;opacity:{{ uspOpacity }};transform:{{ uspTransform }};transition:{{ uspTr3 }};" style-hover="transform:translateY(-8px) scale(1.015);box-shadow:0 28px 60px rgba(45,144,232,.34);">
+        <div style="position:absolute;inset:0;background:linear-gradient(145deg,#52A8F0 0%,#1E6BB8 45%,#0E3E78 100%);"></div>
+        <span style="position:absolute;right:-16px;top:-26px;font-size:210px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.18);line-height:1;user-select:none;pointer-events:none;">∫</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 10%,rgba(0,0,0,.87) 100%);"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,.22) 50%,transparent 95%);"></div>
+        <div style="position:absolute;top:22px;left:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 26px;">
+          <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.6);">{{ t.usp_road_title }}</div>
+          <p style="font-size:15px;line-height:1.58;color:rgba(255,255,255,.92);margin:0;">{{ t.usp_road_desc }}</p>
+        </div>
+      </div>
+
+      <!-- 5. Progress (span 2) -->
+      <div style="position:relative;border-radius:22px;overflow:hidden;height:300px;cursor:default;opacity:{{ uspOpacity }};transform:{{ uspTransform }};transition:{{ uspTr4 }};" style-hover="transform:translateY(-8px) scale(1.015);box-shadow:0 28px 60px rgba(139,92,246,.38);">
+        <div style="position:absolute;inset:0;background:linear-gradient(145deg,#A78BFA 0%,#7C3AED 40%,#3B0EA8 100%);"></div>
+        <span style="position:absolute;right:-14px;top:-28px;font-size:230px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.18);line-height:1;user-select:none;pointer-events:none;">↑</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 10%,rgba(0,0,0,.87) 100%);"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,.22) 50%,transparent 95%);"></div>
+        <div style="position:absolute;top:22px;left:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 26px;">
+          <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.6);">{{ t.usp_prog_title }}</div>
+          <p style="font-size:15px;line-height:1.58;color:rgba(255,255,255,.92);margin:0;">{{ t.usp_prog_desc }}</p>
+        </div>
+      </div>
+
+      <!-- 6. Concepts -->
+      <div style="position:relative;border-radius:22px;overflow:hidden;height:300px;cursor:default;opacity:{{ uspOpacity }};transform:{{ uspTransform }};transition:{{ uspTr5 }};" style-hover="transform:translateY(-8px) scale(1.015);box-shadow:0 28px 60px rgba(46,196,196,.28);">
+        <div style="position:absolute;inset:0;background:linear-gradient(145deg,#4FD4D4 0%,#2D90E8 50%,#1E3A8A 100%);"></div>
+        <span style="position:absolute;right:-16px;top:-24px;font-size:210px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.18);line-height:1;user-select:none;pointer-events:none;">∞</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 10%,rgba(0,0,0,.87) 100%);"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,.22) 50%,transparent 95%);"></div>
+        <div style="position:absolute;top:22px;left:24px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5z"></path><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5z"></path></svg>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 26px;">
+          <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.6);">{{ t.usp_conc_title }}</div>
+          <p style="font-size:15px;line-height:1.58;color:rgba(255,255,255,.92);margin:0;">{{ t.usp_conc_desc }}</p>
+        </div>
+      </div>
+
+      <!-- 7. Quiz (full width, span 4) -->
+      <div data-usp-quiz="" style="grid-column:1 / span 4;position:relative;border-radius:22px;overflow:hidden;height:160px;cursor:default;opacity:{{ uspOpacity }};transform:{{ uspTransform }};transition:{{ uspTr6 }};" style-hover="transform:translateY(-6px) scale(1.008);box-shadow:0 24px 52px rgba(245,166,35,.3);">
+        <div style="position:absolute;inset:0;background:linear-gradient(130deg,#F8BC55 0%,#EF5533 48%,#8B1A0A 100%);"></div>
+        <span style="position:absolute;right:52px;top:-32px;font-size:220px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.16);line-height:1;user-select:none;pointer-events:none;">√</span>
+        <span style="position:absolute;right:310px;top:16px;font-size:70px;font-family:'JetBrains Mono',monospace;font-weight:700;color:rgba(0,0,0,.1);line-height:1;user-select:none;pointer-events:none;transform:rotate(14deg);">%</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.22) 44%,transparent 68%);"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(255,255,255,.22) 50%,transparent 95%);"></div>
+        <div style="position:absolute;inset:0;padding:0 36px;display:flex;align-items:center;gap:22px;">
+          <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);flex-shrink:0;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:23px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.6);">{{ t.usp_quiz_title }}</div>
+            <p style="font-size:15px;line-height:1.58;color:rgba(255,255,255,.92);margin:0;max-width:540px;">{{ t.usp_quiz_desc }}</p>
+          </div>
+          <div data-usp-grades="" style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:290px;flex-shrink:0;">
+            <span style="background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:9999px;white-space:nowrap;backdrop-filter:blur(4px);letter-spacing:.04em;">Grade 6</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:9999px;white-space:nowrap;backdrop-filter:blur(4px);letter-spacing:.04em;">Grade 7</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:9999px;white-space:nowrap;backdrop-filter:blur(4px);letter-spacing:.04em;">Grade 8</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:9999px;white-space:nowrap;backdrop-filter:blur(4px);letter-spacing:.04em;">Grade 9</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:9999px;white-space:nowrap;backdrop-filter:blur(4px);letter-spacing:.04em;">Grade 10</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:5px 13px;border-radius:9999px;white-space:nowrap;backdrop-filter:blur(4px);letter-spacing:.04em;">Grade 12</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ PROCESS SECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="process" data-screen-label="Process" style="position:relative;overflow:hidden;padding:120px 240px 140px 64px;background:#030B0D;z-index:1;">
+
+  <!-- TOP BLEND -->
+  <div style="position:absolute;top:0;left:0;right:0;height:220px;background:linear-gradient(180deg,#06091C 0%,#030B0D 100%);z-index:0;pointer-events:none;"></div>
+
+  <!-- DIAGONAL GRID + CIRCUIT TRACES -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="prcdgrid" width="44" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(45 0 0)">
+        <line x1="0" y1="0" x2="44" y2="0" stroke="rgba(46,196,196,.09)" stroke-width="0.7"></line>
+        <line x1="0" y1="0" x2="0" y2="44" stroke="rgba(46,196,196,.09)" stroke-width="0.7"></line>
+      </pattern>
+      <radialGradient id="prcgfade" cx="50%" cy="46%" r="58%">
+        <stop offset="0%" stop-color="white" stop-opacity="1"></stop>
+        <stop offset="65%" stop-color="white" stop-opacity="0.4"></stop>
+        <stop offset="100%" stop-color="white" stop-opacity="0"></stop>
+      </radialGradient>
+      <mask id="prcgmask"><rect width="100%" height="100%" fill="url(#prcgfade)"></rect></mask>
+      <linearGradient id="htrace1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgba(46,196,196,0)"></stop>
+        <stop offset="25%" stop-color="rgba(46,196,196,0.22)"></stop>
+        <stop offset="50%" stop-color="rgba(46,196,196,0.38)"></stop>
+        <stop offset="75%" stop-color="rgba(46,196,196,0.22)"></stop>
+        <stop offset="100%" stop-color="rgba(46,196,196,0)"></stop>
+      </linearGradient>
+      <linearGradient id="htrace2" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgba(239,85,51,0)"></stop>
+        <stop offset="28%" stop-color="rgba(239,85,51,0.16)"></stop>
+        <stop offset="50%" stop-color="rgba(239,85,51,0.28)"></stop>
+        <stop offset="72%" stop-color="rgba(239,85,51,0.16)"></stop>
+        <stop offset="100%" stop-color="rgba(239,85,51,0)"></stop>
+      </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#prcdgrid)" mask="url(#prcgmask)"></rect>
+    <!-- Teal circuit trace top-third -->
+    <line x1="0" y1="21%" x2="100%" y2="21%" stroke="url(#htrace1)" stroke-width="1"></line>
+    <!-- Coral circuit trace bottom-third -->
+    <line x1="0" y1="79%" x2="100%" y2="79%" stroke="url(#htrace2)" stroke-width="1"></line>
+    <!-- Vertical accent columns -->
+    <line x1="25%" y1="0" x2="25%" y2="100%" stroke="rgba(46,196,196,.05)" stroke-width="0.8"></line>
+    <line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(46,196,196,.06)" stroke-width="0.8"></line>
+    <line x1="75%" y1="0" x2="75%" y2="100%" stroke="rgba(46,196,196,.05)" stroke-width="0.8"></line>
+  </svg>
+
+  <!-- AMBIENT BLOBS -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+    <!-- DOMINANT: teal forge-light rising from bottom-center -->
+    <div style="position:absolute;width:1200px;height:720px;border-radius:50%;bottom:-340px;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(46,196,196,.38) 0%,rgba(46,196,196,.18) 28%,rgba(45,144,232,.08) 52%,transparent 70%);filter:blur(1px);animation:aurora 44s ease-in-out infinite 14s;"></div>
+    <!-- Teal secondary: bottom-right push -->
+    <div style="position:absolute;width:600px;height:600px;border-radius:50%;bottom:-160px;right:-60px;background:radial-gradient(circle,rgba(46,196,196,.2) 0%,rgba(46,196,196,.06) 38%,transparent 64%);filter:blur(2px);animation:aurora 28s ease-in-out infinite 5s reverse;"></div>
+    <!-- Top-left: coral warmth (Step 1 accent) -->
+    <div style="position:absolute;width:660px;height:660px;border-radius:50%;top:-260px;left:-170px;background:radial-gradient(circle,rgba(239,85,51,.26) 0%,rgba(239,85,51,.08) 34%,transparent 62%);filter:blur(2px);animation:aurora 30s ease-in-out infinite;"></div>
+    <!-- Top-right: blue accent (Step 2) -->
+    <div style="position:absolute;width:580px;height:580px;border-radius:50%;top:-220px;right:-140px;background:radial-gradient(circle,rgba(45,144,232,.2) 0%,rgba(45,144,232,.06) 38%,transparent 66%);filter:blur(3px);animation:aurora 38s ease-in-out infinite 8s reverse;"></div>
+    <!-- Mid-left: amber -->
+    <div style="position:absolute;width:380px;height:380px;border-radius:50%;top:42%;left:-70px;background:radial-gradient(circle,rgba(245,166,35,.14) 0%,rgba(245,166,35,.04) 44%,transparent 68%);filter:blur(4px);animation:aurora 52s ease-in-out infinite 20s;"></div>
+  </div>
+
+  <!-- GHOST MATH -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;font-family:'JetBrains Mono',monospace;font-weight:700;">
+    <span style="position:absolute;top:8%;left:2%;font-size:18px;color:rgba(239,85,51,.1);transform:rotate(-5deg);white-space:nowrap;">score = Σ(correct) / total</span>
+    <span style="position:absolute;top:12%;right:4%;font-size:15px;color:rgba(45,144,232,.1);transform:rotate(4deg);white-space:nowrap;">step 1 → step 2 → step 3</span>
+    <span style="position:absolute;bottom:14%;left:1%;font-size:68px;color:rgba(245,166,35,.08);transform:rotate(6deg);">∞</span>
+    <span style="position:absolute;bottom:10%;right:3%;font-size:20px;color:rgba(46,196,196,.1);transform:rotate(-3deg);white-space:nowrap;">progress += mastery</span>
+    <span style="position:absolute;top:55%;left:1%;font-size:42px;color:rgba(239,85,51,.09);transform:rotate(-8deg);">?</span>
+  </div>
+
+  <!-- FILM GRAIN -->
+  <svg style="position:absolute;inset:-12%;width:124%;height:124%;z-index:0;pointer-events:none;opacity:0.032;animation:noiseShift 13s ease-in-out infinite 3s;" xmlns="http://www.w3.org/2000/svg">
+    <filter id="prcgrain2"><feTurbulence type="fractalNoise" baseFrequency="0.71" numOctaves="4" stitchTiles="stitch" result="n"></feTurbulence><feColorMatrix type="saturate" values="0" in="n"></feColorMatrix></filter>
+    <rect width="100%" height="100%" filter="url(#prcgrain2)"></rect>
+  </svg>
+
+  <!-- VIGNETTE -->
+  <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 80% 72% at 50% 50%,transparent 22%,rgba(3,11,13,.36) 56%,rgba(3,11,13,.86) 100%);"></div>
+
+  <!-- MAIN CONTENT -->
+  <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;">
+
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:88px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(45,144,232,.1);border:1px solid rgba(45,144,232,.28);border-radius:9999px;padding:7px 18px;margin-bottom:24px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:#2D90E8;flex-shrink:0;animation:dp 2s ease infinite;"></span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2D90E8;">{{ t.proc_badge }}</span>
+      </div>
+      <h2 style="font-size:54px;font-weight:900;letter-spacing:-.04em;line-height:1.08;color:#fff;margin:0 0 16px;">{{ t.proc_h2_1 }} <span style="background:linear-gradient(95deg,#EF5533 0%,#F5A623 32%,#2D90E8 66%,#2EC4C4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">{{ t.proc_h2_2 }}</span></h2>
+      <p style="font-size:17px;color:rgba(255,255,255,.38);max-width:460px;margin:0 auto;line-height:1.62;">{{ t.proc_sub }}</p>
+    </div>
+
+    <!-- STEP CARDS -->
+    <div data-proc-grid="" style="display:grid;grid-template-columns:1fr 52px 1fr 52px 1fr 52px 1fr;align-items:stretch;gap:0;">
+
+      <!-- CARD 1: DIAGNOSE -->
+      <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(239,85,51,.18);background:rgba(239,85,51,.04);cursor:default;min-height:320px;opacity:{{ procOpacity }};transform:{{ procT0 }};transition:{{ procTr0 }};" style-hover="transform:translateY(-10px);background:rgba(239,85,51,.1);border-color:rgba(239,85,51,.52);box-shadow:0 24px 56px rgba(239,85,51,.22),0 0 0 1px rgba(239,85,51,.16);">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#EF5533,#F47355);"></div>
+        <span style="position:absolute;right:-10px;bottom:-20px;font-size:190px;font-weight:900;font-family:'JetBrains Mono',monospace;color:rgba(239,85,51,.055);line-height:1;user-select:none;pointer-events:none;letter-spacing:-.06em;">01</span>
+        <div style="position:relative;z-index:1;padding:38px 30px 48px;">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(239,85,51,.12);border:1px solid rgba(239,85,51,.28);border-radius:9999px;padding:5px 14px;margin-bottom:26px;">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#EF5533;">Step 01</span>
+          </div>
+          <div style="width:52px;height:52px;border-radius:15px;background:rgba(239,85,51,.15);border:1px solid rgba(239,85,51,.28);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 6px 0 rgba(120,26,10,.45),0 8px 22px rgba(239,85,51,.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF5533" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path><path d="M11 8v6M8 11h6"></path></svg>
+          </div>
+          <div style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:#EF5533;margin-bottom:10px;">{{ t.proc_s1_title }}</div>
+          <p style="font-size:14.5px;line-height:1.72;color:rgba(255,255,255,.46);margin:0;">{{ t.proc_s1_desc }}</p>
+        </div>
+      </div>
+
+      <!-- CONNECTOR 1→2 -->
+      <div data-proc-conn="" style="display:flex;align-items:center;justify-content:center;opacity:{{ procConnOpacity }};transition:{{ procConnTr }};">
+        <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 8 H30" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-dasharray="4 3"></path>
+          <path d="M28 4 L36 8 L28 12" stroke="rgba(255,255,255,.22)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <!-- CARD 2: LEARN -->
+      <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(45,144,232,.18);background:rgba(45,144,232,.04);cursor:default;min-height:320px;opacity:{{ procOpacity }};transform:{{ procT1 }};transition:{{ procTr1 }};" style-hover="transform:translateY(-10px);background:rgba(45,144,232,.1);border-color:rgba(45,144,232,.52);box-shadow:0 24px 56px rgba(45,144,232,.22),0 0 0 1px rgba(45,144,232,.16);">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2D90E8,#52A8F0);"></div>
+        <span style="position:absolute;right:-10px;bottom:-20px;font-size:190px;font-weight:900;font-family:'JetBrains Mono',monospace;color:rgba(45,144,232,.055);line-height:1;user-select:none;pointer-events:none;letter-spacing:-.06em;">02</span>
+        <div style="position:relative;z-index:1;padding:38px 30px 48px;">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(45,144,232,.12);border:1px solid rgba(45,144,232,.28);border-radius:9999px;padding:5px 14px;margin-bottom:26px;">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#2D90E8;">Step 02</span>
+          </div>
+          <div style="width:52px;height:52px;border-radius:15px;background:rgba(45,144,232,.15);border:1px solid rgba(45,144,232,.28);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 6px 0 rgba(14,62,120,.45),0 8px 22px rgba(45,144,232,.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D90E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          </div>
+          <div style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:#2D90E8;margin-bottom:10px;">{{ t.learn_label }}</div>
+          <p style="font-size:14.5px;line-height:1.72;color:rgba(255,255,255,.46);margin:0;">{{ t.proc_s2_desc }}</p>
+        </div>
+      </div>
+
+      <!-- CONNECTOR 2→3 -->
+      <div data-proc-conn="" style="display:flex;align-items:center;justify-content:center;opacity:{{ procConnOpacity }};transition:{{ procConnTr }};">
+        <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 8 H30" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-dasharray="4 3"></path>
+          <path d="M28 4 L36 8 L28 12" stroke="rgba(255,255,255,.22)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <!-- CARD 3: PRACTICE -->
+      <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(245,166,35,.18);background:rgba(245,166,35,.04);cursor:default;min-height:320px;opacity:{{ procOpacity }};transform:{{ procT2 }};transition:{{ procTr2 }};" style-hover="transform:translateY(-10px);background:rgba(245,166,35,.1);border-color:rgba(245,166,35,.52);box-shadow:0 24px 56px rgba(245,166,35,.22),0 0 0 1px rgba(245,166,35,.16);">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#F5A623,#F8BC55);"></div>
+        <span style="position:absolute;right:-10px;bottom:-20px;font-size:190px;font-weight:900;font-family:'JetBrains Mono',monospace;color:rgba(245,166,35,.055);line-height:1;user-select:none;pointer-events:none;letter-spacing:-.06em;">03</span>
+        <div style="position:relative;z-index:1;padding:38px 30px 48px;">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.28);border-radius:9999px;padding:5px 14px;margin-bottom:26px;">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#F5A623;">Step 03</span>
+          </div>
+          <div style="width:52px;height:52px;border-radius:15px;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.28);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 6px 0 rgba(126,80,8,.45),0 8px 22px rgba(245,166,35,.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+          </div>
+          <div style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:#F5A623;margin-bottom:10px;">{{ t.proc_s3_title }}</div>
+          <p style="font-size:14.5px;line-height:1.72;color:rgba(255,255,255,.46);margin:0;">{{ t.proc_s3_desc }}</p>
+        </div>
+      </div>
+
+      <!-- CONNECTOR 3→4 -->
+      <div data-proc-conn="" style="display:flex;align-items:center;justify-content:center;opacity:{{ procConnOpacity }};transition:{{ procConnTr }};">
+        <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 8 H30" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-dasharray="4 3"></path>
+          <path d="M28 4 L36 8 L28 12" stroke="rgba(255,255,255,.22)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <!-- CARD 4: IMPROVE -->
+      <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(46,196,196,.18);background:rgba(46,196,196,.04);cursor:default;min-height:320px;opacity:{{ procOpacity }};transform:{{ procT3 }};transition:{{ procTr3 }};" style-hover="transform:translateY(-10px);background:rgba(46,196,196,.1);border-color:rgba(46,196,196,.52);box-shadow:0 24px 56px rgba(46,196,196,.22),0 0 0 1px rgba(46,196,196,.16);">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2EC4C4,#4FD4D4);"></div>
+        <span style="position:absolute;right:-10px;bottom:-20px;font-size:190px;font-weight:900;font-family:'JetBrains Mono',monospace;color:rgba(46,196,196,.055);line-height:1;user-select:none;pointer-events:none;letter-spacing:-.06em;">04</span>
+        <div style="position:relative;z-index:1;padding:38px 30px 48px;">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(46,196,196,.12);border:1px solid rgba(46,196,196,.28);border-radius:9999px;padding:5px 14px;margin-bottom:26px;">
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#2EC4C4;">Step 04</span>
+          </div>
+          <div style="width:52px;height:52px;border-radius:15px;background:rgba(46,196,196,.15);border:1px solid rgba(46,196,196,.28);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 6px 0 rgba(14,90,90,.45),0 8px 22px rgba(46,196,196,.2);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2EC4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+          </div>
+          <div style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:#2EC4C4;margin-bottom:10px;">{{ t.proc_s4_title }}</div>
+          <p style="font-size:14.5px;line-height:1.72;color:rgba(255,255,255,.46);margin:0;">{{ t.proc_s4_desc }}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM CALLOUT -->
+    <div style="margin-top:60px;display:flex;justify-content:center;">
+      <div style="display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(239,85,51,.05) 0%,rgba(46,196,196,.05) 100%);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px 36px;max-width:700px;">
+        <div style="width:38px;height:38px;border-radius:11px;background:rgba(239,85,51,.16);border:1px solid rgba(239,85,51,.28);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 0 rgba(120,26,10,.4),0 6px 18px rgba(239,85,51,.24);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF5533" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+        </div>
+        <p style="font-size:15px;color:rgba(255,255,255,.6);margin:0;line-height:1.56;"><span style="background:linear-gradient(90deg,#EF5533,#F5A623 48%,#2EC4C4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;">{{ t.proc_callout_bold }}</span>{{ t.proc_callout_rest }}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="contact" data-screen-label="Contact" style="position:relative;background:#02040C;z-index:1;overflow:hidden;">
+
+  <!-- PRE-FOOTER CTA BAND -->
+  <div id="ctaBand" style="position:relative;padding:148px 64px 136px;overflow:hidden;">
+    <!-- ░░ CANVAS: glowing particle constellation ░░ -->
+    <canvas id="ctaBgCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+
+    <!-- ░░ AURORA LAYER — vivid, 4× more saturated ░░ -->
+    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;">
+      <!-- Central amber-coral supernova burst -->
+      <div style="position:absolute;width:1400px;height:820px;top:-360px;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 46%,rgba(245,166,35,.26) 0%,rgba(239,85,51,.18) 26%,rgba(45,144,232,.07) 52%,transparent 70%);filter:blur(5px);"></div>
+      <!-- Coral bottom-left nova -->
+      <div style="position:absolute;width:960px;height:960px;border-radius:50%;bottom:-400px;left:-140px;background:radial-gradient(circle,rgba(239,85,51,.3) 0%,rgba(239,85,51,.11) 34%,transparent 58%);filter:blur(10px);animation:purBlob 30s ease-in-out infinite;"></div>
+      <!-- Teal bottom-right nova -->
+      <div style="position:absolute;width:880px;height:880px;border-radius:50%;bottom:-350px;right:-120px;background:radial-gradient(circle,rgba(46,196,196,.26) 0%,rgba(46,196,196,.09) 34%,transparent 58%);filter:blur(10px);animation:purBlob 34s ease-in-out infinite 9s reverse;"></div>
+      <!-- Blue top-right cluster -->
+      <div style="position:absolute;width:680px;height:680px;border-radius:50%;top:-12%;right:2%;background:radial-gradient(circle,rgba(45,144,232,.24) 0%,rgba(45,144,232,.08) 38%,transparent 62%);filter:blur(8px);animation:purBlob 26s ease-in-out infinite 4s;"></div>
+      <!-- Amber top-left cluster -->
+      <div style="position:absolute;width:540px;height:540px;border-radius:50%;top:-9%;left:1%;background:radial-gradient(circle,rgba(245,166,35,.2) 0%,rgba(245,166,35,.07) 40%,transparent 64%);filter:blur(7px);animation:purBlob 32s ease-in-out infinite 12s;"></div>
+      <!-- Purple mid accent -->
+      <div style="position:absolute;width:420px;height:420px;border-radius:50%;top:30%;left:32%;background:radial-gradient(circle,rgba(139,92,246,.12) 0%,transparent 60%);filter:blur(12px);animation:purBlob 38s ease-in-out infinite 6s;"></div>
+      <!-- Aurora horizon band -->
+      <div style="position:absolute;left:0;right:0;top:34%;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(239,85,51,.44) 14%,rgba(245,166,35,.56) 32%,rgba(46,196,196,.48) 60%,rgba(45,144,232,.4) 82%,transparent 100%);filter:blur(1px);"></div>
+      <div style="position:absolute;left:0;right:0;top:34%;height:100px;transform:translateY(-50%);background:linear-gradient(180deg,transparent,rgba(245,166,35,.08) 50%,transparent);filter:blur(22px);"></div>
+      <!-- Second softer band lower -->
+      <div style="position:absolute;left:0;right:0;top:68%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(46,196,196,.18) 30%,rgba(45,144,232,.22) 50%,rgba(46,196,196,.18) 70%,transparent 100%);filter:blur(1px);"></div>
+      <!-- Conic light rays from top-center -->
+      <div style="position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 12%,transparent 0deg,rgba(245,166,35,.055) 4deg,transparent 12deg,transparent 53deg,rgba(239,85,51,.05) 60deg,transparent 70deg,transparent 113deg,rgba(46,196,196,.044) 121deg,transparent 132deg,transparent 186deg,rgba(45,144,232,.05) 195deg,transparent 207deg,transparent 263deg,rgba(245,166,35,.042) 272deg,transparent 283deg,transparent 346deg,rgba(239,85,51,.038) 354deg,transparent 360deg);"></div>
+      <!-- Soft central spotlight pool -->
+      <div style="position:absolute;width:760px;height:440px;top:8%;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(255,255,255,.038) 0%,transparent 58%);filter:blur(4px);"></div>
+    </div>
+
+    <!-- ░░ GLOWING COORDINATE GRID ░░ -->
+    <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="ctag" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0L0 0 0 48" fill="none" stroke="rgba(255,255,255,.044)" stroke-width="0.65"></path></pattern><radialGradient id="ctafade" cx="50%" cy="36%" r="55%"><stop offset="0%" stop-color="white" stop-opacity="1"></stop><stop offset="58%" stop-color="white" stop-opacity="0.52"></stop><stop offset="100%" stop-color="white" stop-opacity="0"></stop></radialGradient><mask id="ctamask"><rect width="100%" height="100%" fill="url(#ctafade)"></rect></mask></defs><rect width="100%" height="100%" fill="url(#ctag)" mask="url(#ctamask)"></rect><line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(245,166,35,.07)" stroke-width="0.9" stroke-dasharray="6 14"></line><line x1="0" y1="34%" x2="100%" y2="34%" stroke="rgba(245,166,35,.07)" stroke-width="0.9" stroke-dasharray="6 14"></line></svg><div data-ft-tile="" style="position: absolute; width: 88px; height: 88px; border-radius: 22px; background: #2D90E8; display: flex; align-items: center; justify-content: center; font-size: 44px; font-weight: 900; color: rgba(255,255,255,.93); font-family: 'JetBrains Mono',monospace; box-shadow: 0 12px 0 #1A6AB0,0 18px 46px rgba(45,144,232,.58),0 0 80px rgba(45,144,232,.34),0 0 160px rgba(45,144,232,.15); z-index: 4; user-select: none; cursor: default; animation: purTileFloat 6.2s ease-in-out infinite 0.6s; transition: transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; left: 915px; top: 439px" style-hover="transform:translateY(-10px) rotate(-11deg) scale(1.12);box-shadow:0 24px 0 #1A6AB0,0 36px 62px rgba(45,144,232,.8),0 0 110px rgba(45,144,232,.48);">÷</div><div data-ft-tile="" style="position: absolute; left: 65px; width: 84px; height: 84px; border-radius: 21px; background: #F5A623; display: flex; align-items: center; justify-content: center; font-size: 42px; font-weight: 900; color: rgba(255,255,255,.93); font-family: 'JetBrains Mono',monospace; box-shadow: 0 10px 0 #A87015,0 16px 40px rgba(245,166,35,.58),0 0 74px rgba(245,166,35,.34),0 0 150px rgba(245,166,35,.15); z-index: 4; user-select: none; cursor: default; animation: purTileFloat 7.4s ease-in-out infinite 2.8s; transition: transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; top: 285px" style-hover="transform:translateY(-10px) rotate(12deg) scale(1.12);box-shadow:0 22px 0 #A87015,0 32px 56px rgba(245,166,35,.8),0 0 105px rgba(245,166,35,.48);">×</div><div data-ft-tile="" style="position: absolute; top: 48px; width: 88px; height: 88px; border-radius: 22px; background: #2EC4C4; display: flex; align-items: center; justify-content: center; font-size: 46px; font-weight: 900; color: rgba(255,255,255,.93); font-family: 'JetBrains Mono',monospace; box-shadow: 0 12px 0 #1A8A8A,0 18px 46px rgba(46,196,196,.58),0 0 80px rgba(46,196,196,.34),0 0 160px rgba(46,196,196,.15); z-index: 4; user-select: none; cursor: default; animation: purTileFloat 6.8s ease-in-out infinite 1.4s; transition: transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s; left: 816px" style-hover="transform:translateY(-10px) rotate(9deg) scale(1.12);box-shadow:0 24px 0 #1A8A8A,0 36px 62px rgba(46,196,196,.8),0 0 110px rgba(46,196,196,.48);">−</div><div data-ft-tile="" style="position: absolute; top: 36px; left: 323px; width: 96px; height: 96px; border-radius: 24px; background: #EF5533; display: flex; align-items: center; justify-content: center; font-size: 52px; font-weight: 900; color: rgba(255,255,255,.93); font-family: 'JetBrains Mono',monospace; box-shadow: 0 14px 0 #8F2912,0 20px 52px rgba(239,85,51,.58),0 0 90px rgba(239,85,51,.36),0 0 180px rgba(239,85,51,.16); z-index: 4; user-select: none; cursor: default; animation: purTileFloat 5.5s ease-in-out infinite; transition: transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s" style-hover="transform:translateY(-10px) rotate(-9deg) scale(1.12);box-shadow:0 26px 0 #8F2912,0 38px 70px rgba(239,85,51,.8),0 0 120px rgba(239,85,51,.5);">+</div>
+
+    <!-- ░░ GLOWING MATH FORMULAS ░░ -->
+    <span style="position:absolute;top:14%;left:10%;font-size:20px;color:rgba(245,166,35,.32);transform:rotate(-5deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;text-shadow:0 0 32px rgba(245,166,35,.65),0 0 70px rgba(245,166,35,.3);z-index:3;">∫₀^∞ e⁻ˣ dx = 1</span>
+    <span style="position:absolute;bottom:18%;right:9%;font-size:18px;color:rgba(46,196,196,.3);transform:rotate(4deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;text-shadow:0 0 28px rgba(46,196,196,.6),0 0 60px rgba(46,196,196,.28);z-index:3;">e^(iπ) + 1 = 0</span>
+    <span style="position:absolute;top:49%;left:7%;font-size:13px;color:rgba(255,255,255,.14);transform:rotate(-2deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;z-index:3;">lim(x→0) sin(x)/x = 1</span>
+    <span style="position:absolute;top:23%;right:8%;font-size:17px;color:rgba(239,85,51,.28);transform:rotate(5deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;text-shadow:0 0 26px rgba(239,85,51,.56),0 0 55px rgba(239,85,51,.24);z-index:3;">x = (−b ± √Δ) / 2a</span>
+    <span style="position:absolute;bottom:25%;left:12%;font-size:15px;color:rgba(45,144,232,.26);transform:rotate(-3deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;text-shadow:0 0 24px rgba(45,144,232,.52),0 0 48px rgba(45,144,232,.22);z-index:3;">P(A|B) = P(B|A)·P(A)/P(B)</span>
+    <span style="position:absolute;top:64%;right:11%;font-size:14px;color:rgba(245,166,35,.2);transform:rotate(2deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;text-shadow:0 0 20px rgba(245,166,35,.44);z-index:3;">E = mc²</span>
+    <span style="position:absolute;top:38%;left:4%;font-size:12px;color:rgba(46,196,196,.15);transform:rotate(-1deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;z-index:3;">∇²φ = 4πGρ</span>
+    <span style="position:absolute;bottom:42%;right:5%;font-size:12px;color:rgba(239,85,51,.14);transform:rotate(3deg);white-space:nowrap;pointer-events:none;font-family:'JetBrains Mono',monospace;font-weight:700;z-index:3;">F = ma</span>
+
+    <!-- ░░ OPERATOR TILES — supercharged corona glow ░░ -->
+    
+    
+    
+    
+    <!-- Centered CTA -->
+    <div style="position:relative;z-index:5;text-align:center;max-width:820px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:28px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.28);border-radius:9999px;padding:7px 18px;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#F5A623;flex-shrink:0;animation:dp 2s ease infinite;"></span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F5A623;">{{ t.cta_badge }}</span>
+      </div>
+      <h2 data-ft-cta-h="" style="font-size:74px;font-weight:900;line-height:1.04;letter-spacing:-.045em;color:#fff;margin:0;">{{ t.cta_h2_1 }}<br><span style="background:linear-gradient(95deg,#EF5533 0%,#F5A623 33%,#2EC4C4 68%,#2D90E8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">{{ t.cta_h2_2 }}</span></h2>
+      <p style="font-size:18px;line-height:1.68;color:rgba(255,255,255,.42);margin:0;max-width:520px;">{{ t.cta_sub }}</p>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;">
+        <a href="#" style="display:inline-flex;align-items:center;gap:10px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:17px 36px;font-size:16px;font-weight:700;box-shadow:0 12px 38px rgba(239,85,51,.44);transition:transform .15s,box-shadow .15s;" style-hover="transform:translateY(-3px);box-shadow:0 22px 52px rgba(239,85,51,.62);">{{ t.cta_snap_solve }}<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-left:4px;"><path d="M2 8h12M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        <a href="#" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);text-decoration:none;border:1.5px solid rgba(255,255,255,.14);border-radius:9999px;padding:17px 28px;font-size:16px;font-weight:600;transition:background .15s,border-color .15s;" style-hover="background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.34);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>{{ t.cta_dl }}</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:30px;padding-top:8px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:default;transition:transform .2s;" style-hover="transform:translateY(-3px);"><span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:#EF5533;line-height:1.1;">10K+</span><span style="font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.26);">{{ t.stat_students }}</span></div>
+        <div style="width:1px;height:28px;background:rgba(255,255,255,.1);"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:default;transition:transform .2s;" style-hover="transform:translateY(-3px);"><span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:#2EC4C4;line-height:1.1;">50K+</span><span style="font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.26);">{{ t.stat_solved }}</span></div>
+        <div style="width:1px;height:28px;background:rgba(255,255,255,.1);"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:default;transition:transform .2s;" style-hover="transform:translateY(-3px);"><span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:#F5A623;line-height:1.1;">4.9★</span><span style="font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.26);">{{ t.stat_rating }}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAINBOW DIVIDER -->
+  <div style="height:1.5px;background:linear-gradient(90deg,transparent 0%,#EF5533 16%,#F5A623 36%,#2EC4C4 62%,#2D90E8 82%,transparent 100%);opacity:.38;"></div>
+
+  <!-- MAIN FOOTER -->
+  <footer data-ft-wrap="" style="position:relative;padding:80px 64px 0;overflow:hidden;z-index:1;">
+    <span style="position:absolute;top:20px;right:-10px;font-size:360px;font-weight:900;color:rgba(255,255,255,.012);font-family:'JetBrains Mono',monospace;letter-spacing:-.06em;line-height:1;user-select:none;pointer-events:none;">π</span>
+    <span style="position:absolute;bottom:80px;left:-20px;font-size:280px;font-weight:900;color:rgba(255,255,255,.010);font-family:'JetBrains Mono',monospace;letter-spacing:-.06em;line-height:1;user-select:none;pointer-events:none;">∑</span>
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="ftg" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0L0 0 0 36" fill="none" stroke="rgba(255,255,255,.018)" stroke-width="0.5"></path></pattern><radialGradient id="ftfade" cx="50%" cy="0%" r="70%"><stop offset="0%" stop-color="white" stop-opacity="1"></stop><stop offset="100%" stop-color="white" stop-opacity="0"></stop></radialGradient><mask id="ftmask"><rect width="100%" height="100%" fill="url(#ftfade)"></rect></mask></defs><rect width="100%" height="100%" fill="url(#ftg)" mask="url(#ftmask)"></rect></svg>
+    <!-- 4-col grid -->
+    <div data-ft-grid="" style="position:relative;z-index:1;display:grid;grid-template-columns:1.9fr 1fr 1fr 1fr;gap:56px;max-width:1440px;margin:0 auto;">
+      <!-- Brand -->
+      <div data-ft-brand="" style="display:flex;flex-direction:column;gap:24px;">
+        <a href="#home" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;width:fit-content;transition:opacity .15s;" style-hover="opacity:.8;">
+          <img src="assets/MathMateIconLogo.png" alt="MathMate" style="height:38px;width:38px;object-fit:contain;border-radius:9px;">
+          <span style="font-size:21px;font-weight:900;letter-spacing:-.03em;color:#fff;">Math<span style="color:#F5A623;">Mate</span></span>
+        </a>
+        <p style="font-size:10.5px;font-weight:800;letter-spacing:.22em;color:rgba(255,255,255,.2);text-transform:uppercase;margin:0;line-height:1;">{{ t.ft_tagline }}</p>
+        <p style="font-size:14px;line-height:1.76;color:rgba(255,255,255,.3);margin:0;max-width:290px;">{{ t.ft_brand_desc }}</p>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <a href="#" title="X" style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .15s,transform .2s,box-shadow .2s;" style-hover="background:rgba(255,255,255,.11);transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.28);"><svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,.48)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+          <a href="#" title="Instagram" style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .15s,transform .2s,box-shadow .2s;" style-hover="background:rgba(239,85,51,.15);transform:translateY(-3px);box-shadow:0 8px 22px rgba(239,85,51,.18);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.48)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="rgba(255,255,255,.48)" stroke="none"></circle></svg></a>
+          <a href="#" title="YouTube" style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .15s,transform .2s,box-shadow .2s;" style-hover="background:rgba(239,85,51,.15);transform:translateY(-3px);box-shadow:0 8px 22px rgba(239,85,51,.18);"><svg width="15" height="11" viewBox="0 0 24 18"><path d="M22.54 2.42A2.78 2.78 0 0 0 20.59.47C18.88 0 12 0 12 0S5.12 0 3.41.47a2.78 2.78 0 0 0-1.95 1.95A29 29 0 0 0 1 9a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 16.53C5.12 17 12 17 12 17s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 9a29 29 0 0 0-.46-5.58z" fill="rgba(255,255,255,.48)"></path><polygon points="9.75 12.27 15.5 9 9.75 5.73" fill="#02040C"></polygon></svg></a>
+          <a href="#" title="LinkedIn" style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .15s,transform .2s,box-shadow .2s;" style-hover="background:rgba(45,144,232,.15);transform:translateY(-3px);box-shadow:0 8px 22px rgba(45,144,232,.18);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.48)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:9px 14px;text-decoration:none;transition:background .15s,border-color .15s,transform .15s;" style-hover="background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);transform:translateY(-2px);"><svg width="13" height="16" viewBox="0 0 13 16" fill="rgba(255,255,255,.65)"><path d="M10.7 8.3c0-1.8 1-3.4 2.6-4.2a5.8 5.8 0 0 0-4.6-2.5c-1.9-.2-3.7 1.1-4.7 1.1S1.6 1.5 0 1.5A6 6 0 0 0 .3 3c-1.8 3.4-.3 8.5 1.6 11.3.9 1.4 2 3 3.5 2.9 1.4-.1 2-.9 3.7-.9s2.2.9 3.7.9c1.5 0 2.5-1.4 3.4-2.8.7-1 1.3-2.1 1.7-3.3a5.7 5.7 0 0 1-3.5-3.3l.3.2zm-2.5-6.9A5.5 5.5 0 0 0 9.4 0a5.4 5.4 0 0 0-3.5 1.8 5 5 0 0 0-1.2 3.5c1.3 0 2.6-.7 3.5-3.9z"></path></svg><div><div style="font-size:8.5px;font-weight:500;color:rgba(255,255,255,.32);letter-spacing:.04em;line-height:1;white-space:nowrap;">{{ t.ft_dl_on }}</div><div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.76);line-height:1.3;white-space:nowrap;">App Store</div></div></a>
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:9px 14px;text-decoration:none;transition:background .15s,border-color .15s,transform .15s;" style-hover="background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);transform:translateY(-2px);"><svg width="14" height="15" viewBox="0 0 14 15" fill="none"><path d="M1 1l6 6.5L1 14" stroke="#EF5533" stroke-width="2" stroke-linecap="round"></path><path d="M1 1l11 5.5-5 1" stroke="#2EC4C4" stroke-width="2" stroke-linecap="round"></path><path d="M1 14l11-5.5-5-1" stroke="#F5A623" stroke-width="2" stroke-linecap="round"></path><path d="M7 7.5L3 3.5M7 7.5l-4 4" stroke="#2D90E8" stroke-width="2" stroke-linecap="round"></path></svg><div><div style="font-size:8.5px;font-weight:500;color:rgba(255,255,255,.32);letter-spacing:.04em;line-height:1;white-space:nowrap;">{{ t.ft_get_on }}</div><div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.76);line-height:1.3;white-space:nowrap;">Google Play</div></div></a>
+        </div>
+      </div>
+      <!-- Product -->
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:22px;"><div style="width:8px;height:8px;border-radius:2px;background:#EF5533;flex-shrink:0;box-shadow:0 0 10px rgba(239,85,51,.55);"></div><span style="font-size:10.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#EF5533;">{{ t.ft_prod_hdr }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:13px;">
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_prod_1 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_prod_2 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_prod_3 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_prod_4 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_prod_5 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_prod_6 }}</a>
+        </div>
+      </div>
+      <!-- Learn -->
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:22px;"><div style="width:8px;height:8px;border-radius:2px;background:#2EC4C4;flex-shrink:0;box-shadow:0 0 10px rgba(46,196,196,.55);"></div><span style="font-size:10.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#2EC4C4;">{{ t.learn_label }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:13px;">
+          <a href="#process" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.how_it_works }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_2 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_3 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">Blog</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_5 }}</a>
+          <a href="#usp" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">FAQ</a>
+        </div>
+      </div>
+      <!-- Company -->
+      <div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:22px;"><div style="width:8px;height:8px;border-radius:2px;background:#2D90E8;flex-shrink:0;box-shadow:0 0 10px rgba(45,144,232,.55);"></div><span style="font-size:10.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#2D90E8;">{{ t.ft_co_hdr }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:13px;">
+          <a href="#purpose" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_co_1 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_co_2 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_co_3 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_co_4 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_co_5 }}</a>
+          <a href="#" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_co_6 }}</a>
+        </div>
+      </div>
+    </div>
+    <!-- Newsletter -->
+    <div data-ft-nl="" style="position:relative;z-index:1;max-width:1440px;margin:60px auto 0;padding:36px 44px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.066);border-radius:20px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div style="position:absolute;top:0;left:40px;right:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(245,166,35,.3) 50%,transparent);"></div>
+      <div><div style="font-size:16px;font-weight:800;color:rgba(255,255,255,.84);margin:0 0 5px;letter-spacing:-.02em;">{{ t.ft_nl_title }}</div><p style="font-size:13px;color:rgba(255,255,255,.28);margin:0;line-height:1.5;">{{ t.ft_nl_sub }}</p></div>
+      <div data-ft-nl-form="" style="display:flex;gap:0;flex:1;max-width:420px;min-width:240px;"><input type="email" placeholder="your@email.com" style="flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-right:none;border-radius:10px 0 0 10px;padding:13px 16px;font-size:13.5px;color:rgba(255,255,255,.8);outline:none;font-family:'Inter',sans-serif;"><button type="button" style="background:#EF5533;color:#fff;border:none;border-radius:0 10px 10px 0;padding:13px 22px;font-size:13.5px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;" style-hover="background:#D94520;">{{ t.ft_nl_btn }}</button></div>
+    </div>
+    <!-- Bottom bar -->
+    <div data-ft-bottom="" style="position:relative;z-index:1;max-width:1440px;margin:48px auto 0;padding:28px 0 56px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.05);">
+      <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;"><span style="font-size:12.5px;color:rgba(255,255,255,.18);">{{ t.ft_copyright }}</span><span style="font-size:9.5px;font-weight:800;letter-spacing:.22em;color:rgba(255,255,255,.1);text-transform:uppercase;">{{ t.ft_tagline }}</span></div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <a href="#" style="font-size:12px;color:rgba(255,255,255,.22);text-decoration:none;transition:color .15s;" style-hover="color:rgba(255,255,255,.68);">{{ t.ft_privacy }}</a>
+        <div style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.12);"></div>
+        <a href="#" style="font-size:12px;color:rgba(255,255,255,.22);text-decoration:none;transition:color .15s;" style-hover="color:rgba(255,255,255,.68);">{{ t.ft_terms }}</a>
+        <div style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.12);"></div>
+        <a href="#" style="font-size:12px;color:rgba(255,255,255,.22);text-decoration:none;transition:color .15s;" style-hover="color:rgba(255,255,255,.68);">Contact</a>
+        <a href="#home" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:8px 16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.38);text-decoration:none;transition:background .15s,color .15s,transform .15s,border-color .15s;" style-hover="background:rgba(255,255,255,.1);color:#fff;transform:translateY(-2px);border-color:rgba(255,255,255,.22);"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>{{ t.ft_backtop }}</a>
+      </div>
+    </div>
+    <!-- MATHMATE watermark -->
+    <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:195px;font-weight:900;letter-spacing:-.06em;color:rgba(255,255,255,.014);font-family:'Inter',sans-serif;white-space:nowrap;user-select:none;pointer-events:none;line-height:0.82;z-index:0;">MATHMATE</div>
+  </footer>
+</section>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MOBILE MENU ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeMenu }}" style="position:fixed;inset:0;z-index:400;background:rgba(7,12,28,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;justify-content:center;align-items:flex-start;padding:80px 18px 20px;">
+    <div onClick="{{ stopProp }}" style="width:100%;max-width:400px;background:rgba(14,22,50,.97);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:12px;box-shadow:0 24px 60px rgba(0,0,0,.5);">
+      <sc-for list="{{ sections }}" as="s" hint-placeholder-count="6">
+        <a href="{{ s.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;justify-content:space-between;padding:15px 16px;text-decoration:none;border-radius:14px;transition:background .15s;" style-hover="background:rgba(255,255,255,.06);">
+          <span style="font-size:17px;font-weight:600;color:#fff;">{{ s.name }}</span>
+          <span style="width:8px;height:8px;border-radius:50%;background:{{ s.dc }};"></span>
+        </a>
+      </sc-for>
+      <a href="#process" onClick="{{ closeMenu }}" style="display:flex;align-items:center;justify-content:center;margin-top:8px;background:#EF5533;color:#fff;text-decoration:none;border-radius:14px;padding:16px;font-size:16px;font-weight:700;box-shadow:0 6px 20px rgba(239,85,51,.28);">{{ t.menu_cta }}</a>
+    </div>
+  </div>
+</sc-if>
+<div style="position: static; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 84% 72% at 50% 50%,transparent 20%,rgba(6,9,28,.28) 55%,rgba(6,9,28,.68) 100%)"></div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { menuOpen: false, purActivated: false, purHoverReady: false, uspActivated: false, uspHoverReady: false, probActivated: false, probHoverReady: false, procActivated: false, procHoverReady: false, activeSectionId: 'home', wheelDeg: 0, langOpen: false, lang: 'en' };
+  _baseSections = null; _pal = null; _toggle = null; _close = null; _stopProp = null;
+
+  _buildSections() {
+    this._pal = { home:'#EF5533', purpose:'#F5A623', usp:'#2EC4C4', problem:'#EF5533', process:'#2D90E8', contact:'#F5A623' };
+    this._baseSections = [
+      {id:'home',    name:'Home',     href:'#home'},
+      {id:'problem', name:'Problem',  href:'#problem'},
+      {id:'purpose', name:'Purpose',  href:'#purpose'},
+      {id:'usp',     name:'USP',      href:'#usp'},
+      {id:'process', name:'Process',  href:'#process'},
+      {id:'contact', name:'Download',  href:'#contact'},
+    ];
+    this._toggle   = () => this.setState(s => ({ menuOpen: !s.menuOpen }));
+    this._close    = () => this.setState({ menuOpen: false });
+    this._stopProp   = e => e.stopPropagation();
+    this._toggleLang = (e) => { e.stopPropagation(); this.setState(s => ({ langOpen: !s.langOpen })); };
+    this._closeLang  = () => this.setState({ langOpen: false });
+    this._setLang    = code => {
+      this.setState({ lang: code, langOpen: false });
+      document.documentElement.lang = code;
+      document.documentElement.dir  = code === 'ar' ? 'rtl' : 'ltr';
+    };
+    this._T = {
+      en: {
+        nav_home:'Home', nav_problem:'Problem', nav_purpose:'Purpose', nav_usp:'USP', nav_process:'Process', nav_contact:'Download',
+        cta_getapp:'Get the App',
+        hero_badge:'Are you bored with math?',
+        hero_h1_1:"Math isn't",
+        hero_h1_2:'difficult — with',
+        hero_sub:'Snap a photo of any problem — from basic arithmetic to calculus — and get clear, step-by-step solutions in seconds. Together, we can conquer math.',
+        cta_snap_solve:'Snap & Solve Now',
+        how_it_works:'How It Works',
+        scroll:'Scroll',
+        stat_students:'Students', stat_solved:'Solved', stat_rating:'Rating',
+        prob_badge:'The Problem',
+        prob_h2_1:"Most students don't need more",
+        prob_h2_answers:'answers.',
+        prob_h2_2:'They need the right',
+        prob_h2_guidance:'guidance.',
+        prob_01_title:'Miss prerequisite concepts',
+        prob_01_sub:'Students skip foundations and struggle with advanced topics',
+        prob_02_title:'Copy answers without understanding steps',
+        prob_02_sub:'Short-term shortcuts create long-term knowledge gaps',
+        prob_03_title:'Practice without knowing their weak areas',
+        prob_03_sub:'Random practice wastes time and builds false confidence',
+        prob_04_title:'Move ahead before mastering the basics',
+        prob_04_sub:'Incomplete foundations make every new topic harder',
+        prob_05_title:"Get stuck but don't know what to learn first",
+        prob_05_sub:'Without direction, confusion compounds into frustration',
+        prob_sol_bold:'MathMate solves this',
+        prob_sol_rest:' by identifying learning gaps and guiding students step by step toward real understanding.',
+        pur_badge:'Our Purpose', pur_h2:'Four pillars, one', pur_goal:'goal',
+        pur_desc:'Every feature we build traces back to these four commitments.',
+        pur_c1_title:'Clarity', pur_c1_sub:'Understand every step',
+        pur_c1_desc:'MathMate breaks problems into simple explanations so students know how the answer is built.',
+        pur_c2_title:'Confidence', pur_c2_sub:'Feel less stuck',
+        pur_c2_desc:'Friendly AI guidance helps students move from confusion to confidence, one problem at a time.',
+        pur_c3_title:'Growth', pur_c3_sub:'Improve weak areas',
+        pur_c3_desc:'MathMate helps students identify what they struggle with and practice the topics that need attention.',
+        pur_c4_title:'Mastery', pur_c4_sub:'Solve smarter',
+        pur_c4_desc:'Students build real problem-solving skills, not just quick answers.',
+        usp_badge:'AI Tuition System',
+        usp_h2_1:'More Than a Solver. A', usp_h2_grad:'Complete AI', usp_h2_2:'Tuition System',
+        usp_sub:'MathMate Turns Every Problem Into a Learning Path',
+        usp_chat_title:'Chat',
+        usp_chat_desc:'A personalised AI tuition chat where students can ask questions, share problems, and understand concepts clearly.',
+        usp_guid_title:'Guidance',
+        usp_guid_desc:'Step-by-step guided learning that explains not just the answer, but the prerequisite concepts behind each step.',
+        usp_lang_title:'Languages',
+        usp_lang_desc:'Math learning support in English, French, and Arabic, making explanations easier for more students to understand.',
+        usp_road_title:'Roadmap',
+        usp_road_desc:"A personalised learning roadmap created from the student's responses, mistakes, progress, and learning behaviour.",
+        usp_prog_title:'Progress',
+        usp_prog_desc:'Multiple testing methods track understanding, measure improvement, and recommend what the student should learn next.',
+        usp_conc_title:'Concepts',
+        usp_conc_desc:'World-class math curriculum broken into small concepts so students can master one idea at a time.',
+        usp_quiz_title:'Quiz',
+        usp_quiz_desc:'Grade-based diagnostic quizzes identify strengths and weaknesses to build a customised math learning plan.',
+        proc_badge:'Process', proc_h2_1:'How MathMate Builds', proc_h2_2:'Better Learners',
+        proc_sub:'A repeatable loop designed to close gaps and build lasting math skills.',
+        proc_s1_title:'Diagnose', proc_s1_desc:'Students take a quiz to identify strengths and weak areas.',
+        learn_label:'Learn',
+        proc_s2_desc:'MathMate explains concepts and guides students step by step.',
+        proc_s3_title:'Practice', proc_s3_desc:'Students practice topics based on their learning gaps.',
+        proc_s4_title:'Improve',  proc_s4_desc:'Progress is tracked and the learning roadmap updates automatically.',
+        proc_callout_bold:'The loop never stops.',
+        proc_callout_rest:' As students improve, MathMate updates their roadmap — always targeting the next gap to close.',
+        cta_badge:'Free to get started', cta_h2_1:'Ready to conquer', cta_h2_2:'math?',
+        cta_sub:'Join 10,000+ students already snapping, solving, and building real math confidence every single day.',
+        cta_dl:'Download Free',
+        ft_tagline:'SNAP. SOLVE. LEARN.',
+        ft_brand_desc:'Your friendly math buddy. Snap any problem, get step-by-step solutions, and build skills that last.',
+        ft_prod_hdr:'Product',
+        ft_prod_1:'Snap & Solve', ft_prod_2:'Step-by-Step Solutions', ft_prod_3:'Save to Gallery',
+        ft_prod_4:'Quiz Mode', ft_prod_5:'Progress Tracking', ft_prod_6:'Streak Rewards',
+        ft_learn_2:'Math Topics', ft_learn_3:'Practice Problems', ft_learn_5:'Tutorials',
+        ft_co_hdr:'Company',
+        ft_co_1:'About MathMate', ft_co_2:'Careers', ft_co_3:'Press Kit',
+        ft_co_4:'Contact Us', ft_co_5:'Privacy Policy', ft_co_6:'Terms of Service',
+        ft_nl_title:'Stay in the loop',
+        ft_nl_sub:'Math tips, product updates, and study resources. No spam, ever.',
+        ft_nl_btn:'Subscribe →',
+        ft_copyright:'© 2026 MathMate. All rights reserved.',
+        ft_privacy:'Privacy', ft_terms:'Terms', ft_backtop:'Back to top',
+        ft_dl_on:'Download on the', ft_get_on:'Get it on',
+        menu_cta:'Get the App →',
+      },
+      fr: {
+        nav_home:'Accueil', nav_problem:'Problème', nav_purpose:'Mission', nav_usp:'Fonctions', nav_process:'Processus', nav_contact:'Télécharger',
+        cta_getapp:"Télécharger l’App",
+        hero_badge:"Les maths t’ennuient ?",
+        hero_h1_1:"Les maths, c’est",
+        hero_h1_2:"pas difficile — avec",
+        hero_sub:"Prends en photo n’importe quel problème — de l’arithmétique au calcul — et obtiens des solutions claires, étape par étape, en quelques secondes. Ensemble, on peut maîtriser les maths.",
+        cta_snap_solve:"Résoudre Maintenant",
+        how_it_works:"Comment ça marche",
+        scroll:"Défiler",
+        stat_students:"Étudiants", stat_solved:"Résolus", stat_rating:"Note",
+        prob_badge:"Le Problème",
+        prob_h2_1:"La plupart des élèves n’ont pas besoin de plus de",
+        prob_h2_answers:"réponses.",
+        prob_h2_2:"Ils ont besoin des bonnes",
+        prob_h2_guidance:"explications.",
+        prob_01_title:"Manquent les prérequis",
+        prob_01_sub:"Les élèves sautent les bases et peinent avec les sujets avancés",
+        prob_02_title:"Copient sans comprendre les étapes",
+        prob_02_sub:"Les raccourcis à court terme créent des lacunes à long terme",
+        prob_03_title:"S’entraînent sans connaître leurs points faibles",
+        prob_03_sub:"La pratique aléatoire gaspille du temps et crée une fausse confiance",
+        prob_04_title:"Avancent avant de maîtriser les bases",
+        prob_04_sub:"Des bases incomplètes rendent chaque nouveau sujet plus difficile",
+        prob_05_title:"Bloquent sans savoir quoi apprendre en premier",
+        prob_05_sub:"Sans direction, la confusion se transforme en frustration",
+        prob_sol_bold:"MathMate résout ça",
+        prob_sol_rest:" en identifiant les lacunes et en guidant les élèves étape par étape vers une vraie compréhension.",
+        pur_badge:"Notre Mission", pur_h2:"Quatre piliers, un seul", pur_goal:"objectif",
+        pur_desc:"Chaque fonctionnalité que nous créons découle de ces quatre engagements.",
+        pur_c1_title:"Clarté", pur_c1_sub:"Comprendre chaque étape",
+        pur_c1_desc:"MathMate décompose les problèmes en explications simples pour que les élèves sachent comment la réponse est construite.",
+        pur_c2_title:"Confiance", pur_c2_sub:"Se sentir moins bloqué",
+        pur_c2_desc:"Les conseils amicaux de l’IA aident les élèves à passer de la confusion à la confiance, un problème à la fois.",
+        pur_c3_title:"Progression", pur_c3_sub:"Améliorer les points faibles",
+        pur_c3_desc:"MathMate aide les élèves à identifier leurs difficultés et à s’entraîner sur les sujets qui nécessitent de l’attention.",
+        pur_c4_title:"Maîtrise", pur_c4_sub:"Résoudre plus intelligemment",
+        pur_c4_desc:"Les élèves développent de vraies compétences en résolution de problèmes, pas seulement des réponses rapides.",
+        usp_badge:"Système de Tutorat IA",
+        usp_h2_1:"Plus qu’un Solveur. Un", usp_h2_grad:"Système IA Complet", usp_h2_2:"",
+        usp_sub:"MathMate Transforme Chaque Problème en Parcours d’Apprentissage",
+        usp_chat_title:"Chat",
+        usp_chat_desc:"Un chat de tutorat IA personnalisé où les élèves peuvent poser des questions, partager des problèmes et comprendre les concepts.",
+        usp_guid_title:"Accompagnement",
+        usp_guid_desc:"Un apprentissage guidé étape par étape qui explique non seulement la réponse, mais aussi les concepts prérequis derrière chaque étape.",
+        usp_lang_title:"Langues",
+        usp_lang_desc:"Soutien en maths en anglais, français et arabe, rendant les explications plus accessibles à davantage d’élèves.",
+        usp_road_title:"Plan d’Étude",
+        usp_road_desc:"Un plan d’étude personnalisé créé à partir des réponses, erreurs, progrès et comportements d’apprentissage de l’élève.",
+        usp_prog_title:"Progrès",
+        usp_prog_desc:"Plusieurs méthodes de test suivent la compréhension, mesurent les progrès et recommandent ce que l’élève doit apprendre ensuite.",
+        usp_conc_title:"Concepts",
+        usp_conc_desc:"Un programme de maths de niveau mondial divisé en petits concepts pour que les élèves maîtrisent une idée à la fois.",
+        usp_quiz_title:"Quiz",
+        usp_quiz_desc:"Des quiz diagnostiques par niveau identifient les points forts et faibles pour construire un plan d’apprentissage personnalisé.",
+        proc_badge:"Processus", proc_h2_1:"Comment MathMate Forme de", proc_h2_2:"Meilleurs Apprenants",
+        proc_sub:"Une boucle répétable conçue pour combler les lacunes et développer des compétences durables.",
+        proc_s1_title:"Diagnostiquer", proc_s1_desc:"Les élèves passent un quiz pour identifier leurs points forts et leurs lacunes.",
+        learn_label:"Apprendre",
+        proc_s2_desc:"MathMate explique les concepts et guide les élèves étape par étape.",
+        proc_s3_title:"Pratiquer", proc_s3_desc:"Les élèves s’entraînent sur des sujets en fonction de leurs lacunes.",
+        proc_s4_title:"Progresser", proc_s4_desc:"Les progrès sont suivis et le plan d’étude se met à jour automatiquement.",
+        proc_callout_bold:"La boucle ne s’arrête jamais.",
+        proc_callout_rest:" Au fur et à mesure que les élèves progressent, MathMate met à jour leur plan — ciblant toujours la prochaine lacune à combler.",
+        cta_badge:"Gratuit pour commencer", cta_h2_1:"Prêt à conquérir", cta_h2_2:"les maths ?",
+        cta_sub:"Rejoins plus de 10 000 élèves qui photographient, résolvent et développent leur confiance en maths chaque jour.",
+        cta_dl:"Télécharger Gratuitement",
+        ft_tagline:"PHOTOGRAPHIER. RÉSOUDRE. APPRENDRE.",
+        ft_brand_desc:"Ton ami pour les maths. Prends n’importe quel problème en photo, obtiens des solutions étape par étape, et développe des compétences durables.",
+        ft_prod_hdr:"Produit",
+        ft_prod_1:"Photo & Solution", ft_prod_2:"Solutions Étape par Étape", ft_prod_3:"Enregistrer dans la Galerie",
+        ft_prod_4:"Mode Quiz", ft_prod_5:"Suivi des Progrès", ft_prod_6:"Récompenses de Série",
+        ft_learn_2:"Sujets Mathématiques", ft_learn_3:"Problèmes de Pratique", ft_learn_5:"Tutoriels",
+        ft_co_hdr:"Entreprise",
+        ft_co_1:"À Propos de MathMate", ft_co_2:"Emplois", ft_co_3:"Dossier de Presse",
+        ft_co_4:"Nous Contacter", ft_co_5:"Politique de Confidentialité", ft_co_6:"Conditions d’Utilisation",
+        ft_nl_title:"Reste informé",
+        ft_nl_sub:"Conseils maths, mises à jour produit et ressources d’étude. Jamais de spam.",
+        ft_nl_btn:"S’abonner →",
+        ft_copyright:"© 2026 MathMate. Tous droits réservés.",
+        ft_privacy:"Confidentialité", ft_terms:"Conditions", ft_backtop:"Retour en haut",
+        ft_dl_on:"Télécharger sur l’", ft_get_on:"Disponible sur",
+        menu_cta:"Télécharger l’App →",
+      },
+      ar: {
+        nav_home:'الرئيسية', nav_problem:'المشكلة', nav_purpose:'الهدف', nav_usp:'المميزات', nav_process:'كيف يعمل', nav_contact:'تحميل',
+        cta_getapp:'حمّل التطبيق',
+        hero_badge:'هل تشعر بالملل من الرياضيات؟',
+        hero_h1_1:'الرياضيات ليست',
+        hero_h1_2:'صعبة — مع',
+        hero_sub:'التقط صورة لأي مسألة — من الحساب الأساسي إلى التفاضل والتكامل — واحصل على حلول واضحة خطوة بخطوة في ثوانٍ. معاً، يمكننا إتقان الرياضيات.',
+        cta_snap_solve:'التقط وحلّ الآن',
+        how_it_works:'كيف يعمل',
+        scroll:'مرر',
+        stat_students:'طالب', stat_solved:'محلول', stat_rating:'تقييم',
+        prob_badge:'المشكلة',
+        prob_h2_1:'معظم الطلاب لا يحتاجون إلى المزيد من',
+        prob_h2_answers:'الإجابات.',
+        prob_h2_2:'يحتاجون إلى',
+        prob_h2_guidance:'التوجيه الصحيح.',
+        prob_01_title:'يفتقدون المفاهيم الأساسية',
+        prob_01_sub:'يتخطى الطلاب الأسس ويعانون مع المواضيع المتقدمة',
+        prob_02_title:'ينسخون الإجابات دون فهم الخطوات',
+        prob_02_sub:'الاختصارات قصيرة المدى تخلق فجوات معرفية طويلة المدى',
+        prob_03_title:'يتدربون دون معرفة نقاط ضعفهم',
+        prob_03_sub:'التدريب العشوائي يضيع الوقت ويبني ثقة زائفة',
+        prob_04_title:'يتقدمون قبل إتقان الأساسيات',
+        prob_04_sub:'الأسس غير المكتملة تجعل كل موضوع جديد أصعب',
+        prob_05_title:'يتعثرون ولا يعرفون من أين يبدؤون',
+        prob_05_sub:'بدون توجيه، يتراكم الارتباك ويتحول إلى إحباط',
+        prob_sol_bold:'ماث ميت يحل هذا',
+        prob_sol_rest:' من خلال تحديد الفجوات التعليمية وتوجيه الطلاب خطوة بخطوة نحو الفهم الحقيقي.',
+        pur_badge:'هدفنا', pur_h2:'أربعة ركائز، هدف', pur_goal:'واحد',
+        pur_desc:'كل ميزة نبنيها ترتبط بهذه الالتزامات الأربعة.',
+        pur_c1_title:'الوضوح', pur_c1_sub:'افهم كل خطوة',
+        pur_c1_desc:'يُقسّم ماث ميت المسائل إلى شروحات بسيطة حتى يعرف الطلاب كيف تُبنى الإجابة.',
+        pur_c2_title:'الثقة', pur_c2_sub:'اشعر بضيق أقل',
+        pur_c2_desc:'يساعد التوجيه الودود للذكاء الاصطناعي الطلاب على الانتقال من الارتباك إلى الثقة، مسألة واحدة في كل مرة.',
+        pur_c3_title:'التطور', pur_c3_sub:'تحسين نقاط الضعف',
+        pur_c3_desc:'يساعد ماث ميت الطلاب على تحديد نقاط ضعفهم والتدرب على المواضيع التي تحتاج اهتماماً.',
+        pur_c4_title:'الإتقان', pur_c4_sub:'حل أذكى',
+        pur_c4_desc:'يطور الطلاب مهارات حل المشكلات الحقيقية، وليس مجرد إجابات سريعة.',
+        usp_badge:'نظام التدريس بالذكاء الاصطناعي',
+        usp_h2_1:'أكثر من مجرد حلّال. نظام', usp_h2_grad:'تدريس ذكي', usp_h2_2:'متكامل',
+        usp_sub:'ماث ميت يحوّل كل مسألة إلى مسار تعليمي',
+        usp_chat_title:'محادثة',
+        usp_chat_desc:'محادثة تدريسية شخصية بالذكاء الاصطناعي حيث يمكن للطلاب طرح الأسئلة ومشاركة المسائل وفهم المفاهيم بوضوح.',
+        usp_guid_title:'التوجيه',
+        usp_guid_desc:'تعلم موجَّه خطوة بخطوة يشرح ليس فقط الإجابة، بل المفاهيم المتطلبة وراء كل خطوة.',
+        usp_lang_title:'اللغات',
+        usp_lang_desc:'دعم تعلم الرياضيات بالإنجليزية والفرنسية والعربية، مما يجعل الشروحات أسهل لمزيد من الطلاب.',
+        usp_road_title:'خارطة الطريق',
+        usp_road_desc:'خارطة تعلم شخصية تُنشأ من إجابات الطالب وأخطائه وتقدمه وسلوكه التعليمي.',
+        usp_prog_title:'التقدم',
+        usp_prog_desc:'طرق اختبار متعددة تتبع الفهم وتقيس التحسن وتوصي بما يجب على الطالب تعلمه بعد ذلك.',
+        usp_conc_title:'المفاهيم',
+        usp_conc_desc:'مناهج رياضيات عالمية المستوى مقسمة إلى مفاهيم صغيرة حتى يتقن الطلاب فكرة واحدة في كل مرة.',
+        usp_quiz_title:'اختبار',
+        usp_quiz_desc:'اختبارات تشخيصية حسب المرحلة الدراسية تحدد نقاط القوة والضعف لبناء خطة تعلم رياضيات مخصصة.',
+        proc_badge:'العملية', proc_h2_1:'كيف يبني ماث ميت', proc_h2_2:'متعلمين أفضل',
+        proc_sub:'حلقة متكررة مصممة لسد الفجوات وبناء مهارات رياضيات دائمة.',
+        proc_s1_title:'التشخيص', proc_s1_desc:'يجري الطلاب اختباراً لتحديد نقاط القوة والضعف.',
+        learn_label:'تعلّم',
+        proc_s2_desc:'يشرح ماث ميت المفاهيم ويرشد الطلاب خطوة بخطوة.',
+        proc_s3_title:'التدريب', proc_s3_desc:'يتدرب الطلاب على مواضيع بناءً على الفجوات التعليمية.',
+        proc_s4_title:'التحسين', proc_s4_desc:'يتم تتبع التقدم وتحديث خارطة التعلم تلقائياً.',
+        proc_callout_bold:'الحلقة لا تتوقف أبداً.',
+        proc_callout_rest:' كلما تقدم الطلاب، يحدّث ماث ميت خارطتهم — مستهدفاً دائماً الفجوة التالية لسدها.',
+        cta_badge:'مجاني للبدء', cta_h2_1:'مستعد لإتقان', cta_h2_2:'الرياضيات؟',
+        cta_sub:'انضم إلى أكثر من 10,000 طالب يلتقطون الصور ويحلون المسائل ويبنون ثقتهم بالرياضيات كل يوم.',
+        cta_dl:'حمّل مجاناً',
+        ft_tagline:'التقط. حلّ. تعلّم.',
+        ft_brand_desc:'رفيقك الودود في الرياضيات. التقط أي مسألة، احصل على حلول خطوة بخطوة، وابنِ مهارات تدوم.',
+        ft_prod_hdr:'المنتج',
+        ft_prod_1:'التقط وحلّ', ft_prod_2:'حلول خطوة بخطوة', ft_prod_3:'حفظ في المعرض',
+        ft_prod_4:'وضع الاختبار', ft_prod_5:'تتبع التقدم', ft_prod_6:'مكافآت الإنجاز',
+        ft_learn_2:'مواضيع الرياضيات', ft_learn_3:'تمارين تطبيقية', ft_learn_5:'دروس تعليمية',
+        ft_co_hdr:'الشركة',
+        ft_co_1:'عن ماث ميت', ft_co_2:'وظائف', ft_co_3:'الحزمة الإعلامية',
+        ft_co_4:'تواصل معنا', ft_co_5:'سياسة الخصوصية', ft_co_6:'شروط الخدمة',
+        ft_nl_title:'ابقَ على اطلاع',
+        ft_nl_sub:'نصائح رياضيات، تحديثات المنتج، وموارد الدراسة. بدون إزعاج.',
+        ft_nl_btn:'← اشترك',
+        ft_copyright:'© 2026 ماث ميت. جميع الحقوق محفوظة.',
+        ft_privacy:'الخصوصية', ft_terms:'الشروط', ft_backtop:'العودة للأعلى',
+        ft_dl_on:'حمّل على', ft_get_on:'متوفر على',
+        menu_cta:'← حمّل التطبيق',
+      }
+    };
+  }
+
+  componentDidMount() {
+    if (!this._baseSections) this._buildSections();
+    this._langClose = () => this.setState({ langOpen: false });
+    document.addEventListener('click', this._langClose);
+    // Safety fallback: if CSS animations get stuck, force-reveal after 1.5s
+    this._revealTimer = setTimeout(() => {
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.animation = 'none';
+      });
+    }, 1500);
+
+    // State fallback: force-activate all sections after 2.5s if observers haven't fired
+    this._stateReveal = setTimeout(() => {
+      const upd = {};
+      if (!this.state.purActivated)  upd.purActivated  = true;
+      if (!this.state.uspActivated)  upd.uspActivated  = true;
+      if (!this.state.probActivated) upd.probActivated = true;
+      if (!this.state.procActivated) upd.procActivated = true;
+      if (Object.keys(upd).length) {
+        this.setState(upd, () => setTimeout(() => this.setState({ purHoverReady:true, uspHoverReady:true, probHoverReady:true, procHoverReady:true }), 900));
+      }
+    }, 2500);
+
+    // ── PURPOSE SECTION: React-state driven entrance (survives re-renders) ──
+    const purSect = document.getElementById('purpose');
+    if (purSect) {
+      const purSyms = purSect.querySelectorAll('.pur-sym');
+      this._purObs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          // Logo + cards via setState → renderVals → React owns the style prop
+          this.setState({ purActivated: true }, () => {
+            setTimeout(() => this.setState({ purHoverReady: true }), 900);
+          });
+          // Symbols: CSS provides initial hidden state; inline override activates
+          purSyms.forEach(sym => {
+            sym.style.transform = 'translateY(0) scale(1)';
+            sym.style.opacity   = sym.dataset.endOp || '0.07';
+          });
+          this._purObs.disconnect();
+        }
+      }, { threshold: 0.12 });
+      this._purObs.observe(purSect);
+    }
+
+    // ── USP SECTION: React-state driven entrance ──
+    const uspSect = document.getElementById('usp');
+    if (uspSect) {
+      this._uspObs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          this.setState({ uspActivated: true }, () => {
+            setTimeout(() => this.setState({ uspHoverReady: true }), 1000);
+          });
+          this._uspObs.disconnect();
+        }
+      }, { threshold: 0.08 });
+      this._uspObs.observe(uspSect);
+    }
+
+    // ── PROBLEM SECTION: React-state driven entrance ──
+    const probSect = document.getElementById('problem');
+    if (probSect) {
+      this._probObs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          this.setState({ probActivated: true }, () => {
+            setTimeout(() => this.setState({ probHoverReady: true }), 900);
+          });
+          this._probObs.disconnect();
+        }
+      }, { threshold: 0.1 });
+      this._probObs.observe(probSect);
+    }
+
+    // ── PROCESS SECTION: React-state driven entrance ──
+    const procSect = document.getElementById('process');
+    if (procSect) {
+      this._procObs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          this.setState({ procActivated: true }, () => {
+            setTimeout(() => this.setState({ procHoverReady: true }), 1200);
+          });
+          this._procObs.disconnect();
+        }
+      }, { threshold: 0.1 });
+      this._procObs.observe(procSect);
+    }
+
+    // Scroll-based nav: highlight active section in the side rail
+    const navIds = ['contact','process','usp','purpose','problem','home'];
+    const updateNav = () => {
+      for (const id of navIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.45) {
+          if (this.state.activeSectionId !== id) {
+            this.setState(s => {
+              const secs  = this._baseSections;
+              const step  = 360 / secs.length;
+              const pIdx  = secs.findIndex(sec => sec.id === s.activeSectionId);
+              const nIdx  = secs.findIndex(sec => sec.id === id);
+              let delta   = (nIdx - pIdx) * step;
+              if (delta >  180) delta -= 360;
+              if (delta < -180) delta += 360;
+              return { activeSectionId: id, wheelDeg: s.wheelDeg - delta };
+            });
+          }
+          return;
+        }
+      }
+    };
+    window.addEventListener('scroll', updateNav, { passive: true });
+    this._navScroll = updateNav;
+
+    // ── CTA BAND: Canvas particle constellation ──
+    const ctaBand = document.getElementById('ctaBand');
+    const ctaCanvas = document.getElementById('ctaBgCanvas');
+    if (ctaCanvas && ctaBand) {
+      const ctx2 = ctaCanvas.getContext('2d');
+      const ctaResize = () => {
+        ctaCanvas.width  = ctaBand.offsetWidth;
+        ctaCanvas.height = ctaBand.offsetHeight;
+      };
+      ctaResize();
+      const ctaRO = new ResizeObserver(ctaResize);
+      ctaRO.observe(ctaBand);
+      this._ctaResizeObs = ctaRO;
+
+      const COLS = [[239,85,51],[46,196,196],[245,166,35],[45,144,232],[139,92,246]];
+      const SYMS = ['π','∞','∑','√','∫','Δ','θ','λ','φ','±','≈','∂','α','β','ψ','γ','σ','μ'];
+      const pts = Array.from({length: 65}, (_, i) => {
+        const c = COLS[Math.floor(Math.random() * COLS.length)];
+        const isSym = Math.random() > 0.6;
+        return {
+          x: Math.random() * 1800, y: Math.random() * 900,
+          r: Math.random() * 2.4 + 0.55, c,
+          vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.22,
+          al: Math.random() * 0.52 + 0.22,
+          ph: Math.random() * Math.PI * 2, sp: Math.random() * 0.018 + 0.005,
+          isSym, sym: SYMS[Math.floor(Math.random() * SYMS.length)],
+          sz: Math.random() * 16 + 9
+        };
+      });
+
+      const rc = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+      const CDST = 138;
+      let ctaFrame;
+
+      const drawCta = () => {
+        const W = ctaCanvas.width, H = ctaCanvas.height;
+        ctx2.clearRect(0, 0, W, H);
+
+        // Wrap particles
+        pts.forEach(p => {
+          if (p.x > W + 32) p.x = -32; else if (p.x < -32) p.x = W + 32;
+          if (p.y > H + 32) p.y = -32; else if (p.y < -32) p.y = H + 32;
+        });
+
+        // Connection lines between nearby dots
+        for (let i = 0; i < pts.length; i++) {
+          if (pts[i].isSym) continue;
+          for (let j = i + 1; j < pts.length; j++) {
+            if (pts[j].isSym) continue;
+            const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < CDST) {
+              ctx2.beginPath();
+              ctx2.moveTo(pts[i].x, pts[i].y);
+              ctx2.lineTo(pts[j].x, pts[j].y);
+              ctx2.strokeStyle = `rgba(255,255,255,${(1 - d / CDST) * 0.11})`;
+              ctx2.lineWidth = 0.5;
+              ctx2.stroke();
+            }
+          }
+        }
+
+        // Draw particles
+        pts.forEach(p => {
+          p.ph += p.sp; p.x += p.vx; p.y += p.vy;
+          const pulse = 0.68 + 0.32 * Math.sin(p.ph);
+          const al = p.al * pulse;
+          if (p.isSym) {
+            ctx2.save();
+            ctx2.globalAlpha = al * 0.52;
+            ctx2.font = `700 ${p.sz}px 'JetBrains Mono', monospace`;
+            ctx2.fillStyle = rc(p.c, 1);
+            ctx2.shadowColor = rc(p.c, 0.7);
+            ctx2.shadowBlur = 20;
+            ctx2.textAlign = 'center';
+            ctx2.textBaseline = 'middle';
+            ctx2.fillText(p.sym, p.x, p.y);
+            ctx2.restore();
+          } else {
+            // Outer halo
+            ctx2.beginPath();
+            ctx2.arc(p.x, p.y, p.r * 8, 0, Math.PI * 2);
+            ctx2.fillStyle = rc(p.c, al * 0.07);
+            ctx2.fill();
+            // Mid glow
+            ctx2.beginPath();
+            ctx2.arc(p.x, p.y, p.r * 3.2, 0, Math.PI * 2);
+            ctx2.fillStyle = rc(p.c, al * 0.22);
+            ctx2.fill();
+            // Core
+            ctx2.beginPath();
+            ctx2.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx2.fillStyle = rc(p.c, al * 0.92);
+            ctx2.shadowColor = rc(p.c, 0.8);
+            ctx2.shadowBlur = 12;
+            ctx2.fill();
+            ctx2.shadowBlur = 0;
+          }
+        });
+
+        ctaFrame = requestAnimationFrame(drawCta);
+        this._ctaRaf = ctaFrame;
+      };
+      drawCta();
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._revealTimer);
+    clearTimeout(this._stateReveal);
+    if (this._purObs) this._purObs.disconnect();
+    if (this._uspObs) this._uspObs.disconnect();
+    if (this._probObs) this._probObs.disconnect();
+    if (this._procObs) this._procObs.disconnect();
+    if (this._navScroll) window.removeEventListener('scroll', this._navScroll);
+    if (this._ctaRaf) cancelAnimationFrame(this._ctaRaf);
+    if (this._ctaResizeObs) this._ctaResizeObs.disconnect();
+    if (this._langClose) document.removeEventListener('click', this._langClose);
+  }
+
+  renderVals() {
+    if (!this._baseSections) this._buildSections();
+    const lang = this.state.lang || 'en';
+    const t = this._T[lang] || this._T['en'];
+    const aid = this.state.activeSectionId || 'home';
+    const pal = this._pal;
+    const N         = this._baseSections.length;
+    const activeIdx = this._baseSections.findIndex(s => s.id === aid);
+    // Bubble magnification: smooth falloff from active item
+    const FS = ['13px', '11px', '10px',  '9.5px'];
+    const FW = ['700',  '600',  '500',   '400'];
+    const OP = ['1',    '0.78', '0.44',  '0.24'];
+    const DS = ['11px', '7px',  '5.5px', '5px'];
+    const sections  = this._baseSections.map((s, i) => {
+      const raw     = ((i - activeIdx) % N + N) % N;
+      const minDiff = Math.min(raw, N - raw);
+      const d       = Math.min(minDiff, 3);
+      const isActive = d === 0;
+      return {
+        ...s,
+        name:    t['nav_' + s.id] || s.name,
+        dc:      isActive ? pal[s.id] : 'rgba(255,255,255,.28)',
+        ds:      DS[d],
+        dg:      isActive ? `0 0 10px ${pal[s.id]}` : 'none',
+        lc:      isActive ? pal[s.id] : d === 1 ? 'rgba(255,255,255,.7)' : d === 2 ? 'rgba(255,255,255,.38)' : 'rgba(255,255,255,.22)',
+        lbg:     isActive ? `rgba(${pal[s.id].replace('#','').match(/.{2}/g).map(x=>parseInt(x,16)).join(',')}, 0.13)` : 'transparent',
+        lborder: isActive ? `1px solid rgba(${pal[s.id].replace('#','').match(/.{2}/g).map(x=>parseInt(x,16)).join(',')}, 0.32)` : '1px solid transparent',
+        lshadow: isActive ? `0 0 18px rgba(${pal[s.id].replace('#','').match(/.{2}/g).map(x=>parseInt(x,16)).join(',')}, 0.35)` : 'none',
+        itemFs:  FS[d],
+        itemFw:  FW[d],
+        itemOp:  OP[d],
+      };
+    });
+    const pa = this.state.purActivated;
+    const ph = this.state.purHoverReady;
+    const HT = 'background .25s ease,border-color .25s ease,box-shadow .28s ease,transform .28s cubic-bezier(0.34,1.2,0.64,1)';
+    const ET = d => `opacity .65s ease ${d},transform .65s cubic-bezier(0.25,1,0.5,1) ${d},background .25s,border-color .25s,box-shadow .28s`;
+    const ua = this.state.uspActivated;
+    const uh = this.state.uspHoverReady;
+    const pb  = this.state.probActivated;
+    const pbh = this.state.probHoverReady;
+    const prc  = this.state.procActivated;
+    const prch = this.state.procHoverReady;
+    const PRCT = d => `opacity .7s ease ${d},transform .7s cubic-bezier(.25,1,.5,1) ${d},background .25s ease,border-color .25s ease,box-shadow .28s ease`;
+    const PT  = d => `opacity .55s ease ${d},transform .55s cubic-bezier(.25,1,.5,1) ${d},background .22s ease,border-color .22s ease,box-shadow .25s ease`;
+    const UT  = d => `opacity .65s ease ${d},transform .65s cubic-bezier(.25,1,.5,1) ${d},background .22s ease,box-shadow .25s ease`;
+    return {
+      sections,
+      menuOpen:       this.state.menuOpen,
+      toggleMenu:     this._toggle,
+      closeMenu:      this._close,
+      stopProp:       this._stopProp,
+      logoOpacity:    pa ? '1' : '0',
+      logoTransform:  pa ? 'scale(1)' : 'scale(0.66)',
+      logoTransition: ph ? '' : 'opacity .9s ease,transform .9s cubic-bezier(0.34,1.2,0.64,1)',
+      cardOpacity:    pa ? '1' : '0',
+      cardLTransform: pa ? 'translateX(0)' : 'translateX(-52px)',
+      cardRTransform: pa ? 'translateX(0)' : 'translateX(52px)',
+      cardTr0:        ph ? HT : ET('0s'),
+      cardTr1:        ph ? HT : ET('.11s'),
+      cardTr2:        ph ? HT : ET('.22s'),
+      cardTr3:        ph ? HT : ET('.33s'),
+      uspOpacity:   ua ? '1' : '0',
+      uspTransform: ua ? 'translateY(0)' : 'translateY(36px)',
+      uspTr0: uh ? HT : UT('0s'),
+      uspTr1: uh ? HT : UT('.1s'),
+      uspTr2: uh ? HT : UT('.18s'),
+      uspTr3: uh ? HT : UT('.26s'),
+      uspTr4: uh ? HT : UT('.34s'),
+      uspTr5: uh ? HT : UT('.42s'),
+      uspTr6: uh ? HT : UT('.5s'),
+      // ── Problem section ──
+      probOpacity:       pb ? '1' : '0',
+      probLTransform:    pb ? 'translateX(0)' : 'translateX(-36px)',
+      probCharOpacity:   pb ? '1' : '0',
+      probCharTransform: pb ? 'scale(1)' : 'scale(0.84)',
+      probCharTr:        pbh ? '' : 'opacity .85s ease .15s,transform .85s cubic-bezier(.34,1.2,.64,1) .15s',
+      probTr0: pbh ? HT : PT('0s'),
+      probTr1: pbh ? HT : PT('.1s'),
+      probTr2: pbh ? HT : PT('.19s'),
+      probTr3: pbh ? HT : PT('.28s'),
+      probTr4: pbh ? HT : PT('.37s'),
+      // ── Process section ──
+      procOpacity:     prc ? '1' : '0',
+      procT0:          prc ? 'translateY(0)' : 'translateY(44px)',
+      procT1:          prc ? 'translateY(0)' : 'translateY(44px)',
+      procT2:          prc ? 'translateY(0)' : 'translateY(44px)',
+      procT3:          prc ? 'translateY(0)' : 'translateY(44px)',
+      procTr0:         prch ? HT : PRCT('0s'),
+      procTr1:         prch ? HT : PRCT('.14s'),
+      procTr2:         prch ? HT : PRCT('.26s'),
+      procTr3:         prch ? HT : PRCT('.38s'),
+      procConnOpacity: prc ? '1' : '0',
+      procConnTr:      'opacity .9s ease .55s',
+      t,
+      // ── Language selector ──
+      langOpen:        this.state.langOpen,
+      toggleLang:      this._toggleLang,
+      currentLangLabel: ({ en: 'EN', fr: 'FR', ar: 'AR' })[this.state.lang] || 'EN',
+      langChevronRot:  this.state.langOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      langOptions: [
+        { code: 'EN', label: 'English',  active: this.state.lang === 'en', select: () => this._setLang('en'), bg: this.state.lang === 'en' ? 'rgba(245,166,35,.09)' : 'transparent', color: this.state.lang === 'en' ? '#F5A623' : 'rgba(255,255,255,.82)', fw: this.state.lang === 'en' ? '600' : '400' },
+        { code: 'FR', label: 'Français', active: this.state.lang === 'fr', select: () => this._setLang('fr'), bg: this.state.lang === 'fr' ? 'rgba(245,166,35,.09)' : 'transparent', color: this.state.lang === 'fr' ? '#F5A623' : 'rgba(255,255,255,.82)', fw: this.state.lang === 'fr' ? '600' : '400' },
+        { code: 'AR', label: 'العربية',  active: this.state.lang === 'ar', select: () => this._setLang('ar'), bg: this.state.lang === 'ar' ? 'rgba(245,166,35,.09)' : 'transparent', color: this.state.lang === 'ar' ? '#F5A623' : 'rgba(255,255,255,.82)', fw: this.state.lang === 'ar' ? '600' : '400' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
