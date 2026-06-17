@@ -95,15 +95,15 @@
     .story-stat-num{font-size:38px;font-weight:900;letter-spacing:-.04em;line-height:1.1;margin-bottom:4px}
     .story-stat-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28)}
     .story-visual{position:relative}
-    .story-card-stack{position:relative;height:380px}
-    .story-card{position:absolute;border-radius:20px;padding:24px 26px;border:1px solid}
-    .story-card-1{top:0;left:0;right:60px;background:rgba(245,166,35,.06);border-color:rgba(245,166,35,.18)}
-    .story-card-2{top:90px;left:30px;right:0;background:rgba(239,85,51,.06);border-color:rgba(239,85,51,.18)}
-    .story-card-3{bottom:0;left:20px;right:40px;background:rgba(46,196,196,.06);border-color:rgba(46,196,196,.18)}
+    .story-card-stack{display:flex;flex-direction:column;gap:14px}
+    .story-card{border-radius:20px;padding:24px 26px;border:1px solid}
+    .story-card-1{background:rgba(245,166,35,.06);border-color:rgba(245,166,35,.18);margin-right:48px}
+    .story-card-2{background:rgba(239,85,51,.06);border-color:rgba(239,85,51,.18);margin-left:28px}
+    .story-card-3{background:rgba(46,196,196,.06);border-color:rgba(46,196,196,.18);margin-left:14px;margin-right:28px}
     .story-card h4{font-size:15px;font-weight:700;color:rgba(255,255,255,.88);margin-bottom:7px}
     .story-card p{font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.4)}
     .story-card-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-    @media(max-width:860px){.story-card-stack{height:auto;display:flex;flex-direction:column;gap:12px}.story-card{position:static}}
+    @media(max-width:860px){.story-card-1,.story-card-2,.story-card-3{margin:0}}
 
     /* MISSION */
     .mission-section{padding:0 0 100px;background:rgba(0,0,0,.14)}
