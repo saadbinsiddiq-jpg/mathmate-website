@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — MathMate</title>
+<meta name="description" content="MathMate Terms of Service. Your rights, responsibilities, and our commitments as a provider of educational software.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hidden;min-height:100vh}
+
+.bg-base{position:fixed;inset:0;z-index:0;background:#070D1F}
+.bg-mesh{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.bg-mesh::before{content:'';position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(239,85,51,.1) 0%,transparent 70%);top:-200px;left:-180px;animation:blobDrift 22s ease-in-out infinite alternate}
+.bg-mesh::after{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(46,196,196,.07) 0%,transparent 70%);bottom:-160px;right:-120px;animation:blobDrift 28s ease-in-out infinite alternate-reverse}
+@keyframes blobDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(60px,40px) scale(1.08)}}
+.bg-grid{position:fixed;inset:0;z-index:2;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:72px 72px}
+.bg-ghost-math{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.bg-ghost-math span{position:absolute;font-size:18px;font-weight:700;color:rgba(255,255,255,.028);user-select:none;white-space:nowrap}
+.bg-grain{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.28;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");animation:noiseShift 8s steps(2) infinite}
+@keyframes noiseShift{0%{background-position:0 0}25%{background-position:-40px 20px}50%{background-position:20px -30px}75%{background-position:-20px 40px}100%{background-position:0 0}}
+.bg-vignette{position:fixed;inset:0;z-index:5;pointer-events:none;background:radial-gradient(ellipse 84% 72% at 50% 50%,transparent 20%,rgba(6,9,28,.28) 55%,rgba(6,9,28,.68) 100%)}
+.bg-watermark{position:fixed;z-index:3;pointer-events:none;font-size:460px;font-weight:900;color:rgba(239,85,51,.022);user-select:none;right:-60px;bottom:-80px;line-height:1;letter-spacing:-.04em}
+
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;padding:0 40px;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.06)}
+.header-inner{width:100%;max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.logo-link{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-link img{height:32px;width:32px;object-fit:contain;border-radius:8px}
+.logo-link span{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.logo-link span em{font-style:normal;color:#F5A623}
+.header-sep{width:1px;height:18px;background:rgba(255,255,255,.12);flex-shrink:0}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.42)}
+.breadcrumb a{color:rgba(255,255,255,.42);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:rgba(255,255,255,.8)}
+.breadcrumb span{color:rgba(255,255,255,.22)}
+.breadcrumb-current{color:rgba(255,255,255,.72);font-weight:500}
+.header-spacer{flex:1}
+.back-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:8px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;transition:background .15s,border-color .15s,color .15s;white-space:nowrap}
+.back-btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.22);color:#fff}
+
+.hero{position:relative;z-index:10;padding:130px 40px 70px;max-width:1440px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(239,85,51,.12);border:1px solid rgba(239,85,51,.28);border-radius:9999px;padding:8px 18px;font-size:12px;font-weight:700;color:#EF5533;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#EF5533;box-shadow:0 0 8px rgba(239,85,51,.8);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.08;letter-spacing:-.03em;max-width:800px;margin:0 auto 24px}
+.hero h1 .accent{background:linear-gradient(135deg,#EF5533 0%,#F5A623 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,.58);max-width:560px;margin:0 auto 32px;line-height:1.65}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:7px 14px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.hero-divider{width:60px;height:3px;background:linear-gradient(90deg,#EF5533,#F5A623);border-radius:9999px;margin:36px auto 0}
+
+.toc-section{position:relative;z-index:10;padding:60px 40px 20px;max-width:1100px;margin:0 auto}
+.toc-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px 36px}
+.toc-title{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#EF5533;margin-bottom:20px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.toc-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;text-decoration:none;color:rgba(255,255,255,.48);font-size:13px;font-weight:500;transition:background .15s,color .15s}
+.toc-item:hover{background:rgba(239,85,51,.08);color:rgba(255,255,255,.88)}
+.toc-num{font-size:11px;font-weight:700;color:#EF5533;min-width:22px}
+
+.content-wrap{position:relative;z-index:10;padding:40px 40px 80px;max-width:1100px;margin:0 auto}
+.section-block{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:32px 36px;margin-bottom:20px;transition:border-color .2s}
+.section-block:hover{border-color:rgba(239,85,51,.18)}
+.section-block.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.25,1,.5,1),border-color .2s}
+.section-block.reveal.visible{opacity:1;transform:translateY(0)}
+.section-num{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#EF5533;margin-bottom:10px}
+.section-title{font-size:19px;font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.01em}
+.section-body{font-size:14.5px;color:rgba(255,255,255,.6);line-height:1.75}
+.section-body p{margin-bottom:12px}
+.section-body p:last-child{margin-bottom:0}
+.section-body ul{padding-left:0;list-style:none;margin:10px 0}
+.section-body ul li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;color:rgba(255,255,255,.58);font-size:14px;line-height:1.6}
+.section-body ul li::before{content:'';width:5px;height:5px;border-radius:50%;background:#EF5533;flex-shrink:0;margin-top:8px}
+.section-body strong{color:rgba(255,255,255,.88);font-weight:600}
+.section-body a{color:#EF5533;text-decoration:none}
+.section-body a:hover{text-decoration:underline}
+.subsection{margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.06)}
+.subsection-title{font-size:14px;font-weight:700;color:rgba(255,255,255,.82);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.subsection-title::before{content:'';width:3px;height:14px;border-radius:2px;background:#EF5533;flex-shrink:0}
+.highlight-card{background:rgba(239,85,51,.06);border:1px solid rgba(239,85,51,.18);border-radius:14px;padding:20px 24px;margin:18px 0}
+.highlight-card p{color:rgba(255,255,255,.72);font-size:14px;line-height:1.7}
+
+.cta-band{position:relative;z-index:10;padding:80px 40px;background:linear-gradient(135deg,rgba(239,85,51,.06) 0%,rgba(245,166,35,.05) 100%);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);text-align:center}
+.cta-band h2{font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.025em;margin-bottom:14px}
+.cta-band p{font-size:16px;color:rgba(255,255,255,.52);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:15px 32px;font-size:15px;font-weight:700;box-shadow:0 10px 32px rgba(239,85,51,.36);transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(239,85,51,.54)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);text-decoration:none;border:1.5px solid rgba(255,255,255,.14);border-radius:9999px;padding:15px 26px;font-size:15px;font-weight:600;transition:background .15s,border-color .15s}
+.btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+
+.site-footer{position:relative;z-index:10;padding:40px;border-top:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.2)}
+.footer-inner-tos{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-links-tos{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-links-tos a{font-size:13px;color:rgba(255,255,255,.28);text-decoration:none;transition:color .15s}
+.footer-links-tos a:hover{color:rgba(255,255,255,.72)}
+.footer-links-tos a.active{color:rgba(239,85,51,.7)}
+.footer-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.14)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.16)}
+
+@media(max-width:768px){.site-header{padding:0 20px}.header-inner{gap:12px}.breadcrumb{display:none}.hero{padding:100px 20px 50px}.toc-section,.content-wrap{padding-left:20px;padding-right:20px}.cta-band{padding:60px 20px}}
+</style>
+</head>
+<body>
+
+<div class="bg-base"></div>
+<div class="bg-mesh"></div>
+<div class="bg-grid"></div>
+<div class="bg-ghost-math">
+  <span style="top:8%;left:3%;transform:rotate(-6deg)">x² + 5x + 6 = 0</span>
+  <span style="top:22%;right:4%;transform:rotate(4deg)">a² + b² = c²</span>
+  <span style="top:41%;left:2%;transform:rotate(-3deg)">f′(x) = lim(h→0)</span>
+  <span style="top:58%;right:2%;transform:rotate(5deg)">∇²φ = 0</span>
+  <span style="bottom:18%;left:5%;transform:rotate(-2deg)">e^(iπ) + 1 = 0</span>
+  <span style="bottom:7%;right:8%;transform:rotate(3deg)">y = mx + b</span>
+</div>
+<div class="bg-grain"></div>
+<div class="bg-vignette"></div>
+<span class="bg-watermark">§</span>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <img src="assets/MathMateIconLogo.png" alt="MathMate">
+      <span>Math<em>Mate</em></span>
+    </a>
+    <div class="header-sep"></div>
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span class="breadcrumb-current">Terms of Service</span>
+    </nav>
+    <div class="header-spacer"></div>
+    <a href="index.html" class="back-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to MathMate
+    </a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Legal Document
+  </div>
+  <h1>Terms of <span class="accent">Service</span></h1>
+  <p class="hero-desc">These terms govern your use of MathMate. We've written them as clearly as possible — please read them before using the app.</p>
+  <div class="hero-meta">
+    <span class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Last updated: 17 June 2026
+    </span>
+    <span class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      ~10 min read
+    </span>
+    <span class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Plain English
+    </span>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-section">
+  <div class="toc-card">
+    <div class="toc-title">Contents</div>
+    <div class="toc-grid">
+      <a href="#s1" class="toc-item"><span class="toc-num">01</span>Acceptance of Terms</a>
+      <a href="#s2" class="toc-item"><span class="toc-num">02</span>Who Can Use MathMate</a>
+      <a href="#s3" class="toc-item"><span class="toc-num">03</span>Your Account</a>
+      <a href="#s4" class="toc-item"><span class="toc-num">04</span>What We Provide</a>
+      <a href="#s5" class="toc-item"><span class="toc-num">05</span>Acceptable Use</a>
+      <a href="#s6" class="toc-item"><span class="toc-num">06</span>Content You Submit</a>
+      <a href="#s7" class="toc-item"><span class="toc-num">07</span>Intellectual Property</a>
+      <a href="#s8" class="toc-item"><span class="toc-num">08</span>AI-Generated Responses</a>
+      <a href="#s9" class="toc-item"><span class="toc-num">09</span>Privacy &amp; Data</a>
+      <a href="#s10" class="toc-item"><span class="toc-num">10</span>Children's Safety</a>
+      <a href="#s11" class="toc-item"><span class="toc-num">11</span>In-App Purchases</a>
+      <a href="#s12" class="toc-item"><span class="toc-num">12</span>Third-Party Services</a>
+      <a href="#s13" class="toc-item"><span class="toc-num">13</span>Disclaimers</a>
+      <a href="#s14" class="toc-item"><span class="toc-num">14</span>Limitation of Liability</a>
+      <a href="#s15" class="toc-item"><span class="toc-num">15</span>Termination</a>
+      <a href="#s16" class="toc-item"><span class="toc-num">16</span>Changes to These Terms</a>
+      <a href="#s17" class="toc-item"><span class="toc-num">17</span>Governing Law</a>
+      <a href="#s18" class="toc-item"><span class="toc-num">18</span>Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div id="s1" class="section-block reveal">
+    <div class="section-num">01</div>
+    <div class="section-title">Acceptance of Terms</div>
+    <div class="section-body">
+      <p>By downloading, installing, or using the MathMate application (the "App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+      <p>If you are under 18, a parent or legal guardian must review and agree to these Terms on your behalf. By allowing a minor to use MathMate, a parent or guardian accepts these Terms in full.</p>
+      <div class="highlight-card"><p><strong>Plain English:</strong> Using MathMate means you've read and accepted these rules. If you're a student under 18, your parent or guardian needs to be okay with this too.</p></div>
+    </div>
+  </div>
+
+  <div id="s2" class="section-block reveal">
+    <div class="section-num">02</div>
+    <div class="section-title">Who Can Use MathMate</div>
+    <div class="section-body">
+      <p>MathMate is available to users of all ages. However:</p>
+      <ul>
+        <li>Users under 13 (or the applicable age of digital consent in their country) must have verifiable parental or guardian consent before creating an account or using the App.</li>
+        <li>Users aged 13–17 may use the App subject to parental awareness and consent where required by local law.</li>
+        <li>Users aged 18 and over may create an account independently.</li>
+      </ul>
+      <p>We reserve the right to decline or terminate service to any user who misrepresents their age or who is found to be in violation of these Terms.</p>
+    </div>
+  </div>
+
+  <div id="s3" class="section-block reveal">
+    <div class="section-num">03</div>
+    <div class="section-title">Your Account</div>
+    <div class="section-body">
+      <p>When you create an account, you agree to provide accurate, current, and complete information. You are responsible for maintaining the confidentiality of your login credentials and for all activity that occurs under your account.</p>
+      <ul>
+        <li>Do not share your account with others.</li>
+        <li>Notify us immediately if you suspect unauthorised use of your account at <a href="mailto:support@mathmate.app">support@mathmate.app</a>.</li>
+        <li>We may suspend or terminate accounts that we believe have been compromised or used in violation of these Terms.</li>
+      </ul>
+      <p>You may delete your account at any time by contacting <a href="mailto:support@mathmate.app">support@mathmate.app</a>. We will process deletion requests within 30 days.</p>
+    </div>
+  </div>
+
+  <div id="s4" class="section-block reveal">
+    <div class="section-num">04</div>
+    <div class="section-title">What We Provide</div>
+    <div class="section-body">
+      <p>MathMate provides an AI-assisted math tutoring experience including, but not limited to:</p>
+      <ul>
+        <li>Photo-to-solution scanning (Snap &amp; Solve)</li>
+        <li>Step-by-step explanations of math problems across K-12 topics</li>
+        <li>Quiz Mode for self-testing on mathematical concepts</li>
+        <li>A Saved Gallery for storing and reviewing solved problems</li>
+        <li>Progress tracking and streak-based motivation features</li>
+        <li>Support for English, French, and Arabic</li>
+      </ul>
+      <p>We reserve the right to modify, suspend, or discontinue any feature or the App itself at any time, with or without notice. We will make reasonable efforts to notify users of significant changes.</p>
+    </div>
+  </div>
+
+  <div id="s5" class="section-block reveal">
+    <div class="section-num">05</div>
+    <div class="section-title">Acceptable Use</div>
+    <div class="section-body">
+      <p>You agree to use MathMate only for lawful, personal, and educational purposes. The following are strictly prohibited:</p>
+      <ul>
+        <li>Using the App to cheat on assessments, exams, or any form of supervised academic evaluation where the use of AI assistance is not permitted</li>
+        <li>Attempting to reverse-engineer, decompile, or extract the source code of the App</li>
+        <li>Submitting content that is defamatory, harmful, offensive, or unlawful</li>
+        <li>Using the App for commercial purposes without our prior written consent</li>
+        <li>Attempting to access systems or data beyond what is provided to you as a user</li>
+        <li>Creating automated queries, bots, or scripts that interact with the App without authorisation</li>
+        <li>Impersonating another person or providing false identity information</li>
+      </ul>
+      <div class="highlight-card"><p><strong>Academic integrity:</strong> MathMate is a learning tool, not a shortcut. Please follow your school's policies on technology use during exams and assessments. We encourage learning through understanding, not answer-copying.</p></div>
+    </div>
+  </div>
+
+  <div id="s6" class="section-block reveal">
+    <div class="section-num">06</div>
+    <div class="section-title">Content You Submit</div>
+    <div class="section-body">
+      <p>When you submit photos, text, or other content to MathMate (collectively, "User Content"), you grant us a limited, non-exclusive, royalty-free licence to process that content solely for the purpose of providing the App's features to you.</p>
+      <ul>
+        <li>We do not claim ownership of your User Content.</li>
+        <li>We do not share your submitted photos or solutions with other users.</li>
+        <li>We may use aggregated, anonymised data derived from usage patterns to improve the App's accuracy and educational quality.</li>
+        <li>You represent that you have the right to submit any content you provide and that it does not violate the rights of any third party.</li>
+      </ul>
+      <p>Do not submit content that contains personal information about other people, copyrighted material you do not have the right to use, or any content that is illegal in your jurisdiction.</p>
+    </div>
+  </div>
+
+  <div id="s7" class="section-block reveal">
+    <div class="section-num">07</div>
+    <div class="section-title">Intellectual Property</div>
+    <div class="section-body">
+      <p>All content, design, software, trademarks, logos, and intellectual property within the App — excluding User Content — are owned by MathMate or its licensors and are protected by applicable intellectual property laws.</p>
+      <p>You are granted a limited, non-exclusive, non-transferable, revocable licence to use the App for personal, non-commercial educational purposes, subject to these Terms.</p>
+      <ul>
+        <li>You may not copy, reproduce, distribute, or create derivative works from any part of the App without our express written permission.</li>
+        <li>The name "MathMate," our logo, and brand assets are our trademarks. Do not use them without prior written consent.</li>
+        <li>AI-generated explanations and step-by-step solutions produced by the App are provided for your personal educational use only and may not be republished or sold.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="s8" class="section-block reveal">
+    <div class="section-num">08</div>
+    <div class="section-title">AI-Generated Responses</div>
+    <div class="section-body">
+      <p>MathMate uses artificial intelligence — specifically large language models (LLMs) — to generate mathematical explanations. You should be aware of the following:</p>
+      <ul>
+        <li><strong>Responses may contain errors.</strong> While we work to maximise accuracy, AI-generated solutions are not infallible. Always verify important answers with a teacher or textbook.</li>
+        <li>The AI is trained to explain and teach, not to do homework for you. The value of MathMate comes from understanding the steps — not copying the result.</li>
+        <li>AI outputs reflect training data and may occasionally misidentify a problem type, especially for unusual notation or ambiguous photographs.</li>
+        <li>We do not warrant that AI responses are 100% accurate, complete, or suitable for every curriculum standard in every country.</li>
+      </ul>
+      <div class="highlight-card"><p><strong>Important:</strong> MathMate is an educational aid, not a replacement for qualified teaching. If you believe a solution is incorrect, please report it via <a href="mailto:support@mathmate.app">support@mathmate.app</a> — this helps us improve.</p></div>
+    </div>
+  </div>
+
+  <div id="s9" class="section-block reveal">
+    <div class="section-num">09</div>
+    <div class="section-title">Privacy &amp; Data</div>
+    <div class="section-body">
+      <p>Your use of MathMate is also governed by our <a href="privacy-policy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. By using the App, you agree to our Privacy Policy.</p>
+      <p>Key privacy principles:</p>
+      <ul>
+        <li>We do not sell your personal data to third parties.</li>
+        <li>We do not serve behavioural advertising within the App.</li>
+        <li>Photos you submit are processed to extract the math problem and are not stored indefinitely beyond what is needed to deliver the solution.</li>
+        <li>You may request a copy of your data or deletion of your account at any time.</li>
+      </ul>
+      <p>For full details, see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+    </div>
+  </div>
+
+  <div id="s10" class="section-block reveal">
+    <div class="section-num">10</div>
+    <div class="section-title">Children's Safety</div>
+    <div class="section-body">
+      <p>The safety of children is our highest priority. We have built MathMate with child safety as a core design principle, not an afterthought.</p>
+      <ul>
+        <li>We do not knowingly collect personal data from children under 13 without verifiable parental consent.</li>
+        <li>There is no social or community feature within the App — students cannot message each other or share content with other users.</li>
+        <li>There are no advertisements or in-app purchases targeted at minors.</li>
+        <li>Parents and guardians may contact us at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a> to review, correct, or request deletion of their child's data.</li>
+      </ul>
+      <p>MathMate is designed to be COPPA (US) and UK GDPR / ICO Age Appropriate Design Code compliant. We take any concerns about child safety extremely seriously.</p>
+    </div>
+  </div>
+
+  <div id="s11" class="section-block reveal">
+    <div class="section-num">11</div>
+    <div class="section-title">In-App Purchases</div>
+    <div class="section-body">
+      <p>MathMate is currently free to use in full. We may introduce optional premium features in the future, subject to the following:</p>
+      <ul>
+        <li>Any paid features will be clearly labelled and will not restrict access to core functionality.</li>
+        <li>All purchases will be processed through Apple App Store or Google Play and subject to their respective payment terms and refund policies.</li>
+        <li>We will give users advance notice of any transition from free to paid functionality.</li>
+        <li>Subscriptions, if introduced, may be cancelled at any time from within your device's app store account settings.</li>
+      </ul>
+      <p>If you have a billing question, contact <a href="mailto:support@mathmate.app">support@mathmate.app</a>.</p>
+    </div>
+  </div>
+
+  <div id="s12" class="section-block reveal">
+    <div class="section-num">12</div>
+    <div class="section-title">Third-Party Services</div>
+    <div class="section-body">
+      <p>MathMate uses third-party services to deliver certain features. Our current key service providers include:</p>
+      <ul>
+        <li><strong>Groq:</strong> Provides inference infrastructure for the LLMs used to generate mathematical explanations.</li>
+        <li><strong>Expo / React Native:</strong> Cross-platform app framework.</li>
+        <li><strong>AsyncStorage:</strong> Local on-device storage for saved solutions and settings.</li>
+      </ul>
+      <p>These services are governed by their own terms and privacy policies. We select providers carefully and only share data with them to the extent necessary to operate the App. We are not responsible for the practices of third-party services beyond our reasonable control.</p>
+    </div>
+  </div>
+
+  <div id="s13" class="section-block reveal">
+    <div class="section-num">13</div>
+    <div class="section-title">Disclaimers</div>
+    <div class="section-body">
+      <p>MathMate is provided "as is" and "as available." To the maximum extent permitted by applicable law, we disclaim all warranties, express or implied, including:</p>
+      <ul>
+        <li>Warranties of merchantability, fitness for a particular purpose, or non-infringement</li>
+        <li>Guarantees that the App will be uninterrupted, error-free, or free of viruses or other harmful components</li>
+        <li>Guarantees that AI-generated solutions will be mathematically accurate in all cases</li>
+        <li>Guarantees that the App will meet every student's specific curriculum requirements</li>
+      </ul>
+      <p>MathMate is an educational aid designed to support learning. It is not a substitute for qualified teachers, examiners, or certified tutors.</p>
+    </div>
+  </div>
+
+  <div id="s14" class="section-block reveal">
+    <div class="section-num">14</div>
+    <div class="section-title">Limitation of Liability</div>
+    <div class="section-body">
+      <p>To the fullest extent permitted by law, MathMate and its officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of, or inability to use, the App.</p>
+      <p>This includes but is not limited to:</p>
+      <ul>
+        <li>Loss of data, savings, or academic outcomes</li>
+        <li>Errors in AI-generated mathematical solutions</li>
+        <li>Interruption or unavailability of the App</li>
+        <li>Reliance on any content provided by the App without independent verification</li>
+      </ul>
+      <p>Where liability cannot be excluded by law, our total liability to you shall not exceed the amount you paid us (if any) in the 12 months preceding the claim. If you have paid nothing, our liability shall be limited to the minimum amount permitted by applicable law.</p>
+      <p>Some jurisdictions do not allow the exclusion or limitation of certain warranties or liabilities — in those cases, the above limitations apply only to the extent permitted by local law.</p>
+    </div>
+  </div>
+
+  <div id="s15" class="section-block reveal">
+    <div class="section-num">15</div>
+    <div class="section-title">Termination</div>
+    <div class="section-body">
+      <p>We may suspend or terminate your access to MathMate at any time, with or without notice, if we reasonably believe you have violated these Terms or applicable law.</p>
+      <p>You may stop using the App and delete your account at any time by contacting <a href="mailto:support@mathmate.app">support@mathmate.app</a>.</p>
+      <ul>
+        <li>Upon termination, your licence to use the App ends immediately.</li>
+        <li>Provisions that by their nature should survive termination — including intellectual property, disclaimer, and limitation of liability clauses — will remain in effect.</li>
+        <li>We will process data deletion requests in line with our Privacy Policy.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="s16" class="section-block reveal">
+    <div class="section-num">16</div>
+    <div class="section-title">Changes to These Terms</div>
+    <div class="section-body">
+      <p>We may update these Terms from time to time. When we do, we will:</p>
+      <ul>
+        <li>Update the "Last updated" date at the top of this page</li>
+        <li>Notify you via in-app notification or email for material changes</li>
+        <li>Give you at least 14 days' notice before material changes take effect, where reasonably practicable</li>
+      </ul>
+      <p>Your continued use of MathMate after changes take effect constitutes your acceptance of the updated Terms. If you do not agree, you must stop using the App before the changes take effect.</p>
+    </div>
+  </div>
+
+  <div id="s17" class="section-block reveal">
+    <div class="section-num">17</div>
+    <div class="section-title">Governing Law</div>
+    <div class="section-body">
+      <p>These Terms are governed by and construed in accordance with the laws of England and Wales, without regard to conflict of law principles.</p>
+      <p>Any disputes arising from these Terms or your use of MathMate shall be subject to the exclusive jurisdiction of the courts of England and Wales, unless local law in your jurisdiction provides mandatory consumer protection rights that require otherwise — in which case those local rights are not affected.</p>
+      <p>For users in the European Union, the EU's online dispute resolution platform is available at <strong>ec.europa.eu/consumers/odr</strong>. We are not obliged to participate in alternative dispute resolution, but we will always try to resolve concerns directly first.</p>
+    </div>
+  </div>
+
+  <div id="s18" class="section-block reveal">
+    <div class="section-num">18</div>
+    <div class="section-title">Contact Us</div>
+    <div class="section-body">
+      <p>If you have questions about these Terms, please contact us:</p>
+      <ul>
+        <li><strong>General &amp; Support:</strong> <a href="mailto:support@mathmate.app">support@mathmate.app</a></li>
+        <li><strong>Privacy &amp; Legal:</strong> <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a></li>
+        <li><strong>Business:</strong> <a href="mailto:hello@mathmate.app">hello@mathmate.app</a></li>
+      </ul>
+      <p>We aim to respond to all legal enquiries within 5 business days.</p>
+      <div class="subsection">
+        <div class="subsection-title">Effective Date</div>
+        <p>These Terms of Service are effective as of 17 June 2026 and supersede all previous versions.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to Get Started?</h2>
+  <p>MathMate is free. No subscription, no credit card. Just better math understanding, starting now.</p>
+  <div class="cta-btns">
+    <a href="index.html#contact" class="btn-primary">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      Get the App Free
+    </a>
+    <a href="privacy-policy.html" class="btn-secondary">Read Privacy Policy</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner-tos">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+      <img src="assets/MathMateIconLogo.png" alt="MathMate" style="height:28px;width:28px;border-radius:7px;object-fit:contain">
+      <span style="font-size:17px;font-weight:800;letter-spacing:-.03em;color:#fff">Math<span style="color:#F5A623">Mate</span></span>
+    </a>
+    <div class="footer-links-tos">
+      <a href="about.html">About</a>
+      <span class="footer-dot"></span>
+      <a href="careers.html">Careers</a>
+      <span class="footer-dot"></span>
+      <a href="press-kit.html">Press Kit</a>
+      <span class="footer-dot"></span>
+      <a href="contact-us.html">Contact</a>
+      <span class="footer-dot"></span>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <span class="footer-dot"></span>
+      <a href="terms-of-service.html" class="active">Terms of Service</a>
+    </div>
+    <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.section-block.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  els.forEach(el => obs.observe(el));
+  setTimeout(() => els.forEach(el => el.classList.add('visible')), 2500);
+</script>
+</body>
+</html>
