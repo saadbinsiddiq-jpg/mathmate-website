@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tutorials | MathMate — Learn How to Use Every Feature</title>
+  <meta name="description" content="Step-by-step guides to get the most out of MathMate — from snapping your first problem to reading your personalised learning roadmap.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;color:#fff}
+    @keyframes aurora{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(22px,-15px) scale(1.07)}}
+    @keyframes noiseShift{0%{transform:translate(0,0)}33%{transform:translate(-3%,-1.5%)}66%{transform:translate(1.5%,3%)}100%{transform:translate(0,0)}}
+    @keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeScale{0%{opacity:0;transform:scale(.86)}65%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+    @keyframes slideLeft{from{opacity:0;transform:translateX(-38px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    header{position:fixed;top:0;left:0;right:0;z-index:300;height:70px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.07);animation:navIn .5s ease both}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{height:34px;width:34px;object-fit:contain;border-radius:8px;transition:transform .22s}
+    .logo img:hover{transform:rotate(-6deg) scale(1.1)}
+    .logo-text{font-size:20px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .logo-text span{color:#F5A623}
+    .header-center{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.5)}
+    .header-center a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+    .header-center a:hover{color:#fff}
+    .header-center .current{color:rgba(255,255,255,.88);font-weight:600}
+    .back-btn{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.55);text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:9999px;transition:color .15s,background .15s,border-color .15s}
+    .back-btn:hover{color:#fff;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22)}
+    .header-cta{display:inline-flex;align-items:center;gap:7px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:10px 22px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 6px 22px rgba(239,85,51,.32);transition:transform .15s,box-shadow .15s}
+    .header-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(239,85,51,.5)}
+    .header-right{display:flex;align-items:center;gap:12px}
+    @media(max-width:768px){header{padding:0 20px;height:60px}.header-center{display:none}}
+
+    .bg-base{position:fixed;inset:0;z-index:-8;background:#070D1F}
+    .bg-blobs{position:fixed;inset:0;z-index:-7;pointer-events:none;overflow:hidden}
+    .bg-grid{position:fixed;inset:0;z-index:-6;pointer-events:none}
+    .bg-grain{position:fixed;inset:-12%;width:124%;height:124%;z-index:-4;pointer-events:none;opacity:.05;animation:noiseShift 9s ease-in-out infinite}
+    .bg-vignette{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(ellipse 76% 72% at 50% 44%,transparent 18%,rgba(7,13,31,.72) 58%,rgba(7,13,31,.97) 100%)}
+    .bg-pi{position:fixed;font-size:480px;font-weight:700;color:rgba(255,255,255,.013);right:2%;top:2%;z-index:-2;user-select:none;pointer-events:none;line-height:1;font-family:'JetBrains Mono',monospace;letter-spacing:-.06em}
+
+    .hero{min-height:52vh;display:flex;align-items:center;justify-content:center;padding:130px 64px 70px;text-align:center;position:relative;z-index:1}
+    .hero-inner{max-width:760px;margin:0 auto}
+    .product-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);border-radius:9999px;padding:8px 18px;margin-bottom:32px;animation:fadeScale .56s cubic-bezier(.34,1.56,.64,1) both .1s}
+    .product-badge .dot{width:7px;height:7px;border-radius:50%;background:#F5A623;flex-shrink:0;animation:pulse 2s ease infinite}
+    .product-badge span{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#F5A623}
+    .hero h1{font-size:56px;font-weight:900;line-height:1.08;letter-spacing:-.035em;color:#fff;margin:0 0 22px;animation:slideLeft .65s cubic-bezier(0,0,.2,1) both .25s}
+    .hero h1 em{font-style:normal;background:linear-gradient(95deg,#F5A623 0%,#EF5533 60%,#2EC4C4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{font-size:17px;line-height:1.72;color:rgba(255,255,255,.44);max-width:540px;margin:0 auto;animation:fadeUp .65s ease both .45s}
+    @media(max-width:900px){.hero{padding:100px 24px 60px}.hero h1{font-size:38px}}
+    @media(max-width:560px){.hero h1{font-size:30px}}
+
+    section{position:relative;z-index:1}
+    .container{max-width:1060px;margin:0 auto;padding:0 64px}
+    @media(max-width:900px){.container{padding:0 24px}}
+
+    .tutorials-section{padding:10px 0 120px}
+
+    .tutorial-block{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;padding:72px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+    .tutorial-block:last-child{border-bottom:none}
+    .tutorial-block.reverse{direction:rtl}
+    .tutorial-block.reverse > *{direction:ltr}
+    @media(max-width:840px){.tutorial-block{grid-template-columns:1fr;gap:36px}.tutorial-block.reverse{direction:ltr}}
+
+    .tut-num{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+    .tut-num-badge{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;font-family:'JetBrains Mono',monospace;color:#fff;flex-shrink:0}
+    .tut-label{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .tut-h2{font-size:34px;font-weight:900;letter-spacing:-.04em;line-height:1.14;color:#fff;margin:0 0 16px}
+    .tut-desc{font-size:15px;line-height:1.8;color:rgba(255,255,255,.42);margin:0 0 24px}
+
+    .steps-list{display:flex;flex-direction:column;gap:0}
+    .step-item{display:flex;gap:14px;padding:16px 0;position:relative}
+    .step-item:not(:last-child)::after{content:'';position:absolute;left:17px;top:44px;bottom:-4px;width:2px;background:repeating-linear-gradient(180deg,rgba(255,255,255,.12) 0,rgba(255,255,255,.12) 4px,transparent 4px,transparent 8px)}
+    .step-circle{width:36px;height:36px;min-width:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;z-index:1}
+    .step-body h4{font-size:14.5px;font-weight:700;color:rgba(255,255,255,.88);margin:0 0 5px;padding-top:7px}
+    .step-body p{font-size:13px;line-height:1.65;color:rgba(255,255,255,.36);margin:0}
+
+    .tut-visual{display:flex;flex-direction:column;gap:12px}
+    .tut-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:22px 24px;transition:background .2s,transform .22s}
+    .tut-card:hover{background:rgba(255,255,255,.055);transform:translateY(-3px)}
+    .tut-card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+    .tut-card h4{font-size:14.5px;font-weight:700;color:rgba(255,255,255,.88);margin:0 0 6px}
+    .tut-card p{font-size:13px;line-height:1.65;color:rgba(255,255,255,.36);margin:0}
+    .tut-tip{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px 16px}
+    .tut-tip-icon{flex-shrink:0;margin-top:1px}
+    .tut-tip p{font-size:13px;color:rgba(255,255,255,.38);line-height:1.6;margin:0}
+    .tut-tip strong{color:rgba(255,255,255,.7);font-weight:700}
+
+    .cta-band{padding:90px 64px;text-align:center}
+    @media(max-width:900px){.cta-band{padding:70px 24px}}
+    .cta-band h2{font-size:44px;font-weight:900;letter-spacing:-.04em;color:#fff;margin:0 0 14px;line-height:1.1}
+    .cta-band h2 span{background:linear-gradient(95deg,#F5A623,#EF5533 50%,#2EC4C4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .cta-band p{font-size:16px;color:rgba(255,255,255,.36);margin:0 auto 36px;max-width:460px;line-height:1.68}
+    @media(max-width:560px){.cta-band h2{font-size:32px}}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:15px 30px;font-size:15.5px;font-weight:700;box-shadow:0 10px 28px rgba(239,85,51,.36);transition:transform .15s,box-shadow .15s}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(239,85,51,.54)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.82);text-decoration:none;border:1.5px solid rgba(255,255,255,.15);border-radius:9999px;padding:15px 24px;font-size:15.5px;font-weight:600;transition:background .15s,border-color .15s}
+    .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+    .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+    footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);padding:44px 64px}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .footer-brand img{height:30px;width:30px;border-radius:7px;object-fit:contain}
+    .footer-brand-text{font-size:18px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .footer-brand-text span{color:#F5A623}
+    .footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-links a{font-size:13px;color:rgba(255,255,255,.26);text-decoration:none;transition:color .15s}
+    .footer-links a:hover{color:rgba(255,255,255,.72)}
+    .footer-links a.active{color:rgba(245,166,35,.7)}
+    .footer-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.14)}
+    .footer-copy{font-size:12px;color:rgba(255,255,255,.15)}
+    .back-top{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:7px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.36);text-decoration:none;transition:background .15s,color .15s}
+    .back-top:hover{background:rgba(255,255,255,.1);color:#fff}
+    @media(max-width:640px){footer{padding:36px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:20px}}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.25,1,.5,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+<div class="bg-base"></div>
+<div class="bg-blobs">
+  <div style="width:900px;height:900px;top:-280px;left:-240px;background:radial-gradient(circle,rgba(245,166,35,.1) 0%,rgba(245,166,35,.03) 32%,transparent 65%);animation:aurora 26s ease-in-out infinite"></div>
+  <div style="width:700px;height:700px;bottom:-200px;right:-180px;background:radial-gradient(circle,rgba(239,85,51,.08) 0%,rgba(239,85,51,.02) 36%,transparent 65%);animation:aurora 31s ease-in-out infinite 6s reverse"></div>
+</div>
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="sg" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0L0 0 0 36" fill="none" stroke="rgba(255,255,255,.028)" stroke-width="0.5"/></pattern><pattern id="bg2" width="180" height="180" patternUnits="userSpaceOnUse"><rect width="180" height="180" fill="url(#sg)"/><path d="M180 0L0 0 0 180" fill="none" stroke="rgba(255,255,255,.066)" stroke-width="0.8"/></pattern><radialGradient id="gf" cx="50%" cy="44%" r="62%"><stop offset="10%" stop-color="white" stop-opacity="1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient><mask id="gm"><rect width="100%" height="100%" fill="url(#gf)"/></mask></defs><rect width="100%" height="100%" fill="url(#bg2)" mask="url(#gm)"/></svg>
+<svg class="bg-grain" xmlns="http://www.w3.org/2000/svg"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch" result="noise"/><feColorMatrix type="saturate" values="0" in="noise"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+<div class="bg-vignette"></div>
+<span class="bg-pi">▶</span>
+
+<header>
+  <a href="index.html" class="logo"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="logo-text">Math<span>Mate</span></span></a>
+  <nav class="header-center">
+    <a href="index.html">Home</a>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <span class="current">Tutorials</span>
+  </nav>
+  <div class="header-right">
+    <a href="index.html" class="back-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to MathMate</a>
+    <a href="index.html#contact" class="header-cta">Get the App</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="product-badge"><span class="dot"></span><span>Get Started Fast</span></div>
+    <h1>MathMate Tutorials<br><em>Feature by Feature</em></h1>
+    <p class="hero-desc">Everything you need to know to get the most out of MathMate — from snapping your first problem to reading your personalised learning roadmap.</p>
+  </div>
+</section>
+
+<section class="tutorials-section">
+  <div class="container">
+
+    <!-- Tutorial 1: Snap & Solve -->
+    <div class="tutorial-block reveal" id="snap-solve">
+      <div>
+        <div class="tut-num">
+          <div class="tut-num-badge" style="background:linear-gradient(145deg,#F4724A,#C8391A);box-shadow:0 4px 0 #7A2210,0 5px 18px rgba(239,85,51,.4)">01</div>
+          <span class="tut-label" style="color:#EF5533">Getting Started</span>
+        </div>
+        <h2 class="tut-h2">How to Snap &amp; Solve a Problem</h2>
+        <p class="tut-desc">The fastest way to get help with any math problem. Point, snap, and get a full step-by-step explanation in seconds — no typing required.</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(239,85,51,.18);border:1.5px solid rgba(239,85,51,.4)"><span style="color:#EF5533">1</span></div>
+            <div class="step-body"><h4>Open the Scan tab</h4><p>Tap the camera icon at the bottom of the screen to open the Snap &amp; Solve tab.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(245,166,35,.15);border:1.5px solid rgba(245,166,35,.35)"><span style="color:#F5A623">2</span></div>
+            <div class="step-body"><h4>Frame your problem</h4><p>Hold your camera over any written or printed math problem. Make sure the text is well-lit and clearly visible inside the frame.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(46,196,196,.15);border:1.5px solid rgba(46,196,196,.35)"><span style="color:#2EC4C4">3</span></div>
+            <div class="step-body"><h4>Tap to snap</h4><p>Press the shutter button. MathMate reads the problem and begins solving — usually within 5–10 seconds.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(45,144,232,.15);border:1.5px solid rgba(45,144,232,.35)"><span style="color:#2D90E8">4</span></div>
+            <div class="step-body"><h4>Read through the solution</h4><p>Each step is explained clearly. Tap any step to expand it and read the full reasoning behind it.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="tut-visual">
+        <div class="tut-card" style="border-color:rgba(239,85,51,.14);background:rgba(239,85,51,.04)">
+          <div class="tut-card-icon" style="background:rgba(239,85,51,.14)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF5533" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <h4>Works with handwriting too</h4>
+          <p>MathMate reads neatly written handwritten problems as well as printed textbook questions.</p>
+        </div>
+        <div class="tut-card" style="border-color:rgba(245,166,35,.13);background:rgba(245,166,35,.03)">
+          <div class="tut-card-icon" style="background:rgba(245,166,35,.12)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+          </div>
+          <h4>Or upload from your gallery</h4>
+          <p>Already have a photo? Tap the gallery icon to pick an existing image of a problem instead.</p>
+        </div>
+        <div class="tut-tip">
+          <div class="tut-tip-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p><strong>Tip:</strong> Good lighting makes a big difference. Avoid shadows falling across the problem, and keep the camera steady before tapping.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorial 2: Chat -->
+    <div class="tutorial-block reverse reveal" id="chat">
+      <div>
+        <div class="tut-num">
+          <div class="tut-num-badge" style="background:linear-gradient(145deg,#4FD4D4,#1A8E8E);box-shadow:0 4px 0 #0E5A5A,0 5px 18px rgba(46,196,196,.4)">02</div>
+          <span class="tut-label" style="color:#2EC4C4">AI Tutor Chat</span>
+        </div>
+        <h2 class="tut-h2">How to Use the AI Tutor Chat</h2>
+        <p class="tut-desc">Ask MathMate anything — in plain English, French, or Arabic. The chat explains concepts, answers follow-up questions, and guides you through problems step by step.</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(46,196,196,.15);border:1.5px solid rgba(46,196,196,.35)"><span style="color:#2EC4C4">1</span></div>
+            <div class="step-body"><h4>Open the Chat tab</h4><p>Tap the chat icon in the navigation bar. You'll enter a fresh conversation with MathMate's AI tutor.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(46,196,196,.15);border:1.5px solid rgba(46,196,196,.35)"><span style="color:#2EC4C4">2</span></div>
+            <div class="step-body"><h4>Type or paste your question</h4><p>Ask anything: "Can you explain what a derivative is?", "Why do we flip the fraction when dividing?", or paste a problem directly.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(46,196,196,.15);border:1.5px solid rgba(46,196,196,.35)"><span style="color:#2EC4C4">3</span></div>
+            <div class="step-body"><h4>Ask follow-up questions</h4><p>MathMate remembers the conversation. If you're still confused, ask "Can you explain that differently?" or "Show me another example."</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(46,196,196,.15);border:1.5px solid rgba(46,196,196,.35)"><span style="color:#2EC4C4">4</span></div>
+            <div class="step-body"><h4>Switch languages anytime</h4><p>Go to Settings and choose English, French, or Arabic. The tutor will respond entirely in your chosen language.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="tut-visual">
+        <div class="tut-card" style="border-color:rgba(46,196,196,.14);background:rgba(46,196,196,.04)">
+          <div class="tut-card-icon" style="background:rgba(46,196,196,.13)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2EC4C4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h4>Great questions to try</h4>
+          <p>"Why does a negative times a negative equal a positive?" — MathMate will explain with a clear analogy and worked example.</p>
+        </div>
+        <div class="tut-card" style="border-color:rgba(45,144,232,.13);background:rgba(45,144,232,.03)">
+          <div class="tut-card-icon" style="background:rgba(45,144,232,.12)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D90E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>Available in 3 languages</h4>
+          <p>English, French (Français), and Arabic (العربية) — with full right-to-left layout for Arabic learners.</p>
+        </div>
+        <div class="tut-tip">
+          <div class="tut-tip-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p><strong>Tip:</strong> The more context you give, the better the answer. Instead of "solve this," try "I don't understand why we do step 3 — can you explain it a different way?"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorial 3: Quiz -->
+    <div class="tutorial-block reveal" id="quiz">
+      <div>
+        <div class="tut-num">
+          <div class="tut-num-badge" style="background:linear-gradient(145deg,#F8A060,#CF6818);box-shadow:0 4px 0 #7A3A08,0 5px 18px rgba(245,166,35,.4)">03</div>
+          <span class="tut-label" style="color:#F5A623">Quiz Mode</span>
+        </div>
+        <h2 class="tut-h2">How to Take a Practice Quiz</h2>
+        <p class="tut-desc">Quizzes in MathMate are not just tests — they're diagnostic tools that tell you what you know, what you don't, and what to focus on next.</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(245,166,35,.15);border:1.5px solid rgba(245,166,35,.35)"><span style="color:#F5A623">1</span></div>
+            <div class="step-body"><h4>Go to the Quiz tab</h4><p>Tap "Quiz" in the bottom navigation. You'll see topic categories and difficulty levels.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(245,166,35,.15);border:1.5px solid rgba(245,166,35,.35)"><span style="color:#F5A623">2</span></div>
+            <div class="step-body"><h4>Choose a topic or take the diagnostic</h4><p>Pick any topic to practise, or take the full diagnostic quiz to get an overall assessment of your level.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(245,166,35,.15);border:1.5px solid rgba(245,166,35,.35)"><span style="color:#F5A623">3</span></div>
+            <div class="step-body"><h4>Answer each question</h4><p>Multiple-choice questions appear one at a time. Take your time — there's no timer.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(245,166,35,.15);border:1.5px solid rgba(245,166,35,.35)"><span style="color:#F5A623">4</span></div>
+            <div class="step-body"><h4>Review wrong answers immediately</h4><p>After each question, see the explanation — whether you got it right or wrong. Wrong answers trigger a mini-lesson on the spot.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="tut-visual">
+        <div class="tut-card" style="border-color:rgba(245,166,35,.14);background:rgba(245,166,35,.04)">
+          <div class="tut-card-icon" style="background:rgba(245,166,35,.13)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h4>Every wrong answer teaches</h4>
+          <p>Getting something wrong in MathMate isn't a failure — it's the system finding your exact learning gap. That's valuable data.</p>
+        </div>
+        <div class="tut-card" style="border-color:rgba(239,85,51,.13);background:rgba(239,85,51,.03)">
+          <div class="tut-card-icon" style="background:rgba(239,85,51,.12)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF5533" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4>Results update your roadmap</h4>
+          <p>Quiz scores feed directly into your personalised learning path — improving the accuracy of your recommendations each time.</p>
+        </div>
+        <div class="tut-tip">
+          <div class="tut-tip-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p><strong>Tip:</strong> Retake quizzes on the same topic every week. Watching your score improve over time is one of the most motivating things MathMate shows you.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorial 4: Progress & Roadmap -->
+    <div class="tutorial-block reverse reveal" id="progress">
+      <div>
+        <div class="tut-num">
+          <div class="tut-num-badge" style="background:linear-gradient(145deg,#6AB4F0,#1E6BB8);box-shadow:0 4px 0 #0E3E78,0 5px 18px rgba(45,144,232,.4)">04</div>
+          <span class="tut-label" style="color:#2D90E8">Progress &amp; Roadmap</span>
+        </div>
+        <h2 class="tut-h2">How to Read Your Learning Roadmap</h2>
+        <p class="tut-desc">Your roadmap updates automatically as you use the app. It tells you exactly where to focus next — based on everything MathMate has learned about your skills.</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(45,144,232,.15);border:1.5px solid rgba(45,144,232,.35)"><span style="color:#2D90E8">1</span></div>
+            <div class="step-body"><h4>Open the Progress tab</h4><p>Tap the chart icon in the bottom bar to see your full progress dashboard.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(45,144,232,.15);border:1.5px solid rgba(45,144,232,.35)"><span style="color:#2D90E8">2</span></div>
+            <div class="step-body"><h4>Read your topic mastery scores</h4><p>Each topic shows a percentage score. Green means strong, orange means review needed, red means learn this first.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(45,144,232,.15);border:1.5px solid rgba(45,144,232,.35)"><span style="color:#2D90E8">3</span></div>
+            <div class="step-body"><h4>Follow the "Next Steps" suggestions</h4><p>Your roadmap highlights the 2–3 topics that will have the biggest impact on your improvement right now.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(45,144,232,.15);border:1.5px solid rgba(45,144,232,.35)"><span style="color:#2D90E8">4</span></div>
+            <div class="step-body"><h4>Track your streak</h4><p>Daily usage builds your streak. A streak signals consistent practice — the single most reliable predictor of improvement.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="tut-visual">
+        <div class="tut-card" style="border-color:rgba(45,144,232,.14);background:rgba(45,144,232,.04)">
+          <div class="tut-card-icon" style="background:rgba(45,144,232,.13)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D90E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h4>Growth you can see</h4>
+          <p>Topic-level charts show your score history over time. You'll see the impact of each study session reflected in real data.</p>
+        </div>
+        <div class="tut-card" style="border-color:rgba(139,92,246,.13);background:rgba(139,92,246,.03)">
+          <div class="tut-card-icon" style="background:rgba(139,92,246,.12)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <h4>Roadmap gets smarter over time</h4>
+          <p>The more you use MathMate, the more accurate your roadmap becomes. Early recommendations are good — later ones are excellent.</p>
+        </div>
+        <div class="tut-tip">
+          <div class="tut-tip-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p><strong>Tip:</strong> Share your Progress screen with a parent or teacher each week. It's a clear, honest picture of where you are and where you're heading.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tutorial 5: Saved Gallery -->
+    <div class="tutorial-block reveal" id="gallery">
+      <div>
+        <div class="tut-num">
+          <div class="tut-num-badge" style="background:linear-gradient(145deg,#C084FC,#7C3AED);box-shadow:0 4px 0 #4C1D95,0 5px 18px rgba(139,92,246,.4)">05</div>
+          <span class="tut-label" style="color:#8B5CF6">Saved Gallery</span>
+        </div>
+        <h2 class="tut-h2">How to Save Solutions for Later</h2>
+        <p class="tut-desc">Build your own personal revision library by saving solutions you want to return to. Perfect for exam preparation.</p>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(139,92,246,.15);border:1.5px solid rgba(139,92,246,.35)"><span style="color:#8B5CF6">1</span></div>
+            <div class="step-body"><h4>Solve any problem</h4><p>Use Snap &amp; Solve or Chat to get a solution to a problem you want to keep.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(139,92,246,.15);border:1.5px solid rgba(139,92,246,.35)"><span style="color:#8B5CF6">2</span></div>
+            <div class="step-body"><h4>Tap the save icon</h4><p>The bookmark icon appears at the top of any solution screen. Tap it to save the full solution to your Gallery.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(139,92,246,.15);border:1.5px solid rgba(139,92,246,.35)"><span style="color:#8B5CF6">3</span></div>
+            <div class="step-body"><h4>Open the Saved tab</h4><p>Find all your bookmarked solutions in the Saved tab — organised by date, with the original problem image and full explanation.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-circle" style="background:rgba(139,92,246,.15);border:1.5px solid rgba(139,92,246,.35)"><span style="color:#8B5CF6">4</span></div>
+            <div class="step-body"><h4>Review before exams</h4><p>Scroll through your saved solutions the night before a test. Each one is a worked example of a concept you actually encountered.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="tut-visual">
+        <div class="tut-card" style="border-color:rgba(139,92,246,.14);background:rgba(139,92,246,.04)">
+          <div class="tut-card-icon" style="background:rgba(139,92,246,.13)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h4>Your personal revision bank</h4>
+          <p>Over time, your Saved gallery becomes a curated set of worked examples — built from the actual problems you've faced.</p>
+        </div>
+        <div class="tut-tip">
+          <div class="tut-tip-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p><strong>Tip:</strong> Save problems you got wrong, not just ones you found hard. Coming back to past mistakes is one of the most effective revision strategies.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.28);border-radius:9999px;padding:7px 16px;margin-bottom:22px">
+    <span style="width:7px;height:7px;border-radius:50%;background:#F5A623;flex-shrink:0;animation:pulse 2s ease infinite;display:block"></span>
+    <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F5A623">Free to Download</span>
+  </div>
+  <h2>Ready to Put These<br><span>Tutorials into Practice?</span></h2>
+  <p>Download MathMate and try everything you've just learned — for free.</p>
+  <div class="ctas">
+    <a href="index.html#contact" class="btn-primary">Get MathMate Free <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="faq.html" class="btn-ghost">Read the FAQ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="footer-brand-text">Math<span>Mate</span></span></a>
+    <div class="footer-links">
+      <a href="how-it-works.html">How It Works</a><span class="footer-dot"></span>
+      <a href="tutorials.html" class="active">Tutorials</a><span class="footer-dot"></span>
+      <a href="faq.html">FAQ</a><span class="footer-dot"></span>
+      <a href="contact-us.html">Contact</a><span class="footer-dot"></span>
+      <a href="privacy-policy.html">Privacy</a><span class="footer-dot"></span>
+      <a href="terms-of-service.html">Terms</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <a href="#" class="back-top"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => observer.observe(el));
+  setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2200);
+</script>
+</body>
+</html>

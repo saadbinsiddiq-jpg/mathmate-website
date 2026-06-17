@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog | MathMate — Insights on Math Learning</title>
+  <meta name="description" content="Articles on math education, learning strategies, AI tutoring, and how to help students build real mathematical confidence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;color:#fff}
+    @keyframes aurora{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(22px,-15px) scale(1.07)}}
+    @keyframes noiseShift{0%{transform:translate(0,0)}33%{transform:translate(-3%,-1.5%)}66%{transform:translate(1.5%,3%)}100%{transform:translate(0,0)}}
+    @keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeScale{0%{opacity:0;transform:scale(.86)}65%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+    @keyframes slideLeft{from{opacity:0;transform:translateX(-38px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    header{position:fixed;top:0;left:0;right:0;z-index:300;height:70px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.07);animation:navIn .5s ease both}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{height:34px;width:34px;object-fit:contain;border-radius:8px;transition:transform .22s}
+    .logo img:hover{transform:rotate(-6deg) scale(1.1)}
+    .logo-text{font-size:20px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .logo-text span{color:#F5A623}
+    .header-center{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.5)}
+    .header-center a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+    .header-center a:hover{color:#fff}
+    .header-center .current{color:rgba(255,255,255,.88);font-weight:600}
+    .back-btn{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.55);text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:9999px;transition:color .15s,background .15s,border-color .15s}
+    .back-btn:hover{color:#fff;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22)}
+    .header-cta{display:inline-flex;align-items:center;gap:7px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:10px 22px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 6px 22px rgba(239,85,51,.32);transition:transform .15s,box-shadow .15s}
+    .header-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(239,85,51,.5)}
+    .header-right{display:flex;align-items:center;gap:12px}
+    @media(max-width:768px){header{padding:0 20px;height:60px}.header-center{display:none}}
+
+    .bg-base{position:fixed;inset:0;z-index:-8;background:#070D1F}
+    .bg-blobs{position:fixed;inset:0;z-index:-7;pointer-events:none;overflow:hidden}
+    .bg-grid{position:fixed;inset:0;z-index:-6;pointer-events:none}
+    .bg-grain{position:fixed;inset:-12%;width:124%;height:124%;z-index:-4;pointer-events:none;opacity:.05;animation:noiseShift 9s ease-in-out infinite}
+    .bg-vignette{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(ellipse 76% 72% at 50% 44%,transparent 18%,rgba(7,13,31,.72) 58%,rgba(7,13,31,.97) 100%)}
+    .bg-pi{position:fixed;font-size:480px;font-weight:700;color:rgba(255,255,255,.013);right:2%;top:2%;z-index:-2;user-select:none;pointer-events:none;line-height:1;font-family:'JetBrains Mono',monospace;letter-spacing:-.06em}
+
+    .hero{min-height:48vh;display:flex;align-items:center;justify-content:center;padding:130px 64px 60px;text-align:center;position:relative;z-index:1}
+    .hero-inner{max-width:720px;margin:0 auto}
+    .product-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(239,85,51,.1);border:1px solid rgba(239,85,51,.3);border-radius:9999px;padding:8px 18px;margin-bottom:32px;animation:fadeScale .56s cubic-bezier(.34,1.56,.64,1) both .1s}
+    .product-badge .dot{width:7px;height:7px;border-radius:50%;background:#EF5533;flex-shrink:0;animation:pulse 2s ease infinite}
+    .product-badge span{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#EF5533}
+    .hero h1{font-size:56px;font-weight:900;line-height:1.08;letter-spacing:-.035em;color:#fff;margin:0 0 22px;animation:slideLeft .65s cubic-bezier(0,0,.2,1) both .25s}
+    .hero h1 em{font-style:normal;background:linear-gradient(95deg,#EF5533 0%,#F5A623 60%,#2EC4C4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{font-size:17px;line-height:1.72;color:rgba(255,255,255,.44);max-width:520px;margin:0 auto;animation:fadeUp .65s ease both .45s}
+    @media(max-width:900px){.hero{padding:100px 24px 50px}.hero h1{font-size:38px}}
+    @media(max-width:560px){.hero h1{font-size:30px}}
+
+    section{position:relative;z-index:1}
+    .container{max-width:1100px;margin:0 auto;padding:0 64px}
+    @media(max-width:900px){.container{padding:0 24px}}
+
+    .blog-section{padding:10px 0 120px}
+
+    /* Featured post */
+    .featured-post{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;padding:40px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:24px;margin-bottom:40px;text-decoration:none;transition:background .2s,border-color .2s,transform .22s}
+    .featured-post:hover{background:rgba(255,255,255,.055);transform:translateY(-4px)}
+    @media(max-width:820px){.featured-post{grid-template-columns:1fr;gap:28px;padding:28px}}
+    .featured-img{border-radius:18px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:80px;font-family:'JetBrains Mono',monospace;font-weight:900;letter-spacing:-.06em}
+    .featured-tag{display:inline-flex;align-items:center;gap:6px;border-radius:7px;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+    .featured-post h2{font-size:30px;font-weight:900;letter-spacing:-.03em;line-height:1.18;color:#fff;margin:0 0 14px}
+    .featured-post p{font-size:14.5px;line-height:1.74;color:rgba(255,255,255,.42);margin:0 0 20px}
+    .post-meta{display:flex;align-items:center;gap:14px;font-size:12.5px;color:rgba(255,255,255,.28)}
+    .post-meta-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.22)}
+    .read-more{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:#EF5533;transition:gap .15s}
+    .featured-post:hover .read-more{gap:10px}
+
+    /* Blog grid */
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.blog-grid{grid-template-columns:1fr}}
+
+    .blog-card{display:flex;flex-direction:column;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;text-decoration:none;transition:background .2s,border-color .2s,transform .22s}
+    .blog-card:hover{background:rgba(255,255,255,.055);transform:translateY(-4px)}
+    .blog-card-img{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:52px;font-family:'JetBrains Mono',monospace;font-weight:900;letter-spacing:-.04em}
+    .blog-card-body{padding:22px 22px 24px;flex:1;display:flex;flex-direction:column}
+    .blog-card-tag{display:inline-flex;align-items:center;gap:6px;border-radius:6px;padding:4px 11px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;width:fit-content}
+    .blog-card h3{font-size:17px;font-weight:800;letter-spacing:-.025em;line-height:1.34;color:rgba(255,255,255,.9);margin:0 0 10px;flex:1}
+    .blog-card p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.36);margin:0 0 16px}
+    .blog-card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+    .blog-card-date{font-size:11.5px;color:rgba(255,255,255,.24);font-weight:500}
+    .blog-card-read{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:rgba(255,255,255,.42);transition:color .15s}
+    .blog-card:hover .blog-card-read{color:#F5A623}
+
+    footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);padding:44px 64px}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .footer-brand img{height:30px;width:30px;border-radius:7px;object-fit:contain}
+    .footer-brand-text{font-size:18px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .footer-brand-text span{color:#F5A623}
+    .footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-links a{font-size:13px;color:rgba(255,255,255,.26);text-decoration:none;transition:color .15s}
+    .footer-links a:hover{color:rgba(255,255,255,.72)}
+    .footer-links a.active{color:rgba(239,85,51,.7)}
+    .footer-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.14)}
+    .footer-copy{font-size:12px;color:rgba(255,255,255,.15)}
+    .back-top{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:7px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.36);text-decoration:none;transition:background .15s,color .15s}
+    .back-top:hover{background:rgba(255,255,255,.1);color:#fff}
+    @media(max-width:640px){footer{padding:36px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:20px}}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.25,1,.5,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+<div class="bg-base"></div>
+<div class="bg-blobs">
+  <div style="width:900px;height:900px;top:-280px;left:-240px;background:radial-gradient(circle,rgba(239,85,51,.1) 0%,rgba(239,85,51,.03) 32%,transparent 65%);animation:aurora 26s ease-in-out infinite"></div>
+  <div style="width:700px;height:700px;bottom:-200px;right:-180px;background:radial-gradient(circle,rgba(245,166,35,.08) 0%,rgba(245,166,35,.02) 36%,transparent 65%);animation:aurora 31s ease-in-out infinite 6s reverse"></div>
+</div>
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="sg" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0L0 0 0 36" fill="none" stroke="rgba(255,255,255,.028)" stroke-width="0.5"/></pattern><pattern id="bg2" width="180" height="180" patternUnits="userSpaceOnUse"><rect width="180" height="180" fill="url(#sg)"/><path d="M180 0L0 0 0 180" fill="none" stroke="rgba(255,255,255,.066)" stroke-width="0.8"/></pattern><radialGradient id="gf" cx="50%" cy="44%" r="62%"><stop offset="10%" stop-color="white" stop-opacity="1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient><mask id="gm"><rect width="100%" height="100%" fill="url(#gf)"/></mask></defs><rect width="100%" height="100%" fill="url(#bg2)" mask="url(#gm)"/></svg>
+<svg class="bg-grain" xmlns="http://www.w3.org/2000/svg"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch" result="noise"/><feColorMatrix type="saturate" values="0" in="noise"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+<div class="bg-vignette"></div>
+<span class="bg-pi">✍</span>
+
+<header>
+  <a href="index.html" class="logo"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="logo-text">Math<span>Mate</span></span></a>
+  <nav class="header-center">
+    <a href="index.html">Home</a>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <span class="current">Blog</span>
+  </nav>
+  <div class="header-right">
+    <a href="index.html" class="back-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to MathMate</a>
+    <a href="index.html#contact" class="header-cta">Get the App</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="product-badge"><span class="dot"></span><span>MathMate Blog</span></div>
+    <h1>Ideas on Math,<br><em>Learning &amp; AI</em></h1>
+    <p class="hero-desc">Practical articles for students, parents, and educators — on how to build real math confidence and why AI is changing the way we learn.</p>
+  </div>
+</section>
+
+<section class="blog-section">
+  <div class="container">
+
+    <!-- Featured Post -->
+    <a href="blog-why-steps-matter.html" class="featured-post reveal">
+      <div class="featured-img" style="background:linear-gradient(135deg,rgba(239,85,51,.15),rgba(245,166,35,.1))">
+        <span style="color:rgba(245,166,35,.4)">f(x)</span>
+      </div>
+      <div>
+        <div class="featured-tag" style="background:rgba(239,85,51,.12);color:#EF5533;border:1px solid rgba(239,85,51,.22)">
+          <span>Education</span>
+        </div>
+        <h2>Why Showing Your Work Matters More Than the Right Answer</h2>
+        <p>Getting the correct answer is great. But if a student can't explain how they got there, they're building on unstable ground. Here's why the method is the real lesson.</p>
+        <div class="post-meta">
+          <span>MathMate Team</span>
+          <span class="post-meta-dot"></span>
+          <span>June 2026</span>
+          <span class="post-meta-dot"></span>
+          <span>5 min read</span>
+        </div>
+        <div style="margin-top:16px"><span class="read-more">Read article <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </div>
+    </a>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid reveal">
+
+      <a href="blog-ai-math-education.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,rgba(45,144,232,.15),rgba(46,196,196,.1))">
+          <span style="color:rgba(46,196,196,.4)">AI</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag" style="background:rgba(45,144,232,.12);color:#2D90E8;border:1px solid rgba(45,144,232,.22)">Technology</div>
+          <h3>How AI Is Quietly Changing Math Education</h3>
+          <p>AI tutors don't replace teachers — but they're filling a gap that classrooms can't always close. Here's what that means for students.</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">June 2026 · 6 min</span>
+            <span class="blog-card-read">Read <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-parent-guide.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,rgba(245,166,35,.15),rgba(239,85,51,.08))">
+          <span style="color:rgba(245,166,35,.4)">👨‍👧</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag" style="background:rgba(245,166,35,.12);color:#F5A623;border:1px solid rgba(245,166,35,.22)">For Parents</div>
+          <h3>A Parent's Guide to Building Math Confidence at Home</h3>
+          <p>You don't need to be a math expert. Here's how to create the right environment for your child to grow — without doing the work for them.</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">May 2026 · 7 min</span>
+            <span class="blog-card-read">Read <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-math-mistakes.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(45,144,232,.1))">
+          <span style="color:rgba(139,92,246,.4)">∑x</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag" style="background:rgba(139,92,246,.12);color:#8B5CF6;border:1px solid rgba(139,92,246,.22)">Study Skills</div>
+          <h3>5 Common Math Mistakes Students Make — and How to Break the Pattern</h3>
+          <p>Most students make the same mistakes over and over. Not because they're bad at math, but because no one explained the root cause.</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">May 2026 · 5 min</span>
+            <span class="blog-card-read">Read <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-why-steps-matter.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,rgba(46,196,196,.14),rgba(45,144,232,.08))">
+          <span style="color:rgba(46,196,196,.4)">1+1</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag" style="background:rgba(46,196,196,.12);color:#2EC4C4;border:1px solid rgba(46,196,196,.22)">Learning</div>
+          <h3>Why Students Copy Answers — And What Actually Helps</h3>
+          <p>Answer-copying is a symptom, not the cause. Understanding why students do it is the first step to changing the habit.</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">April 2026 · 4 min</span>
+            <span class="blog-card-read">Read <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-parent-guide.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,rgba(239,85,51,.14),rgba(245,166,35,.1))">
+          <span style="color:rgba(239,85,51,.4)">📈</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag" style="background:rgba(239,85,51,.12);color:#EF5533;border:1px solid rgba(239,85,51,.22)">Progress</div>
+          <h3>From Failing to Passing: How One Extra Hour Per Week Changes Everything</h3>
+          <p>Consistency beats intensity in math. We break down what an extra focused hour per week actually looks like in practice.</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">April 2026 · 5 min</span>
+            <span class="blog-card-read">Read <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-ai-math-education.html" class="blog-card">
+        <div class="blog-card-img" style="background:linear-gradient(135deg,rgba(245,166,35,.13),rgba(46,196,196,.09))">
+          <span style="color:rgba(245,166,35,.4)">∞</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-tag" style="background:rgba(245,166,35,.12);color:#F5A623;border:1px solid rgba(245,166,35,.22)">Curriculum</div>
+          <h3>From Arithmetic to Calculus: Building the Complete Math Picture</h3>
+          <p>Every advanced topic in math sits on a foundation. Here's how to think about the curriculum as a connected whole — not disconnected subjects.</p>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">March 2026 · 6 min</span>
+            <span class="blog-card-read">Read <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="footer-brand-text">Math<span>Mate</span></span></a>
+    <div class="footer-links">
+      <a href="about.html">About</a><span class="footer-dot"></span>
+      <a href="blog.html" class="active">Blog</a><span class="footer-dot"></span>
+      <a href="faq.html">FAQ</a><span class="footer-dot"></span>
+      <a href="contact-us.html">Contact</a><span class="footer-dot"></span>
+      <a href="privacy-policy.html">Privacy</a><span class="footer-dot"></span>
+      <a href="terms-of-service.html">Terms</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <a href="#" class="back-top"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  revealEls.forEach(el => observer.observe(el));
+  setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 1800);
+</script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math Topics | MathMate — Every Subject, Every Grade</title>
+  <meta name="description" content="Explore the full range of math topics MathMate covers — from basic arithmetic to calculus — with concept-by-concept explanations and guided practice.">
+  <meta property="og:title" content="Math Topics | MathMate">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;color:#fff}
+    @keyframes aurora{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(22px,-15px) scale(1.07)}}
+    @keyframes noiseShift{0%{transform:translate(0,0)}33%{transform:translate(-3%,-1.5%)}66%{transform:translate(1.5%,3%)}100%{transform:translate(0,0)}}
+    @keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeScale{0%{opacity:0;transform:scale(.86)}65%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+    @keyframes slideLeft{from{opacity:0;transform:translateX(-38px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+    @keyframes lineGrow{from{width:0;opacity:0}to{width:80px;opacity:1}}
+
+    header{position:fixed;top:0;left:0;right:0;z-index:300;height:70px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.07);animation:navIn .5s ease both}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+    .logo img{height:34px;width:34px;object-fit:contain;border-radius:8px;transition:transform .22s}
+    .logo img:hover{transform:rotate(-6deg) scale(1.1)}
+    .logo-text{font-size:20px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .logo-text span{color:#F5A623}
+    .header-center{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.5)}
+    .header-center a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+    .header-center a:hover{color:#fff}
+    .header-center .current{color:rgba(255,255,255,.88);font-weight:600}
+    .back-btn{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.55);text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:9999px;transition:color .15s,background .15s,border-color .15s}
+    .back-btn:hover{color:#fff;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22)}
+    .header-cta{display:inline-flex;align-items:center;gap:7px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:10px 22px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 6px 22px rgba(239,85,51,.32);transition:transform .15s,box-shadow .15s}
+    .header-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(239,85,51,.5)}
+    .header-right{display:flex;align-items:center;gap:12px}
+    @media(max-width:768px){header{padding:0 20px;height:60px}.header-center{display:none}}
+
+    .bg-base{position:fixed;inset:0;z-index:-8;background:#070D1F}
+    .bg-blobs{position:fixed;inset:0;z-index:-7;pointer-events:none;overflow:hidden}
+    .bg-grid{position:fixed;inset:0;z-index:-6;pointer-events:none}
+    .bg-grain{position:fixed;inset:-12%;width:124%;height:124%;z-index:-4;pointer-events:none;opacity:.05;animation:noiseShift 9s ease-in-out infinite}
+    .bg-vignette{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(ellipse 76% 72% at 50% 44%,transparent 18%,rgba(7,13,31,.72) 58%,rgba(7,13,31,.97) 100%)}
+    .bg-pi{position:fixed;font-size:480px;font-weight:700;color:rgba(255,255,255,.013);right:2%;top:2%;z-index:-2;user-select:none;pointer-events:none;line-height:1;font-family:'JetBrains Mono',monospace;letter-spacing:-.06em}
+
+    .hero{min-height:52vh;display:flex;align-items:center;justify-content:center;padding:130px 64px 70px;text-align:center;position:relative;z-index:1}
+    .hero-inner{max-width:780px;margin:0 auto}
+    .product-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);border-radius:9999px;padding:8px 18px;margin-bottom:32px;animation:fadeScale .56s cubic-bezier(.34,1.56,.64,1) both .1s}
+    .product-badge .dot{width:7px;height:7px;border-radius:50%;background:#8B5CF6;flex-shrink:0;animation:pulse 2s ease infinite}
+    .product-badge span{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#8B5CF6}
+    .hero h1{font-size:58px;font-weight:900;line-height:1.08;letter-spacing:-.035em;color:#fff;margin:0 0 24px;animation:slideLeft .65s cubic-bezier(0,0,.2,1) both .25s}
+    .hero h1 em{font-style:normal;background:linear-gradient(95deg,#8B5CF6 0%,#2EC4C4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{font-size:17px;line-height:1.74;color:rgba(255,255,255,.44);max-width:560px;margin:0 auto;animation:fadeUp .65s ease both .45s}
+    @media(max-width:900px){.hero{padding:100px 24px 60px}.hero h1{font-size:40px}}
+    @media(max-width:560px){.hero h1{font-size:32px}.hero-desc{font-size:15px}}
+
+    section{position:relative;z-index:1}
+    .container{max-width:1160px;margin:0 auto;padding:0 64px}
+    @media(max-width:900px){.container{padding:0 24px}}
+
+    .topics-section{padding:30px 0 120px}
+
+    .grade-band{margin-bottom:72px}
+    .grade-band-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .grade-band-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+    .grade-band-label{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .grade-band-name{font-size:26px;font-weight:800;letter-spacing:-.03em;color:rgba(255,255,255,.88)}
+    .grade-band-levels{font-size:13px;color:rgba(255,255,255,.26);margin-left:auto}
+
+    .topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.topic-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.topic-grid{grid-template-columns:1fr}}
+
+    .topic-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:26px 24px;transition:background .2s,border-color .2s,transform .25s;cursor:default}
+    .topic-card:hover{background:rgba(255,255,255,.055);transform:translateY(-4px)}
+    .topic-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px}
+    .topic-card h3{font-size:16px;font-weight:800;color:rgba(255,255,255,.9);margin:0 0 8px;letter-spacing:-.02em}
+    .topic-card p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.34);margin:0 0 16px}
+    .topic-concepts{display:flex;flex-wrap:wrap;gap:6px}
+    .concept-tag{display:inline-flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;color:rgba(255,255,255,.36)}
+
+    .cta-band{padding:90px 64px;text-align:center}
+    @media(max-width:900px){.cta-band{padding:70px 24px}}
+    .cta-band h2{font-size:44px;font-weight:900;letter-spacing:-.04em;color:#fff;margin:0 0 14px;line-height:1.1}
+    .cta-band h2 span{background:linear-gradient(95deg,#8B5CF6,#2EC4C4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .cta-band p{font-size:16px;color:rgba(255,255,255,.36);margin:0 auto 36px;max-width:460px;line-height:1.68}
+    @media(max-width:560px){.cta-band h2{font-size:32px}}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:15px 30px;font-size:15.5px;font-weight:700;box-shadow:0 10px 28px rgba(239,85,51,.36);transition:transform .15s,box-shadow .15s}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(239,85,51,.54)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.82);text-decoration:none;border:1.5px solid rgba(255,255,255,.15);border-radius:9999px;padding:15px 24px;font-size:15.5px;font-weight:600;transition:background .15s,border-color .15s}
+    .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+    .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+    footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);padding:44px 64px}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .footer-brand img{height:30px;width:30px;border-radius:7px;object-fit:contain}
+    .footer-brand-text{font-size:18px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .footer-brand-text span{color:#F5A623}
+    .footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-links a{font-size:13px;color:rgba(255,255,255,.26);text-decoration:none;transition:color .15s}
+    .footer-links a:hover{color:rgba(255,255,255,.72)}
+    .footer-links a.active{color:rgba(139,92,246,.7)}
+    .footer-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.14)}
+    .footer-copy{font-size:12px;color:rgba(255,255,255,.15)}
+    .back-top{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:7px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.36);text-decoration:none;transition:background .15s,color .15s}
+    .back-top:hover{background:rgba(255,255,255,.1);color:#fff}
+    @media(max-width:640px){footer{padding:36px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:20px}}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.25,1,.5,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+
+<div class="bg-base"></div>
+<div class="bg-blobs">
+  <div style="width:900px;height:900px;top:-280px;left:-240px;background:radial-gradient(circle,rgba(139,92,246,.1) 0%,rgba(139,92,246,.03) 32%,transparent 65%);animation:aurora 26s ease-in-out infinite"></div>
+  <div style="width:800px;height:800px;bottom:-200px;right:-220px;background:radial-gradient(circle,rgba(46,196,196,.08) 0%,rgba(46,196,196,.02) 36%,transparent 65%);animation:aurora 31s ease-in-out infinite 4s reverse"></div>
+</div>
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="sg" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0L0 0 0 36" fill="none" stroke="rgba(255,255,255,.028)" stroke-width="0.5"/></pattern>
+    <pattern id="bg" width="180" height="180" patternUnits="userSpaceOnUse"><rect width="180" height="180" fill="url(#sg)"/><path d="M180 0L0 0 0 180" fill="none" stroke="rgba(255,255,255,.066)" stroke-width="0.8"/></pattern>
+    <radialGradient id="gf" cx="50%" cy="44%" r="62%"><stop offset="10%" stop-color="white" stop-opacity="1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient>
+    <mask id="gm"><rect width="100%" height="100%" fill="url(#gf)"/></mask>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)" mask="url(#gm)"/>
+</svg>
+<svg class="bg-grain" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch" result="noise"/><feColorMatrix type="saturate" values="0" in="noise"/></filter>
+  <rect width="100%" height="100%" filter="url(#grain)"/>
+</svg>
+<div class="bg-vignette"></div>
+<span class="bg-pi">∑</span>
+
+<header>
+  <a href="index.html" class="logo">
+    <img src="assets/MathMateIconLogo.png" alt="MathMate">
+    <span class="logo-text">Math<span>Mate</span></span>
+  </a>
+  <nav class="header-center">
+    <a href="index.html">Home</a>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <span class="current">Math Topics</span>
+  </nav>
+  <div class="header-right">
+    <a href="index.html" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to MathMate
+    </a>
+    <a href="index.html#contact" class="header-cta">Get the App</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="product-badge">
+      <span class="dot"></span>
+      <span>Complete Coverage</span>
+    </div>
+    <h1>Every Math Topic,<br><em>Clearly Explained</em></h1>
+    <p class="hero-desc">MathMate covers the full K-12 mathematics curriculum — from counting and fractions to calculus and linear algebra — with concept-by-concept learning that builds real understanding.</p>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics-section">
+  <div class="container">
+
+    <!-- Foundations -->
+    <div class="grade-band reveal">
+      <div class="grade-band-header">
+        <div class="grade-band-dot" style="background:#EF5533"></div>
+        <span class="grade-band-label" style="color:#EF5533">Foundation</span>
+        <span class="grade-band-name">Arithmetic &amp; Number Sense</span>
+        <span class="grade-band-levels">Grades K–5</span>
+      </div>
+      <div class="topic-grid">
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(239,85,51,.12)">🔢</div>
+          <h3>Place Value &amp; Number Systems</h3>
+          <p>Understanding how numbers are built, from ones and tens to millions, and how digits change meaning based on position.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Counting</span>
+            <span class="concept-tag">Place value</span>
+            <span class="concept-tag">Comparing numbers</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(245,166,35,.12)">➕</div>
+          <h3>Addition &amp; Subtraction</h3>
+          <p>Core arithmetic operations with whole numbers, including carrying and borrowing across place values.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Basic facts</span>
+            <span class="concept-tag">Multi-digit</span>
+            <span class="concept-tag">Word problems</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(46,196,196,.12)">✖️</div>
+          <h3>Multiplication &amp; Division</h3>
+          <p>Times tables, long multiplication, and division with and without remainders — built to make these feel natural, not memorised.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Times tables</span>
+            <span class="concept-tag">Long division</span>
+            <span class="concept-tag">Factors</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(45,144,232,.12)">🍕</div>
+          <h3>Fractions</h3>
+          <p>From understanding what a fraction means to adding, subtracting, multiplying, and dividing them with full step-by-step reasoning.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Equivalent fractions</span>
+            <span class="concept-tag">Operations</span>
+            <span class="concept-tag">Mixed numbers</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(139,92,246,.12)">💯</div>
+          <h3>Decimals &amp; Percentages</h3>
+          <p>Converting between fractions, decimals, and percentages, plus real-world applications like discounts and interest.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Conversions</span>
+            <span class="concept-tag">Rounding</span>
+            <span class="concept-tag">Real-world %</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(239,85,51,.12)">📐</div>
+          <h3>Measurement &amp; Units</h3>
+          <p>Length, weight, time, volume, and temperature — plus converting between metric and imperial units confidently.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Units</span>
+            <span class="concept-tag">Conversions</span>
+            <span class="concept-tag">Perimeter &amp; area</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Middle School -->
+    <div class="grade-band reveal">
+      <div class="grade-band-header">
+        <div class="grade-band-dot" style="background:#F5A623"></div>
+        <span class="grade-band-label" style="color:#F5A623">Middle School</span>
+        <span class="grade-band-name">Pre-Algebra &amp; Geometry</span>
+        <span class="grade-band-levels">Grades 6–8</span>
+      </div>
+      <div class="topic-grid">
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(245,166,35,.12)">📊</div>
+          <h3>Ratios, Rates &amp; Proportions</h3>
+          <p>Understanding relationships between quantities — from unit rates to scale drawings to direct and inverse proportion.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Ratios</span>
+            <span class="concept-tag">Unit rates</span>
+            <span class="concept-tag">Proportions</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(239,85,51,.12)">🔼</div>
+          <h3>Integers &amp; Negative Numbers</h3>
+          <p>Expanding the number line below zero — adding, subtracting, multiplying, and dividing with negative numbers.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Absolute value</span>
+            <span class="concept-tag">Number line</span>
+            <span class="concept-tag">Operations</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(46,196,196,.12)">🔣</div>
+          <h3>Introduction to Algebra</h3>
+          <p>Variables, expressions, equations, and inequalities — the foundation of all advanced math, taught one concept at a time.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Variables</span>
+            <span class="concept-tag">Equations</span>
+            <span class="concept-tag">Inequalities</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(45,144,232,.12)">📐</div>
+          <h3>Geometry Foundations</h3>
+          <p>Angles, triangles, quadrilaterals, circles, and the Pythagorean theorem — understanding shape properties with proof.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Angles</span>
+            <span class="concept-tag">Area &amp; perimeter</span>
+            <span class="concept-tag">Pythagoras</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(139,92,246,.12)">📈</div>
+          <h3>Statistics &amp; Data</h3>
+          <p>Mean, median, mode, range — plus reading and drawing bar charts, histograms, scatter plots, and box plots.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Averages</span>
+            <span class="concept-tag">Charts</span>
+            <span class="concept-tag">Data analysis</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(245,166,35,.12)">🎲</div>
+          <h3>Probability</h3>
+          <p>From coin flips to compound events — expressing likelihood, using tree diagrams, and understanding expected outcomes.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Basic probability</span>
+            <span class="concept-tag">Tree diagrams</span>
+            <span class="concept-tag">Outcomes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- High School -->
+    <div class="grade-band reveal">
+      <div class="grade-band-header">
+        <div class="grade-band-dot" style="background:#2EC4C4"></div>
+        <span class="grade-band-label" style="color:#2EC4C4">High School</span>
+        <span class="grade-band-name">Algebra, Geometry &amp; Trigonometry</span>
+        <span class="grade-band-levels">Grades 9–11</span>
+      </div>
+      <div class="topic-grid">
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(46,196,196,.12)">🔢</div>
+          <h3>Algebra I &amp; II</h3>
+          <p>Linear equations, systems of equations, quadratics, polynomials, rational expressions, and function notation.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Linear equations</span>
+            <span class="concept-tag">Quadratics</span>
+            <span class="concept-tag">Polynomials</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(45,144,232,.12)">📐</div>
+          <h3>Geometry</h3>
+          <p>Proofs, congruence, similarity, transformations, coordinate geometry, volume, and surface area of 3D shapes.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Proofs</span>
+            <span class="concept-tag">Transformations</span>
+            <span class="concept-tag">Volume</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(139,92,246,.12)">📉</div>
+          <h3>Functions &amp; Graphs</h3>
+          <p>Domain, range, function notation, linear/quadratic/exponential/logarithmic functions and their transformations.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Domain &amp; range</span>
+            <span class="concept-tag">Transformations</span>
+            <span class="concept-tag">Graphs</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(239,85,51,.12)">📡</div>
+          <h3>Trigonometry</h3>
+          <p>Sin, cos, tan, the unit circle, trigonometric identities, graphs of trig functions, and solving trig equations.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">SOHCAHTOA</span>
+            <span class="concept-tag">Unit circle</span>
+            <span class="concept-tag">Identities</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(245,166,35,.12)">🧮</div>
+          <h3>Sequences &amp; Series</h3>
+          <p>Arithmetic and geometric sequences, sigma notation, convergence and divergence of infinite series.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Arithmetic</span>
+            <span class="concept-tag">Geometric</span>
+            <span class="concept-tag">Series</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(46,196,196,.12)">🎲</div>
+          <h3>Advanced Statistics</h3>
+          <p>Normal distribution, z-scores, confidence intervals, hypothesis testing, correlation, and regression analysis.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Normal dist.</span>
+            <span class="concept-tag">Hypothesis</span>
+            <span class="concept-tag">Regression</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced -->
+    <div class="grade-band reveal">
+      <div class="grade-band-header">
+        <div class="grade-band-dot" style="background:#2D90E8"></div>
+        <span class="grade-band-label" style="color:#2D90E8">Advanced</span>
+        <span class="grade-band-name">Calculus &amp; Beyond</span>
+        <span class="grade-band-levels">Grade 12 &amp; University</span>
+      </div>
+      <div class="topic-grid">
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(45,144,232,.12)">📈</div>
+          <h3>Limits &amp; Continuity</h3>
+          <p>The foundations of calculus — understanding what a limit is, how to evaluate them, and what continuity means for a function.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Limits</span>
+            <span class="concept-tag">Continuity</span>
+            <span class="concept-tag">Squeeze theorem</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(239,85,51,.12)">⚡</div>
+          <h3>Differentiation</h3>
+          <p>Derivatives from first principles, chain rule, product rule, quotient rule, implicit differentiation, and related rates.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Chain rule</span>
+            <span class="concept-tag">Implicit</span>
+            <span class="concept-tag">Applications</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(139,92,246,.12)">∫</div>
+          <h3>Integration</h3>
+          <p>Antiderivatives, definite integrals, the Fundamental Theorem of Calculus, integration by substitution and by parts.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">FTC</span>
+            <span class="concept-tag">Substitution</span>
+            <span class="concept-tag">By parts</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(46,196,196,.12)">🧊</div>
+          <h3>Linear Algebra</h3>
+          <p>Vectors, matrices, systems of linear equations, determinants, eigenvalues and eigenvectors.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Matrices</span>
+            <span class="concept-tag">Eigenvalues</span>
+            <span class="concept-tag">Vector spaces</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(245,166,35,.12)">🔁</div>
+          <h3>Differential Equations</h3>
+          <p>First and second order ODEs, separable equations, linear equations with constant coefficients, and applications.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Separable</span>
+            <span class="concept-tag">Linear ODEs</span>
+            <span class="concept-tag">Applications</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <div class="topic-icon" style="background:rgba(239,85,51,.12)">🔐</div>
+          <h3>Number Theory &amp; Discrete Math</h3>
+          <p>Primes, GCD, modular arithmetic, combinatorics, permutations, combinations, and the Binomial Theorem.</p>
+          <div class="topic-concepts">
+            <span class="concept-tag">Primes</span>
+            <span class="concept-tag">Combinatorics</span>
+            <span class="concept-tag">Binomial</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.28);border-radius:9999px;padding:7px 16px;margin-bottom:22px">
+    <span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;flex-shrink:0;animation:pulse 2s ease infinite;display:block"></span>
+    <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8B5CF6">All Topics, One App</span>
+  </div>
+  <h2>Find Your Level.<br><span>Start Learning Today.</span></h2>
+  <p>MathMate identifies exactly where to start and guides you through each topic — one concept at a time.</p>
+  <div class="hero-ctas">
+    <a href="index.html#contact" class="btn-primary">
+      Get the App Free
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="practice-problems.html" class="btn-ghost">Try Practice Problems</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand">
+      <img src="assets/MathMateIconLogo.png" alt="MathMate">
+      <span class="footer-brand-text">Math<span>Mate</span></span>
+    </a>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <span class="footer-dot"></span>
+      <a href="math-topics.html" class="active">Math Topics</a>
+      <span class="footer-dot"></span>
+      <a href="faq.html">FAQ</a>
+      <span class="footer-dot"></span>
+      <a href="contact-us.html">Contact</a>
+      <span class="footer-dot"></span>
+      <a href="privacy-policy.html">Privacy</a>
+      <span class="footer-dot"></span>
+      <a href="terms-of-service.html">Terms</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <a href="#" class="back-top">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to top
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => observer.observe(el));
+  setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2200);
+</script>
+</body>
+</html>

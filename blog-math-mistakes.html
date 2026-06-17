@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>5 Common Math Mistakes Students Make | MathMate Blog</title>
+  <meta name="description" content="These aren't random errors. They're patterns — and once you can name them, you can break them.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;color:#fff}
+    @keyframes aurora{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(22px,-15px) scale(1.07)}}
+    @keyframes noiseShift{0%{transform:translate(0,0)}33%{transform:translate(-3%,-1.5%)}66%{transform:translate(1.5%,3%)}100%{transform:translate(0,0)}}
+    @keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+    header{position:fixed;top:0;left:0;right:0;z-index:300;height:70px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.07);animation:navIn .5s ease both}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{height:34px;width:34px;object-fit:contain;border-radius:8px;transition:transform .22s}
+    .logo img:hover{transform:rotate(-6deg) scale(1.1)}
+    .logo-text{font-size:20px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .logo-text span{color:#8B5CF6}
+    .header-center{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.5)}
+    .header-center a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+    .header-center a:hover{color:#fff}
+    .header-center .current{color:rgba(255,255,255,.88);font-weight:600}
+    .back-btn{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.55);text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:9999px;transition:color .15s,background .15s,border-color .15s}
+    .back-btn:hover{color:#fff;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22)}
+    .header-cta{display:inline-flex;align-items:center;gap:7px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:10px 22px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 6px 22px rgba(239,85,51,.32);transition:transform .15s,box-shadow .15s}
+    .header-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(239,85,51,.5)}
+    .header-right{display:flex;align-items:center;gap:12px}
+    @media(max-width:768px){header{padding:0 20px;height:60px}.header-center{display:none}}
+
+    .bg-base{position:fixed;inset:0;z-index:-8;background:#070D1F}
+    .bg-blobs{position:fixed;inset:0;z-index:-7;pointer-events:none;overflow:hidden}
+    .bg-grid{position:fixed;inset:0;z-index:-6;pointer-events:none}
+    .bg-grain{position:fixed;inset:-12%;width:124%;height:124%;z-index:-4;pointer-events:none;opacity:.05;animation:noiseShift 9s ease-in-out infinite}
+    .bg-vignette{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(ellipse 76% 72% at 50% 44%,transparent 18%,rgba(7,13,31,.72) 58%,rgba(7,13,31,.97) 100%)}
+
+    .article-hero{padding:130px 64px 60px;text-align:center;position:relative;z-index:1}
+    .article-inner{max-width:720px;margin:0 auto}
+    .article-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.24);color:#8B5CF6;border-radius:7px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
+    .article-hero h1{font-size:48px;font-weight:900;line-height:1.1;letter-spacing:-.04em;color:#fff;margin:0 0 20px;animation:fadeUp .65s ease both .1s}
+    .article-meta{display:flex;align-items:center;justify-content:center;gap:14px;font-size:13px;color:rgba(255,255,255,.3);animation:fadeUp .65s ease both .2s}
+    .meta-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.22)}
+    @media(max-width:900px){.article-hero{padding:100px 24px 50px}.article-hero h1{font-size:34px}}
+    @media(max-width:560px){.article-hero h1{font-size:28px}}
+
+    .article-body{position:relative;z-index:1;padding:0 64px 100px}
+    .article-content{max-width:720px;margin:0 auto}
+    @media(max-width:900px){.article-body{padding:0 24px 80px}}
+
+    .article-content h2{font-size:26px;font-weight:800;letter-spacing:-.03em;color:rgba(255,255,255,.92);margin:52px 0 16px;line-height:1.26}
+    .article-content h3{font-size:19px;font-weight:700;color:rgba(255,255,255,.82);margin:36px 0 12px}
+    .article-content p{font-size:16px;line-height:1.84;color:rgba(255,255,255,.52);margin:0 0 22px}
+    .article-content strong{color:rgba(255,255,255,.84);font-weight:700}
+    .article-content ul,.article-content ol{margin:0 0 22px;padding-left:22px}
+    .article-content li{font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.5);margin-bottom:8px}
+    .article-content blockquote{border-left:3px solid #8B5CF6;padding:18px 24px;margin:32px 0;background:rgba(139,92,246,.05);border-radius:0 12px 12px 0}
+    .article-content blockquote p{font-size:17px;font-style:italic;color:rgba(255,255,255,.64);margin:0;font-weight:500}
+    .article-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1) 50%,transparent);margin:48px 0}
+
+    .mistake-card{background:rgba(139,92,246,.05);border:1px solid rgba(139,92,246,.18);border-radius:20px;padding:28px 32px;margin:40px 0;position:relative;overflow:hidden}
+    .mistake-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8B5CF6,rgba(139,92,246,.2))}
+    .mistake-num{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8B5CF6;margin-bottom:8px}
+    .mistake-title{font-size:21px;font-weight:800;color:rgba(255,255,255,.9);letter-spacing:-.02em;margin-bottom:14px}
+    .mistake-card p{font-size:15px;line-height:1.76;color:rgba(255,255,255,.46);margin:0 0 14px}
+    .mistake-card p:last-child{margin-bottom:0}
+    .mistake-card strong{color:rgba(255,255,255,.78)}
+    .mistake-fix{display:flex;align-items:flex-start;gap:12px;background:rgba(139,92,246,.08);border-radius:12px;padding:16px 18px;margin-top:18px}
+    .mistake-fix-icon{width:26px;height:26px;border-radius:50%;background:#8B5CF6;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .mistake-fix-text{font-size:14px;line-height:1.68;color:rgba(255,255,255,.48)}
+    .mistake-fix-text strong{color:rgba(255,255,255,.72);font-weight:700}
+
+    .cta-inline{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(239,85,51,.06));border:1px solid rgba(139,92,246,.2);border-radius:20px;padding:36px 40px;text-align:center;margin:48px 0}
+    .cta-inline h3{font-size:22px;font-weight:800;color:#fff;margin:0 0 10px;letter-spacing:-.03em}
+    .cta-inline p{font-size:14.5px;color:rgba(255,255,255,.38);margin:0 0 22px;line-height:1.65}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:13px 26px;font-size:14.5px;font-weight:700;box-shadow:0 8px 22px rgba(239,85,51,.32);transition:transform .15s,box-shadow .15s}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(239,85,51,.48)}
+
+    .back-to-blog{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.36);text-decoration:none;font-size:13.5px;font-weight:600;margin-bottom:40px;transition:color .15s}
+    .back-to-blog:hover{color:rgba(255,255,255,.72)}
+
+    footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);padding:44px 64px}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .footer-brand img{height:30px;width:30px;border-radius:7px;object-fit:contain}
+    .footer-brand-text{font-size:18px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .footer-brand-text span{color:#8B5CF6}
+    .footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-links a{font-size:13px;color:rgba(255,255,255,.26);text-decoration:none;transition:color .15s}
+    .footer-links a:hover{color:rgba(255,255,255,.72)}
+    .footer-links a.active{color:rgba(139,92,246,.7)}
+    .footer-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.14)}
+    .footer-copy{font-size:12px;color:rgba(255,255,255,.15)}
+    .back-top{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:7px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.36);text-decoration:none;transition:background .15s,color .15s}
+    .back-top:hover{background:rgba(255,255,255,.1);color:#fff}
+    @media(max-width:640px){footer{padding:36px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:20px}}
+  </style>
+</head>
+<body>
+<div class="bg-base"></div>
+<div class="bg-blobs">
+  <div style="width:800px;height:800px;top:-250px;right:-200px;background:radial-gradient(circle,rgba(139,92,246,.1) 0%,rgba(139,92,246,.03) 32%,transparent 65%);animation:aurora 28s ease-in-out infinite"></div>
+  <div style="width:600px;height:600px;bottom:-180px;left:-150px;background:radial-gradient(circle,rgba(239,85,51,.06) 0%,rgba(239,85,51,.01) 36%,transparent 65%);animation:aurora 32s ease-in-out infinite 5s reverse"></div>
+</div>
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="sg" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0L0 0 0 36" fill="none" stroke="rgba(255,255,255,.028)" stroke-width="0.5"/></pattern><pattern id="bg2" width="180" height="180" patternUnits="userSpaceOnUse"><rect width="180" height="180" fill="url(#sg)"/><path d="M180 0L0 0 0 180" fill="none" stroke="rgba(255,255,255,.066)" stroke-width="0.8"/></pattern><radialGradient id="gf" cx="50%" cy="44%" r="62%"><stop offset="10%" stop-color="white" stop-opacity="1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient><mask id="gm"><rect width="100%" height="100%" fill="url(#gf)"/></mask></defs><rect width="100%" height="100%" fill="url(#bg2)" mask="url(#gm)"/></svg>
+<svg class="bg-grain" xmlns="http://www.w3.org/2000/svg"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch" result="noise"/><feColorMatrix type="saturate" values="0" in="noise"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+<div class="bg-vignette"></div>
+
+<header>
+  <a href="index.html" class="logo"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="logo-text">Math<span>Mate</span></span></a>
+  <nav class="header-center">
+    <a href="index.html">Home</a>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <a href="blog.html">Blog</a>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <span class="current">Article</span>
+  </nav>
+  <div class="header-right">
+    <a href="blog.html" class="back-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to Blog</a>
+    <a href="index.html#contact" class="header-cta">Get the App</a>
+  </div>
+</header>
+
+<div class="article-hero">
+  <div class="article-inner">
+    <div class="article-tag">Study Skills</div>
+    <h1>5 Common Math Mistakes Students Make — and How to Break the Pattern</h1>
+    <div class="article-meta">
+      <span>MathMate Team</span>
+      <span class="meta-dot"></span>
+      <span>June 2026</span>
+      <span class="meta-dot"></span>
+      <span>6 min read</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-body">
+  <div class="article-content">
+    <a href="blog.html" class="back-to-blog"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to all articles</a>
+
+    <p>Every maths teacher has seen the same errors hundreds of times. Not because students are careless, but because certain mistakes are structurally predictable — they arise from specific misunderstandings that are almost universal at particular stages of learning.</p>
+
+    <p>The good news: <strong>predictable mistakes can be prevented.</strong> Once you can name the pattern, you can catch it before it appears on your exam paper.</p>
+
+    <p>Here are five of the most common ones — and what to do about each.</p>
+
+    <div class="mistake-card">
+      <div class="mistake-num">Mistake #1</div>
+      <div class="mistake-title">Applying operations to only part of an expression</div>
+      <p>This is most visible with brackets. A student who writes <strong>(a + b)² = a² + b²</strong> has applied the square to each term individually, ignoring the product that appears when you expand properly.</p>
+      <p>The same error shows up with negative signs: if the question is <strong>–(3x – 4)</strong>, a common incorrect answer is <strong>–3x – 4</strong> instead of <strong>–3x + 4</strong>. The negative hasn't been distributed to every term.</p>
+      <div class="mistake-fix">
+        <div class="mistake-fix-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="mistake-fix-text"><strong>Fix:</strong> Before simplifying anything with brackets, write out every step of the expansion. Never skip the middle step — it's where the error lives.</div>
+      </div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mistake-num">Mistake #2</div>
+      <div class="mistake-title">Confusing "do the same thing to both sides" with "do the same thing to both terms"</div>
+      <p>In algebra, the golden rule is that you keep an equation balanced by applying the same operation to both sides. But students often apply it to both terms on the same side instead.</p>
+      <p>Example: to solve <strong>x/3 + 5 = 11</strong>, a common error is multiplying the x/3 and the 5 by 3 (same side), getting <strong>x + 15 = 11</strong>. The right move is multiplying both <em>sides</em> by 3: <strong>x + 15 = 33</strong>.</p>
+      <div class="mistake-fix">
+        <div class="mistake-fix-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="mistake-fix-text"><strong>Fix:</strong> Draw a vertical line through the equals sign. When you perform an operation, confirm you've done it to everything on both sides of that line.</div>
+      </div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mistake-num">Mistake #3</div>
+      <div class="mistake-title">Misreading what the question is actually asking</div>
+      <p>This one isn't about algebra or arithmetic at all — it's about reading. A student might carry out a complex calculation correctly and still get the wrong answer because they answered a different question than the one on the page.</p>
+      <p>Common forms: finding the perimeter when the question asked for the area; calculating the angle when asked for the side; solving for x when the question wants the value of 3x + 1.</p>
+      <div class="mistake-fix">
+        <div class="mistake-fix-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="mistake-fix-text"><strong>Fix:</strong> Underline the final instruction in every question before starting. Once you have an answer, re-read that underlined part to confirm you've actually answered it.</div>
+      </div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mistake-num">Mistake #4</div>
+      <div class="mistake-title">Stopping at the substitution, not the simplification</div>
+      <p>In trigonometry, calculus, and equation solving, students often correctly substitute values but then fail to simplify the result. They write the right thing but don't finish — and lose marks for an incomplete answer.</p>
+
+      <blockquote><p>"I got to the right line, but I didn't know I had to go further."</p></blockquote>
+
+      <p>This is especially common in integration (leaving the constant of integration off), in trig (leaving an expression as sin(90°) rather than 1), and in algebra (leaving 6/4 rather than simplifying to 3/2).</p>
+      <div class="mistake-fix">
+        <div class="mistake-fix-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="mistake-fix-text"><strong>Fix:</strong> After every answer, ask yourself: "Can this be written more simply?" Fractions, trig values, and surds almost always can. Check them as a final step.</div>
+      </div>
+    </div>
+
+    <div class="mistake-card">
+      <div class="mistake-num">Mistake #5</div>
+      <div class="mistake-title">Memorising methods without understanding the rule behind them</div>
+      <p>This is the deepest of the five, and the hardest to fix. Students who learn "what to do" without understanding "why it works" can only apply the method in identical situations. The moment a question changes the format slightly, they're stuck.</p>
+      <p>A classic example: students who memorise "flip and multiply" for fraction division can do <strong>½ ÷ ¼</strong> but are confused by <strong>2 ÷ ¾</strong> — because the method was memorised, not understood. If they knew that dividing by ¾ is the same as multiplying by 4/3, the variation wouldn't trip them up.</p>
+      <div class="mistake-fix">
+        <div class="mistake-fix-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="mistake-fix-text"><strong>Fix:</strong> For every method you learn, find out <em>why</em> it works. Ask your teacher, use MathMate's AI tutor, or look for a derivation. One hour of understanding beats ten hours of rote practice.</div>
+      </div>
+    </div>
+
+    <div class="article-divider"></div>
+
+    <h2>The Pattern Behind the Patterns</h2>
+
+    <p>Look at these five mistakes together and you'll notice something: most of them come down to either <strong>incomplete understanding</strong> (you know the step but not the reason) or <strong>insufficient attention</strong> (you didn't check, didn't re-read, didn't simplify).</p>
+
+    <p>Both are fixable. Understanding is built through explanation, not more drill. Attention is built through process: habits like writing every step, underlining the question, and doing a final simplification check.</p>
+
+    <p>The students who consistently score well in maths aren't always the ones who find it easiest. They're the ones who've built the right habits — and those habits mean they catch their own mistakes before anyone else does.</p>
+
+    <div class="cta-inline">
+      <h3>Spot Your Patterns Before the Exam Does</h3>
+      <p>MathMate's AI tutor identifies the specific mistake types in your working and teaches you to avoid them — not just corrects the answer.</p>
+      <a href="index.html#contact" class="btn-primary">Try MathMate Free <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="footer-brand-text">Math<span>Mate</span></span></a>
+    <div class="footer-links">
+      <a href="about.html">About</a><span class="footer-dot"></span>
+      <a href="blog.html" class="active">Blog</a><span class="footer-dot"></span>
+      <a href="faq.html">FAQ</a><span class="footer-dot"></span>
+      <a href="contact-us.html">Contact</a><span class="footer-dot"></span>
+      <a href="privacy-policy.html">Privacy</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <a href="#" class="back-top"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Back to top</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

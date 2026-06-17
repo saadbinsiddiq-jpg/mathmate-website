@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice Problems | MathMate — Sharpen Your Skills</title>
+  <meta name="description" content="Try sample practice problems from MathMate — spanning Algebra, Geometry, Trigonometry, and Calculus, with full step-by-step explanations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;color:#fff}
+    @keyframes aurora{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(22px,-15px) scale(1.07)}}
+    @keyframes noiseShift{0%{transform:translate(0,0)}33%{transform:translate(-3%,-1.5%)}66%{transform:translate(1.5%,3%)}100%{transform:translate(0,0)}}
+    @keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeScale{0%{opacity:0;transform:scale(.86)}65%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+    @keyframes slideLeft{from{opacity:0;transform:translateX(-38px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    header{position:fixed;top:0;left:0;right:0;z-index:300;height:70px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.07);animation:navIn .5s ease both}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{height:34px;width:34px;object-fit:contain;border-radius:8px;transition:transform .22s}
+    .logo img:hover{transform:rotate(-6deg) scale(1.1)}
+    .logo-text{font-size:20px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .logo-text span{color:#F5A623}
+    .header-center{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.5)}
+    .header-center a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+    .header-center a:hover{color:#fff}
+    .header-center .current{color:rgba(255,255,255,.88);font-weight:600}
+    .back-btn{display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.55);text-decoration:none;font-size:13.5px;font-weight:600;padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:9999px;transition:color .15s,background .15s,border-color .15s}
+    .back-btn:hover{color:#fff;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22)}
+    .header-cta{display:inline-flex;align-items:center;gap:7px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:10px 22px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 6px 22px rgba(239,85,51,.32);transition:transform .15s,box-shadow .15s}
+    .header-cta:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(239,85,51,.5)}
+    .header-right{display:flex;align-items:center;gap:12px}
+    @media(max-width:768px){header{padding:0 20px;height:60px}.header-center{display:none}}
+
+    .bg-base{position:fixed;inset:0;z-index:-8;background:#070D1F}
+    .bg-blobs{position:fixed;inset:0;z-index:-7;pointer-events:none;overflow:hidden}
+    .bg-grid{position:fixed;inset:0;z-index:-6;pointer-events:none}
+    .bg-grain{position:fixed;inset:-12%;width:124%;height:124%;z-index:-4;pointer-events:none;opacity:.05;animation:noiseShift 9s ease-in-out infinite}
+    .bg-vignette{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(ellipse 76% 72% at 50% 44%,transparent 18%,rgba(7,13,31,.72) 58%,rgba(7,13,31,.97) 100%)}
+    .bg-pi{position:fixed;font-size:480px;font-weight:700;color:rgba(255,255,255,.013);right:2%;top:2%;z-index:-2;user-select:none;pointer-events:none;line-height:1;font-family:'JetBrains Mono',monospace;letter-spacing:-.06em}
+
+    .hero{min-height:50vh;display:flex;align-items:center;justify-content:center;padding:130px 64px 60px;text-align:center;position:relative;z-index:1}
+    .hero-inner{max-width:760px;margin:0 auto}
+    .product-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(46,196,196,.1);border:1px solid rgba(46,196,196,.3);border-radius:9999px;padding:8px 18px;margin-bottom:32px;animation:fadeScale .56s cubic-bezier(.34,1.56,.64,1) both .1s}
+    .product-badge .dot{width:7px;height:7px;border-radius:50%;background:#2EC4C4;flex-shrink:0;animation:pulse 2s ease infinite}
+    .product-badge span{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#2EC4C4}
+    .hero h1{font-size:56px;font-weight:900;line-height:1.08;letter-spacing:-.035em;color:#fff;margin:0 0 22px;animation:slideLeft .65s cubic-bezier(0,0,.2,1) both .25s}
+    .hero h1 em{font-style:normal;background:linear-gradient(95deg,#2EC4C4 0%,#2D90E8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{font-size:17px;line-height:1.72;color:rgba(255,255,255,.44);max-width:540px;margin:0 auto;animation:fadeUp .65s ease both .45s}
+    @media(max-width:900px){.hero{padding:100px 24px 50px}.hero h1{font-size:38px}}
+    @media(max-width:560px){.hero h1{font-size:30px}}
+
+    section{position:relative;z-index:1}
+    .container{max-width:1060px;margin:0 auto;padding:0 64px}
+    @media(max-width:900px){.container{padding:0 24px}}
+
+    .filter-bar{display:flex;gap:10px;flex-wrap:wrap;padding:20px 0 40px}
+    .filter-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:9px 20px;cursor:pointer;font-size:13px;font-weight:600;color:rgba(255,255,255,.44);transition:all .15s;user-select:none}
+    .filter-btn:hover,.filter-btn.active{border-color:rgba(46,196,196,.4);color:#2EC4C4;background:rgba(46,196,196,.08)}
+
+    .problems-section{padding:0 0 120px}
+    .topic-problems{margin-bottom:64px}
+    .topic-header{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+    .topic-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+    .topic-label{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .topic-name{font-size:24px;font-weight:800;color:rgba(255,255,255,.88);letter-spacing:-.03em;margin-left:6px}
+
+    .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:740px){.problem-grid{grid-template-columns:1fr}}
+
+    .problem-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:22px 24px;transition:background .2s,border-color .2s,transform .22s}
+    .problem-card:hover{background:rgba(255,255,255,.055);transform:translateY(-3px)}
+    .problem-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .diff{display:inline-flex;align-items:center;border-radius:6px;padding:4px 11px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .diff-easy{background:rgba(46,196,196,.12);color:#2EC4C4;border:1px solid rgba(46,196,196,.2)}
+    .diff-med{background:rgba(245,166,35,.12);color:#F5A623;border:1px solid rgba(245,166,35,.2)}
+    .diff-hard{background:rgba(239,85,51,.12);color:#EF5533;border:1px solid rgba(239,85,51,.2)}
+    .p-math{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:rgba(255,255,255,.88);line-height:1.5;margin-bottom:8px}
+    .p-desc{font-size:13px;color:rgba(255,255,255,.36);line-height:1.65;margin-bottom:14px}
+    .p-hint{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px 14px}
+    .p-hint-lbl{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:5px}
+    .p-hint-txt{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.6}
+
+    .cta-card{background:linear-gradient(135deg,rgba(239,85,51,.08),rgba(245,166,35,.06) 50%,rgba(46,196,196,.04));border:1px solid rgba(245,166,35,.18);border-radius:24px;padding:48px;text-align:center;margin:0 0 40px;position:relative;overflow:hidden}
+    .cta-card::before{content:'';position:absolute;top:0;left:80px;right:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(245,166,35,.36) 50%,transparent)}
+    .cta-card h2{font-size:34px;font-weight:900;letter-spacing:-.04em;color:#fff;margin:0 0 12px}
+    .cta-card h2 span{background:linear-gradient(90deg,#EF5533,#F5A623);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .cta-card p{font-size:15px;color:rgba(255,255,255,.38);max-width:440px;margin:0 auto 28px;line-height:1.68}
+    @media(max-width:640px){.cta-card{padding:32px 20px}.cta-card h2{font-size:26px}}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#EF5533;color:#fff;text-decoration:none;border-radius:9999px;padding:14px 28px;font-size:15px;font-weight:700;box-shadow:0 10px 28px rgba(239,85,51,.36);transition:transform .15s,box-shadow .15s}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(239,85,51,.54)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.82);text-decoration:none;border:1.5px solid rgba(255,255,255,.15);border-radius:9999px;padding:14px 22px;font-size:15px;font-weight:600;transition:background .15s,border-color .15s}
+    .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+    .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+    footer{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);padding:44px 64px}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .footer-brand img{height:30px;width:30px;border-radius:7px;object-fit:contain}
+    .footer-brand-text{font-size:18px;font-weight:800;letter-spacing:-.03em;color:#fff}
+    .footer-brand-text span{color:#F5A623}
+    .footer-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-links a{font-size:13px;color:rgba(255,255,255,.26);text-decoration:none;transition:color .15s}
+    .footer-links a:hover{color:rgba(255,255,255,.72)}
+    .footer-links a.active{color:rgba(46,196,196,.7)}
+    .footer-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.14)}
+    .footer-copy{font-size:12px;color:rgba(255,255,255,.15)}
+    .back-top{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:7px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.36);text-decoration:none;transition:background .15s,color .15s}
+    .back-top:hover{background:rgba(255,255,255,.1);color:#fff}
+    @media(max-width:640px){footer{padding:36px 20px}.footer-inner{flex-direction:column;align-items:flex-start;gap:20px}}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.25,1,.5,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+<div class="bg-base"></div>
+<div class="bg-blobs">
+  <div style="width:800px;height:800px;top:-250px;left:-200px;background:radial-gradient(circle,rgba(46,196,196,.09) 0%,rgba(46,196,196,.02) 32%,transparent 65%);animation:aurora 26s ease-in-out infinite"></div>
+  <div style="width:700px;height:700px;bottom:-200px;right:-180px;background:radial-gradient(circle,rgba(45,144,232,.08) 0%,rgba(45,144,232,.02) 36%,transparent 65%);animation:aurora 31s ease-in-out infinite 6s reverse"></div>
+</div>
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="sg" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0L0 0 0 36" fill="none" stroke="rgba(255,255,255,.028)" stroke-width="0.5"/></pattern><pattern id="bg" width="180" height="180" patternUnits="userSpaceOnUse"><rect width="180" height="180" fill="url(#sg)"/><path d="M180 0L0 0 0 180" fill="none" stroke="rgba(255,255,255,.066)" stroke-width="0.8"/></pattern><radialGradient id="gf" cx="50%" cy="44%" r="62%"><stop offset="10%" stop-color="white" stop-opacity="1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient><mask id="gm"><rect width="100%" height="100%" fill="url(#gf)"/></mask></defs><rect width="100%" height="100%" fill="url(#bg)" mask="url(#gm)"/></svg>
+<svg class="bg-grain" xmlns="http://www.w3.org/2000/svg"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch" result="noise"/><feColorMatrix type="saturate" values="0" in="noise"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+<div class="bg-vignette"></div>
+<span class="bg-pi">x²</span>
+
+<header>
+  <a href="index.html" class="logo"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="logo-text">Math<span>Mate</span></span></a>
+  <nav class="header-center">
+    <a href="index.html">Home</a>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    <span class="current">Practice Problems</span>
+  </nav>
+  <div class="header-right">
+    <a href="index.html" class="back-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to MathMate</a>
+    <a href="index.html#contact" class="header-cta">Get the App</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="product-badge"><span class="dot"></span><span>Practise &amp; Improve</span></div>
+    <h1>Sample Problems<br><em>With Full Explanations</em></h1>
+    <p class="hero-desc">Browse practice problems across topics and difficulty levels. Each one includes a hint and step-by-step method — so you learn the approach, not just the answer.</p>
+  </div>
+</section>
+
+<section class="problems-section">
+  <div class="container">
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" onclick="filterTopic('all',this)">All Topics</button>
+      <button class="filter-btn" onclick="filterTopic('algebra',this)">Algebra</button>
+      <button class="filter-btn" onclick="filterTopic('geometry',this)">Geometry</button>
+      <button class="filter-btn" onclick="filterTopic('trigonometry',this)">Trigonometry</button>
+      <button class="filter-btn" onclick="filterTopic('statistics',this)">Statistics</button>
+      <button class="filter-btn" onclick="filterTopic('calculus',this)">Calculus</button>
+    </div>
+
+    <div class="topic-problems reveal" data-topic="algebra">
+      <div class="topic-header"><div class="topic-dot" style="background:#EF5533"></div><span class="topic-label" style="color:#EF5533">Topic</span><span class="topic-name">Algebra</span></div>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-easy">Easy</span></div><div class="p-math">Solve: 3x + 7 = 22</div><div class="p-desc">Find the value of x that makes this linear equation true.</div><div class="p-hint"><div class="p-hint-lbl">Hint — Step 1</div><div class="p-hint-txt">Subtract 7 from both sides to isolate the term with x. Then divide both sides by 3. Answer: x = 5.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">Solve: x² - 5x + 6 = 0</div><div class="p-desc">Find all values of x that satisfy this quadratic equation.</div><div class="p-hint"><div class="p-hint-lbl">Hint — Method</div><div class="p-hint-txt">Factor into (x - 2)(x - 3) = 0. Set each factor to zero: x = 2 or x = 3.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">Simplify: (2x³y²) × (3x²y)</div><div class="p-desc">Multiply these expressions and write in simplest form.</div><div class="p-hint"><div class="p-hint-lbl">Hint</div><div class="p-hint-txt">Multiply coefficients: 2 × 3 = 6. Add exponents: x³⁺² = x⁵, y²⁺¹ = y³. Answer: 6x⁵y³.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-hard">Hard</span></div><div class="p-math">Solve: |2x - 3| = 7</div><div class="p-desc">Find all values of x that satisfy this absolute value equation.</div><div class="p-hint"><div class="p-hint-lbl">Key Concept</div><div class="p-hint-txt">Split into two cases: 2x - 3 = 7 (x = 5) and 2x - 3 = -7 (x = -2). Both are solutions.</div></div></div>
+      </div>
+    </div>
+
+    <div class="topic-problems reveal" data-topic="geometry">
+      <div class="topic-header"><div class="topic-dot" style="background:#2D90E8"></div><span class="topic-label" style="color:#2D90E8">Topic</span><span class="topic-name">Geometry</span></div>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-easy">Easy</span></div><div class="p-math">Area of a circle: r = 5 cm</div><div class="p-desc">Find the area of a circle with radius 5 cm. Leave in terms of pi or as a decimal.</div><div class="p-hint"><div class="p-hint-lbl">Formula</div><div class="p-hint-txt">A = pi × r². Substitute r = 5: A = 25pi ≈ 78.54 cm².</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-easy">Easy</span></div><div class="p-math">Right triangle: sides 3 cm, 4 cm. Find hypotenuse.</div><div class="p-desc">Apply the Pythagorean theorem to find the missing side.</div><div class="p-hint"><div class="p-hint-lbl">Theorem</div><div class="p-hint-txt">c² = 3² + 4² = 9 + 16 = 25. So c = 5 cm. This is the famous 3-4-5 right triangle.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">Volume of a cylinder: r = 4, h = 9</div><div class="p-desc">Calculate the volume of a cylinder with these dimensions.</div><div class="p-hint"><div class="p-hint-lbl">Formula</div><div class="p-hint-txt">V = pi × r² × h = pi × 16 × 9 = 144pi ≈ 452.4 cm³.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-hard">Hard</span></div><div class="p-math">Interior angle sum of a heptagon (n = 7)</div><div class="p-desc">Find the sum of all interior angles in a 7-sided polygon.</div><div class="p-hint"><div class="p-hint-lbl">Formula</div><div class="p-hint-txt">Sum = (n - 2) × 180° = (7 - 2) × 180° = 5 × 180° = 900°.</div></div></div>
+      </div>
+    </div>
+
+    <div class="topic-problems reveal" data-topic="trigonometry">
+      <div class="topic-header"><div class="topic-dot" style="background:#F5A623"></div><span class="topic-label" style="color:#F5A623">Topic</span><span class="topic-name">Trigonometry</span></div>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-easy">Easy</span></div><div class="p-math">Find the exact value of sin(30°)</div><div class="p-desc">Use the unit circle or special triangle to find this value.</div><div class="p-hint"><div class="p-hint-lbl">Key Values</div><div class="p-hint-txt">sin(30°) = 1/2. Learn the special angles 30°, 45°, 60° for all three trig ratios.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">Solve: 2sin(x) - 1 = 0, for 0 ≤ x ≤ 360°</div><div class="p-desc">Find all values of x in the given interval.</div><div class="p-hint"><div class="p-hint-lbl">Approach</div><div class="p-hint-txt">sin(x) = 0.5. Reference angle = 30°. Sine is positive in Q1 and Q2: x = 30° and x = 150°.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">Prove: sin²x + cos²x = 1</div><div class="p-desc">Show this fundamental identity using the unit circle definition.</div><div class="p-hint"><div class="p-hint-lbl">Origin</div><div class="p-hint-txt">On the unit circle, any point is (cos x, sin x). By Pythagoras: cos²x + sin²x = 1²= 1.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-hard">Hard</span></div><div class="p-math">Solve: tan(2x) = 1, for 0 ≤ x &lt; 180°</div><div class="p-desc">Find all solutions in the given range for this double-angle equation.</div><div class="p-hint"><div class="p-hint-lbl">Method</div><div class="p-hint-txt">Let u = 2x. tan(u) = 1 gives u = 45° + n×180°. So x = 22.5° or x = 112.5° (within range).</div></div></div>
+      </div>
+    </div>
+
+    <div class="topic-problems reveal" data-topic="statistics">
+      <div class="topic-header"><div class="topic-dot" style="background:#2EC4C4"></div><span class="topic-label" style="color:#2EC4C4">Topic</span><span class="topic-name">Statistics</span></div>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-easy">Easy</span></div><div class="p-math">Data: 4, 7, 2, 9, 3, 7, 5 — find the mean</div><div class="p-desc">Calculate the arithmetic mean (average) of this data set.</div><div class="p-hint"><div class="p-hint-lbl">Formula</div><div class="p-hint-txt">Mean = sum ÷ count = (4+7+2+9+3+7+5) ÷ 7 = 37 ÷ 7 ≈ 5.29.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">Standard deviation of: 2, 4, 4, 4, 5, 5, 7, 9</div><div class="p-desc">Calculate the population standard deviation for this data set.</div><div class="p-hint"><div class="p-hint-lbl">Steps</div><div class="p-hint-txt">Mean = 5. Squared deviations: 9,1,1,1,0,0,4,16. Average = 4. SD = sqrt(4) = 2.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">P(A) = 0.4, P(B) = 0.3. Find P(A or B) if mutually exclusive.</div><div class="p-desc">Calculate the probability that A or B occurs.</div><div class="p-hint"><div class="p-hint-lbl">Rule</div><div class="p-hint-txt">For mutually exclusive events: P(A or B) = P(A) + P(B) = 0.4 + 0.3 = 0.7.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-hard">Hard</span></div><div class="p-math">Z-score: x = 80, mean = 75, SD = 5</div><div class="p-desc">Calculate the z-score and interpret what it means.</div><div class="p-hint"><div class="p-hint-lbl">Formula</div><div class="p-hint-txt">z = (x - mean) / SD = (80 - 75) / 5 = 1.0. This score is exactly 1 standard deviation above the mean.</div></div></div>
+      </div>
+    </div>
+
+    <div class="topic-problems reveal" data-topic="calculus">
+      <div class="topic-header"><div class="topic-dot" style="background:#8B5CF6"></div><span class="topic-label" style="color:#8B5CF6">Topic</span><span class="topic-name">Calculus</span></div>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-easy">Easy</span></div><div class="p-math">Differentiate: f(x) = 3x² + 5x - 2</div><div class="p-desc">Find f'(x) using the power rule for each term.</div><div class="p-hint"><div class="p-hint-lbl">Power Rule</div><div class="p-hint-txt">d/dx[xⁿ] = n·xⁿ⁻¹. So f'(x) = 6x + 5.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-easy">Easy</span></div><div class="p-math">Find: integral of (2x + 3) dx</div><div class="p-desc">Evaluate this indefinite integral. Include the constant of integration.</div><div class="p-hint"><div class="p-hint-lbl">Reverse Power Rule</div><div class="p-hint-txt">Integrate each term: 2x → x², 3 → 3x. Answer: x² + 3x + C.</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-med">Medium</span></div><div class="p-math">Differentiate: y = x · sin(x)</div><div class="p-desc">Use the product rule to differentiate this expression.</div><div class="p-hint"><div class="p-hint-lbl">Product Rule</div><div class="p-hint-txt">d/dx[u·v] = u'v + uv'. Here u=x (u'=1) and v=sin(x) (v'=cos(x)). Answer: sin(x) + x·cos(x).</div></div></div>
+        <div class="problem-card"><div class="problem-top"><span class="diff diff-hard">Hard</span></div><div class="p-math">Evaluate: definite integral from 0 to 2 of (x² + 1) dx</div><div class="p-desc">Compute this definite integral and find the exact value.</div><div class="p-hint"><div class="p-hint-lbl">FTC</div><div class="p-hint-txt">Antiderivative: x³/3 + x. Apply F(2) - F(0) = (8/3 + 2) - 0 = 14/3.</div></div></div>
+      </div>
+    </div>
+
+    <div class="cta-card reveal">
+      <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.28);border-radius:9999px;padding:7px 16px;margin-bottom:18px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#F5A623;flex-shrink:0;animation:pulse 2s ease infinite;display:block"></span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F5A623">Unlimited Practice in the App</span>
+      </div>
+      <h2>Hundreds More Problems<br><span>In MathMate</span></h2>
+      <p>These are just samples. The app has unlimited practice problems per topic — all with full step-by-step explanations, personalised to your level.</p>
+      <div class="ctas">
+        <a href="index.html#contact" class="btn-primary">Get MathMate Free <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="math-topics.html" class="btn-ghost">Browse All Topics</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand"><img src="assets/MathMateIconLogo.png" alt="MathMate"><span class="footer-brand-text">Math<span>Mate</span></span></a>
+    <div class="footer-links">
+      <a href="math-topics.html">Math Topics</a><span class="footer-dot"></span>
+      <a href="practice-problems.html" class="active">Practice</a><span class="footer-dot"></span>
+      <a href="faq.html">FAQ</a><span class="footer-dot"></span>
+      <a href="contact-us.html">Contact</a><span class="footer-dot"></span>
+      <a href="privacy-policy.html">Privacy</a><span class="footer-dot"></span>
+      <a href="terms-of-service.html">Terms</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <a href="#" class="back-top"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function filterTopic(topic, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.topic-problems').forEach(el => {
+      el.style.display = (topic === 'all' || el.dataset.topic === topic) ? '' : 'none';
+    });
+  }
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  revealEls.forEach(el => observer.observe(el));
+  setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2200);
+</script>
+</body>
+</html>
