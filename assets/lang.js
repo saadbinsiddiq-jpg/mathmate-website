@@ -154,6 +154,10 @@
       var key = el.getAttribute('data-i18n');
       if (t[key] !== undefined) el.textContent = t[key];
     });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
   }
 
   var dropOpen = false;
@@ -265,5 +269,13 @@
     updateUI(lang);
   });
 
-  window.mmLang = { set: setLang, get: getLang };
+  window.mmLang = {
+    set: setLang,
+    get: getLang,
+    extend: function (obj) {
+      ['en', 'fr', 'ar'].forEach(function (lang) {
+        if (obj[lang]) Object.assign(T[lang], obj[lang]);
+      });
+    }
+  };
 })();
