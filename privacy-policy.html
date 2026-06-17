@@ -168,14 +168,15 @@ body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hid
     </a>
     <div class="header-sep"></div>
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Home</a>
+      <a href="index.html"><span data-i18n="nav_home">Home</span></a>
       <span>›</span>
-      <span class="breadcrumb-current">Privacy Policy</span>
+      <span class="breadcrumb-current" data-i18n="page_privacy">Privacy Policy</span>
     </nav>
     <div class="header-spacer"></div>
+    <div id="mm-lang-wrap"></div>
     <a href="index.html" class="back-btn">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Back to MathMate
+      <span data-i18n="back_mm">Back to MathMate</span>
     </a>
   </div>
 </header>
@@ -875,7 +876,7 @@ body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hid
     </a>
     <a href="index.html" class="btn-secondary">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Back to MathMate
+      <span data-i18n="back_mm">Back to MathMate</span>
     </a>
   </div>
 </div>
@@ -884,23 +885,23 @@ body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hid
 <footer class="site-footer">
   <div class="footer-inner">
     <nav class="footer-nav">
-      <a href="snap-and-solve.html">Snap &amp; Solve</a>
+      <a href="snap-and-solve.html" data-i18n="ft_snap">Snap &amp; Solve</a>
       <span class="footer-nav-sep">·</span>
-      <a href="step-by-step-solutions.html">Step-by-Step Solutions</a>
+      <a href="step-by-step-solutions.html" data-i18n="ft_steps">Step-by-Step Solutions</a>
       <span class="footer-nav-sep">·</span>
-      <a href="save-to-gallery.html">Save to Gallery</a>
+      <a href="save-to-gallery.html" data-i18n="ft_gallery">Save to Gallery</a>
       <span class="footer-nav-sep">·</span>
-      <a href="quiz-mode.html">Quiz Mode</a>
+      <a href="quiz-mode.html" data-i18n="ft_quiz">Quiz Mode</a>
       <span class="footer-nav-sep">·</span>
-      <a href="progress-tracking.html">Progress Tracking</a>
+      <a href="progress-tracking.html" data-i18n="ft_progress">Progress Tracking</a>
       <span class="footer-nav-sep">·</span>
-      <a href="streak-rewards.html">Streak Rewards</a>
+      <a href="streak-rewards.html" data-i18n="ft_streaks">Streak Rewards</a>
     </nav>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <span class="footer-copy" data-i18n="copyright">© 2026 MathMate. All rights reserved.</span>
       <a href="#top" class="back-to-top">
         <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 9V2M2 5.5l3.5-3.5 3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Back to top
+        <span data-i18n="back_top">Back to top</span>
       </a>
     </div>
   </div>
@@ -927,5 +928,6 @@ body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hid
   revealEls.forEach(el => obs.observe(el));
   setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2200);
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>

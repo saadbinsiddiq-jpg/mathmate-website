@@ -129,14 +129,15 @@ body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hid
     </a>
     <div class="header-sep"></div>
     <nav class="breadcrumb">
-      <a href="index.html">Home</a>
+      <a href="index.html"><span data-i18n="nav_home">Home</span></a>
       <span>›</span>
-      <span class="breadcrumb-current">Terms of Service</span>
+      <span class="breadcrumb-current" data-i18n="page_terms">Terms of Service</span>
     </nav>
     <div class="header-spacer"></div>
+    <div id="mm-lang-wrap"></div>
     <a href="index.html" class="back-btn">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to MathMate
+      <span data-i18n="back_mm">Back to MathMate</span>
     </a>
   </div>
 </header>
@@ -483,19 +484,19 @@ body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hid
       <span style="font-size:17px;font-weight:800;letter-spacing:-.03em;color:#fff">Math<span style="color:#F5A623">Mate</span></span>
     </a>
     <div class="footer-links-tos">
-      <a href="about.html">About</a>
+      <a href="about.html" data-i18n="ft_about">About</a>
       <span class="footer-dot"></span>
-      <a href="careers.html">Careers</a>
+      <a href="careers.html" data-i18n="ft_careers">Careers</a>
       <span class="footer-dot"></span>
-      <a href="press-kit.html">Press Kit</a>
+      <a href="press-kit.html" data-i18n="ft_press">Press Kit</a>
       <span class="footer-dot"></span>
-      <a href="contact-us.html">Contact</a>
+      <a href="contact-us.html" data-i18n="ft_contact">Contact</a>
       <span class="footer-dot"></span>
-      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="privacy-policy.html" data-i18n="ft_privacy">Privacy Policy</a>
       <span class="footer-dot"></span>
-      <a href="terms-of-service.html" class="active">Terms of Service</a>
+      <a href="terms-of-service.html" class="active" data-i18n="ft_terms">Terms of Service</a>
     </div>
-    <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+    <span class="footer-copy" data-i18n="copyright">© 2026 MathMate. All rights reserved.</span>
   </div>
 </footer>
 
@@ -507,5 +508,6 @@ body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hid
   els.forEach(el => obs.observe(el));
   setTimeout(() => els.forEach(el => el.classList.add('visible')), 2500);
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>

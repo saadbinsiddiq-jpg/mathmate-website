@@ -205,16 +205,17 @@
     <span class="logo-text">Math<span>Mate</span></span>
   </a>
   <nav class="header-center">
-    <a href="index.html">Home</a>
+    <a href="index.html"><span data-i18n="nav_home">Home</span></a>
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-    <span class="current">Snap &amp; Solve</span>
+    <span class="current" data-i18n="page_snap">Snap &amp; Solve</span>
   </nav>
   <div class="header-right">
+    <div id="mm-lang-wrap"></div>
     <a href="index.html" class="back-btn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to MathMate
+      <span data-i18n="back_mm">Back to MathMate</span>
     </a>
-    <a href="#download" class="header-cta">Get the App</a>
+    <a href="#download" class="header-cta" data-i18n="get_app">Get the App</a>
   </div>
 </header>
 
@@ -387,24 +388,22 @@
       <span class="footer-brand-text">Math<span>Mate</span></span>
     </a>
     <div class="footer-links">
-      <a href="snap-and-solve.html">Snap &amp; Solve</a>
+      <a href="snap-and-solve.html" data-i18n="ft_snap">Snap &amp; Solve</a>
       <span class="footer-dot"></span>
-      <a href="step-by-step-solutions.html">Step-by-Step</a>
+      <a href="step-by-step-solutions.html" data-i18n="ft_steps">Step-by-Step</a>
       <span class="footer-dot"></span>
-      <a href="save-to-gallery.html">Gallery</a>
+      <a href="save-to-gallery.html" data-i18n="ft_gallery">Gallery</a>
       <span class="footer-dot"></span>
-      <a href="quiz-mode.html">Quiz Mode</a>
+      <a href="quiz-mode.html" data-i18n="ft_quiz">Quiz Mode</a>
       <span class="footer-dot"></span>
-      <a href="progress-tracking.html">Progress</a>
+      <a href="progress-tracking.html" data-i18n="ft_progress">Progress</a>
       <span class="footer-dot"></span>
-      <a href="streak-rewards.html">Streaks</a>
+      <a href="streak-rewards.html" data-i18n="ft_streaks">Streaks</a>
     </div>
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <span class="footer-copy" data-i18n="copyright">© 2026 MathMate. All rights reserved.</span>
       <a href="#" class="back-top">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Back to top
-      </a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="back_top">Back to top</span></a>
     </div>
   </div>
 </footer>
@@ -420,5 +419,6 @@
   // Fallback: force reveal after 2s
   setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2000);
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>

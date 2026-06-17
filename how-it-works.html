@@ -187,16 +187,17 @@
     <span class="logo-text">Math<span>Mate</span></span>
   </a>
   <nav class="header-center">
-    <a href="index.html">Home</a>
+    <a href="index.html"><span data-i18n="nav_home">Home</span></a>
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-    <span class="current">How It Works</span>
+    <span class="current" data-i18n="page_how">How It Works</span>
   </nav>
   <div class="header-right">
+    <div id="mm-lang-wrap"></div>
     <a href="index.html" class="back-btn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Back to MathMate
+      <span data-i18n="back_mm">Back to MathMate</span>
     </a>
-    <a href="index.html#contact" class="header-cta">Get the App</a>
+    <a href="index.html#contact" class="header-cta" data-i18n="get_app">Get the App</a>
   </div>
 </header>
 
@@ -445,24 +446,22 @@
       <span class="footer-brand-text">Math<span>Mate</span></span>
     </a>
     <div class="footer-links">
-      <a href="about.html">About</a>
+      <a href="about.html" data-i18n="ft_about">About</a>
       <span class="footer-dot"></span>
-      <a href="how-it-works.html" class="active">How It Works</a>
+      <a href="how-it-works.html" class="active" data-i18n="ft_how">How It Works</a>
       <span class="footer-dot"></span>
-      <a href="faq.html">FAQ</a>
+      <a href="faq.html" data-i18n="ft_faq">FAQ</a>
       <span class="footer-dot"></span>
-      <a href="contact-us.html">Contact Us</a>
+      <a href="contact-us.html" data-i18n="ft_contact">Contact Us</a>
       <span class="footer-dot"></span>
-      <a href="privacy-policy.html">Privacy</a>
+      <a href="privacy-policy.html" data-i18n="ft_privacy">Privacy</a>
       <span class="footer-dot"></span>
-      <a href="terms-of-service.html">Terms</a>
+      <a href="terms-of-service.html" data-i18n="ft_terms">Terms</a>
     </div>
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <span class="footer-copy" data-i18n="copyright">© 2026 MathMate. All rights reserved.</span>
       <a href="#" class="back-top">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Back to top
-      </a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="back_top">Back to top</span></a>
     </div>
   </div>
 </footer>
@@ -475,5 +474,6 @@
   revealEls.forEach(el => observer.observe(el));
   setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2200);
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>
