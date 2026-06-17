@@ -1135,9 +1135,9 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
           <a href="how-it-works.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.how_it_works }}</a>
           <a href="math-topics.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_2 }}</a>
           <a href="practice-problems.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_3 }}</a>
-          <a href="blog.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">Blog</a>
+          <a href="blog.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_4 }}</a>
           <a href="tutorials.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_5 }}</a>
-          <a href="faq.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">FAQ</a>
+          <a href="faq.html" style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,.36);text-decoration:none;transition:color .15s,transform .15s;display:block;" style-hover="color:rgba(255,255,255,.88);transform:translateX(5px);">{{ t.ft_learn_6 }}</a>
         </div>
       </div>
       <!-- Company -->
@@ -1167,7 +1167,7 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
         <div style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.12);"></div>
         <a href="terms-of-service.html" style="font-size:12px;color:rgba(255,255,255,.22);text-decoration:none;transition:color .15s;" style-hover="color:rgba(255,255,255,.68);">{{ t.ft_terms }}</a>
         <div style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.12);"></div>
-        <a href="contact-us.html" style="font-size:12px;color:rgba(255,255,255,.22);text-decoration:none;transition:color .15s;" style-hover="color:rgba(255,255,255,.68);">Contact</a>
+        <a href="contact-us.html" style="font-size:12px;color:rgba(255,255,255,.22);text-decoration:none;transition:color .15s;" style-hover="color:rgba(255,255,255,.68);">{{ t.ft_contact }}</a>
         <a href="#home" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:8px 16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.38);text-decoration:none;transition:background .15s,color .15s,transform .15s,border-color .15s;" style-hover="background:rgba(255,255,255,.1);color:#fff;transform:translateY(-2px);border-color:rgba(255,255,255,.22);"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 10V2M2 6l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>{{ t.ft_backtop }}</a>
       </div>
     </div>
@@ -1289,10 +1289,11 @@ class Component extends DCLogic {
         ft_prod_hdr:'Product',
         ft_prod_1:'Snap & Solve', ft_prod_2:'Step-by-Step Solutions', ft_prod_3:'Save to Gallery',
         ft_prod_4:'Quiz Mode', ft_prod_5:'Progress Tracking', ft_prod_6:'Streak Rewards',
-        ft_learn_2:'Math Topics', ft_learn_3:'Practice Problems', ft_learn_5:'Tutorials',
+        ft_learn_2:'Math Topics', ft_learn_3:'Practice Problems', ft_learn_4:'Blog', ft_learn_5:'Tutorials', ft_learn_6:'FAQ',
         ft_co_hdr:'Company',
         ft_co_1:'About MathMate', ft_co_2:'Careers', ft_co_3:'Press Kit',
         ft_co_4:'Contact Us', ft_co_5:'Privacy Policy', ft_co_6:'Terms of Service',
+        ft_contact:'Contact',
         ft_nl_title:'Stay in the loop',
         ft_nl_sub:'Math tips, product updates, and study resources. No spam, ever.',
         ft_nl_btn:'Subscribe →',
@@ -1373,10 +1374,11 @@ class Component extends DCLogic {
         ft_prod_hdr:"Produit",
         ft_prod_1:"Photo & Solution", ft_prod_2:"Solutions Étape par Étape", ft_prod_3:"Enregistrer dans la Galerie",
         ft_prod_4:"Mode Quiz", ft_prod_5:"Suivi des Progrès", ft_prod_6:"Récompenses de Série",
-        ft_learn_2:"Sujets Mathématiques", ft_learn_3:"Problèmes de Pratique", ft_learn_5:"Tutoriels",
+        ft_learn_2:"Sujets Mathématiques", ft_learn_3:"Problèmes de Pratique", ft_learn_4:"Blog", ft_learn_5:"Tutoriels", ft_learn_6:"FAQ",
         ft_co_hdr:"Entreprise",
         ft_co_1:"À Propos de MathMate", ft_co_2:"Emplois", ft_co_3:"Dossier de Presse",
         ft_co_4:"Nous Contacter", ft_co_5:"Politique de Confidentialité", ft_co_6:"Conditions d’Utilisation",
+        ft_contact:"Contact",
         ft_nl_title:"Reste informé",
         ft_nl_sub:"Conseils maths, mises à jour produit et ressources d’étude. Jamais de spam.",
         ft_nl_btn:"S’abonner →",
@@ -1457,10 +1459,11 @@ class Component extends DCLogic {
         ft_prod_hdr:'المنتج',
         ft_prod_1:'التقط وحلّ', ft_prod_2:'حلول خطوة بخطوة', ft_prod_3:'حفظ في المعرض',
         ft_prod_4:'وضع الاختبار', ft_prod_5:'تتبع التقدم', ft_prod_6:'مكافآت الإنجاز',
-        ft_learn_2:'مواضيع الرياضيات', ft_learn_3:'تمارين تطبيقية', ft_learn_5:'دروس تعليمية',
+        ft_learn_2:'مواضيع الرياضيات', ft_learn_3:'تمارين تطبيقية', ft_learn_4:'المدونة', ft_learn_5:'دروس تعليمية', ft_learn_6:'الأسئلة الشائعة',
         ft_co_hdr:'الشركة',
         ft_co_1:'عن ماث ميت', ft_co_2:'وظائف', ft_co_3:'الحزمة الإعلامية',
         ft_co_4:'تواصل معنا', ft_co_5:'سياسة الخصوصية', ft_co_6:'شروط الخدمة',
+        ft_contact:'تواصل',
         ft_nl_title:'ابقَ على اطلاع',
         ft_nl_sub:'نصائح رياضيات، تحديثات المنتج، وموارد الدراسة. بدون إزعاج.',
         ft_nl_btn:'← اشترك',
