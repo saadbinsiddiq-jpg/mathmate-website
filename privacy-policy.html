@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — MathMate</title>
+<meta name="description" content="MathMate Privacy Policy. Learn how we collect, use, and protect your personal information and your child's data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hidden;min-height:100vh}
+
+/* ── 7-layer background ── */
+.bg-base{position:fixed;inset:0;z-index:0;background:#070D1F}
+.bg-mesh{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.bg-mesh::before{content:'';position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(45,144,232,.13) 0%,transparent 70%);top:-200px;left:-180px;animation:blobDrift 22s ease-in-out infinite alternate}
+.bg-mesh::after{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.09) 0%,transparent 70%);bottom:-160px;right:-120px;animation:blobDrift 28s ease-in-out infinite alternate-reverse}
+@keyframes blobDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(60px,40px) scale(1.08)}}
+.bg-grid{position:fixed;inset:0;z-index:2;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:72px 72px}
+.bg-ghost-math{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.bg-ghost-math span{position:absolute;font-size:18px;font-weight:700;color:rgba(255,255,255,.028);user-select:none;white-space:nowrap}
+.bg-grain{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.28;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");animation:noiseShift 8s steps(2) infinite}
+@keyframes noiseShift{0%{background-position:0 0}25%{background-position:-40px 20px}50%{background-position:20px -30px}75%{background-position:-20px 40px}100%{background-position:0 0}}
+.bg-vignette{position:fixed;inset:0;z-index:5;pointer-events:none;background:radial-gradient(ellipse 84% 72% at 50% 50%,transparent 20%,rgba(6,9,28,.28) 55%,rgba(6,9,28,.68) 100%)}
+.bg-watermark{position:fixed;z-index:3;pointer-events:none;font-size:460px;font-weight:900;color:rgba(45,144,232,.025);user-select:none;right:-60px;bottom:-80px;line-height:1;letter-spacing:-.04em;animation:watermarkPulse 14s ease-in-out infinite alternate}
+@keyframes watermarkPulse{0%{opacity:.6;transform:scale(1)}100%{opacity:1;transform:scale(1.03)}}
+
+/* ── Header ── */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;padding:0 40px;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.06)}
+.header-inner{width:100%;max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.logo-link{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-link img{height:32px;width:32px;object-fit:contain;border-radius:8px}
+.logo-link span{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.header-sep{width:1px;height:18px;background:rgba(255,255,255,.12);flex-shrink:0}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.42)}
+.breadcrumb a{color:rgba(255,255,255,.42);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:rgba(255,255,255,.8)}
+.breadcrumb span{color:rgba(255,255,255,.22)}
+.breadcrumb-current{color:rgba(255,255,255,.72);font-weight:500}
+.header-spacer{flex:1}
+.back-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:8px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;transition:background .15s,border-color .15s,color .15s;white-space:nowrap}
+.back-btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.22);color:#fff}
+
+/* ── Hero ── */
+.hero{position:relative;z-index:10;padding:130px 40px 70px;max-width:1440px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,144,232,.12);border:1px solid rgba(45,144,232,.28);border-radius:9999px;padding:8px 18px;font-size:12px;font-weight:700;color:#2D90E8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#2D90E8;box-shadow:0 0 8px rgba(45,144,232,.8);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.08;letter-spacing:-.03em;max-width:800px;margin:0 auto 24px}
+.hero h1 .accent{background:linear-gradient(135deg,#2D90E8 0%,#8B5CF6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,.58);max-width:560px;margin:0 auto 32px;line-height:1.65}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:7px 14px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.meta-chip svg{flex-shrink:0}
+.hero-divider{width:60px;height:3px;background:linear-gradient(90deg,#2D90E8,#8B5CF6);border-radius:9999px;margin:36px auto 0}
+
+/* ── TOC ── */
+.toc-section{position:relative;z-index:10;padding:60px 40px 20px;max-width:1100px;margin:0 auto}
+.toc-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px 36px}
+.toc-title{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#2D90E8;margin-bottom:20px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.toc-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;text-decoration:none;color:rgba(255,255,255,.48);font-size:13px;font-weight:500;transition:background .15s,color .15s}
+.toc-item:hover{background:rgba(45,144,232,.08);color:rgba(255,255,255,.88)}
+.toc-num{font-size:11px;font-weight:700;color:#2D90E8;min-width:22px}
+
+/* ── Content sections ── */
+.content-wrap{position:relative;z-index:10;padding:40px 40px 80px;max-width:1100px;margin:0 auto}
+.section-block{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:32px 36px;margin-bottom:20px;transition:border-color .2s}
+.section-block:hover{border-color:rgba(45,144,232,.2)}
+.section-block.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.25,1,.5,1),border-color .2s}
+.section-block.reveal.visible{opacity:1;transform:translateY(0)}
+.section-num{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#2D90E8;margin-bottom:10px}
+.section-title{font-size:19px;font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.01em}
+.section-body{font-size:14.5px;color:rgba(255,255,255,.6);line-height:1.75}
+.section-body p{margin-bottom:12px}
+.section-body p:last-child{margin-bottom:0}
+.section-body ul{padding-left:0;list-style:none;margin:10px 0}
+.section-body ul li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;color:rgba(255,255,255,.58);font-size:14px;line-height:1.6}
+.section-body ul li::before{content:'';width:5px;height:5px;border-radius:50%;background:#2D90E8;flex-shrink:0;margin-top:8px}
+.section-body strong{color:rgba(255,255,255,.88);font-weight:600}
+.section-body a{color:#2D90E8;text-decoration:none}
+.section-body a:hover{text-decoration:underline}
+
+/* Subsections */
+.subsection{margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.06)}
+.subsection-title{font-size:14px;font-weight:700;color:rgba(255,255,255,.82);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.subsection-title::before{content:'';width:3px;height:14px;border-radius:2px;background:#2D90E8;flex-shrink:0}
+
+/* Highlight card */
+.highlight-card{background:rgba(45,144,232,.07);border:1px solid rgba(45,144,232,.2);border-radius:14px;padding:20px 24px;margin:18px 0}
+.highlight-card p{color:rgba(255,255,255,.72);font-size:14px;line-height:1.7}
+
+/* Retention table */
+.ret-table{width:100%;border-collapse:collapse;margin:16px 0}
+.ret-table th{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#2D90E8;padding:10px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1)}
+.ret-table td{font-size:13.5px;color:rgba(255,255,255,.6);padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;line-height:1.55}
+.ret-table tr:last-child td{border-bottom:none}
+.ret-table td:first-child{color:rgba(255,255,255,.78);font-weight:500;white-space:nowrap}
+
+/* Commitments card */
+.commitment-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.commitment-item{display:flex;align-items:flex-start;gap:10px;background:rgba(45,144,232,.06);border:1px solid rgba(45,144,232,.15);border-radius:12px;padding:14px 16px}
+.commit-icon{width:22px;height:22px;border-radius:6px;background:rgba(45,144,232,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.commit-icon svg{stroke:#2D90E8}
+.commitment-item p{font-size:13px;color:rgba(255,255,255,.64);line-height:1.55}
+
+/* ── CTA band ── */
+.cta-band{position:relative;z-index:10;padding:80px 40px;background:linear-gradient(135deg,rgba(45,144,232,.07) 0%,rgba(139,92,246,.06) 100%);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);text-align:center}
+.cta-band h2{font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.025em;margin-bottom:14px}
+.cta-band p{font-size:16px;color:rgba(255,255,255,.52);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#2D90E8;color:#fff;text-decoration:none;border-radius:9999px;padding:15px 32px;font-size:15px;font-weight:700;box-shadow:0 10px 32px rgba(45,144,232,.38);transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(45,144,232,.56)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);text-decoration:none;border:1.5px solid rgba(255,255,255,.14);border-radius:9999px;padding:15px 26px;font-size:15px;font-weight:600;transition:background .15s,border-color .15s}
+.btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+
+/* ── Footer ── */
+.site-footer{position:relative;z-index:10;padding:56px 40px 36px;border-top:1px solid rgba(255,255,255,.06)}
+.footer-inner{max-width:1440px;margin:0 auto}
+.footer-nav{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.footer-nav a{font-size:13px;color:rgba(255,255,255,.36);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .15s,background .15s}
+.footer-nav a:hover{color:rgba(255,255,255,.82);background:rgba(255,255,255,.05)}
+.footer-nav-sep{font-size:12px;color:rgba(255,255,255,.14)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,.06);padding-top:24px}
+.footer-copy{font-size:12.5px;color:rgba(255,255,255,.2)}
+.back-to-top{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:9999px;padding:7px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.36);text-decoration:none;transition:background .15s,color .15s}
+.back-to-top:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.72)}
+
+/* Responsive */
+@media(max-width:768px){
+  .site-header{padding:0 20px}
+  .hero{padding:110px 24px 50px}
+  .toc-section,.content-wrap{padding-left:24px;padding-right:24px}
+  .toc-card,.section-block{padding:22px 20px}
+  .commitment-grid{grid-template-columns:1fr}
+  .breadcrumb{display:none}
+  .header-sep{display:none}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+  .ret-table td:first-child{white-space:normal}
+}
+@media(max-width:560px){
+  .toc-grid{grid-template-columns:1fr 1fr}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-secondary{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- 7-layer background -->
+<div class="bg-base"></div>
+<div class="bg-mesh"></div>
+<div class="bg-grid"></div>
+<div class="bg-ghost-math" id="ghostMath"></div>
+<div class="bg-grain"></div>
+<div class="bg-vignette"></div>
+<div class="bg-watermark">§</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <img src="assets/MathMateIconLogo.png" alt="MathMate">
+      <span>MathMate</span>
+    </a>
+    <div class="header-sep"></div>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span class="breadcrumb-current">Privacy Policy</span>
+    </nav>
+    <div class="header-spacer"></div>
+    <a href="index.html" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to MathMate
+    </a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Legal &amp; Privacy
+  </div>
+  <h1>Your <span class="accent">Privacy</span> Matters to Us</h1>
+  <p class="hero-desc">MathMate is designed for students and families. We are transparent about what we collect, why we collect it, and how we protect it.</p>
+  <div class="hero-meta">
+    <div class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Effective Date: June 17, 2026
+    </div>
+    <div class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Last Updated: June 17, 2026
+    </div>
+    <div class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      32 Sections
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- Table of Contents -->
+<div class="toc-section reveal">
+  <div class="toc-card">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-grid">
+      <a href="#s1" class="toc-item"><span class="toc-num">01</span>Who We Are</a>
+      <a href="#s2" class="toc-item"><span class="toc-num">02</span>Scope</a>
+      <a href="#s3" class="toc-item"><span class="toc-num">03</span>Children &amp; Students</a>
+      <a href="#s4" class="toc-item"><span class="toc-num">04</span>Information We Collect</a>
+      <a href="#s5" class="toc-item"><span class="toc-num">05</span>How We Collect</a>
+      <a href="#s6" class="toc-item"><span class="toc-num">06</span>How We Use</a>
+      <a href="#s7" class="toc-item"><span class="toc-num">07</span>Legal Bases</a>
+      <a href="#s8" class="toc-item"><span class="toc-num">08</span>AI Processing</a>
+      <a href="#s9" class="toc-item"><span class="toc-num">09</span>Uploaded Content</a>
+      <a href="#s10" class="toc-item"><span class="toc-num">10</span>Children's Privacy</a>
+      <a href="#s11" class="toc-item"><span class="toc-num">11</span>School Use</a>
+      <a href="#s12" class="toc-item"><span class="toc-num">12</span>When We Share</a>
+      <a href="#s13" class="toc-item"><span class="toc-num">13</span>Cookies</a>
+      <a href="#s14" class="toc-item"><span class="toc-num">14</span>Marketing</a>
+      <a href="#s15" class="toc-item"><span class="toc-num">15</span>Data Retention</a>
+      <a href="#s16" class="toc-item"><span class="toc-num">16</span>Security</a>
+      <a href="#s17" class="toc-item"><span class="toc-num">17</span>International Transfers</a>
+      <a href="#s18" class="toc-item"><span class="toc-num">18</span>Your Privacy Rights</a>
+      <a href="#s19" class="toc-item"><span class="toc-num">19</span>Europe &amp; UK Rights</a>
+      <a href="#s20" class="toc-item"><span class="toc-num">20</span>US Rights</a>
+      <a href="#s21" class="toc-item"><span class="toc-num">21</span>Middle East Rights</a>
+      <a href="#s22" class="toc-item"><span class="toc-num">22</span>Sensitive Information</a>
+      <a href="#s23" class="toc-item"><span class="toc-num">23</span>Data Accuracy</a>
+      <a href="#s24" class="toc-item"><span class="toc-num">24</span>Account Deletion</a>
+      <a href="#s25" class="toc-item"><span class="toc-num">25</span>Third-Party Links</a>
+      <a href="#s26" class="toc-item"><span class="toc-num">26</span>App Stores &amp; Permissions</a>
+      <a href="#s27" class="toc-item"><span class="toc-num">27</span>Push Notifications</a>
+      <a href="#s28" class="toc-item"><span class="toc-num">28</span>Anonymized Data</a>
+      <a href="#s29" class="toc-item"><span class="toc-num">29</span>Data Breach Notices</a>
+      <a href="#s30" class="toc-item"><span class="toc-num">30</span>Policy Changes</a>
+      <a href="#s31" class="toc-item"><span class="toc-num">31</span>Contact Us</a>
+      <a href="#s32" class="toc-item"><span class="toc-num">32</span>Core Commitments</a>
+    </div>
+  </div>
+</div>
+
+<!-- Intro banner -->
+<div class="content-wrap" style="padding-bottom:0">
+  <div class="highlight-card reveal" style="border-color:rgba(45,144,232,.3);background:rgba(45,144,232,.06);margin-bottom:0">
+    <p>This Privacy Policy explains how MathMate collects, uses, stores, shares, and protects personal information when you use the MathMate mobile app, website, web app, student dashboard, parent dashboard, learning tools, AI tutor, quizzes, practice features, camera/photo upload features, and related services.</p>
+    <p style="margin-top:10px"><strong>"MathMate," "we," "our," or "us"</strong> means the operator of MathMate. <strong>"Services"</strong> means the MathMate app, website, AI math tutor, learning tools, quizzes, dashboards, and related services. <strong>"User," "you," or "your"</strong> means a student, parent, guardian, teacher, school representative, or website visitor using MathMate.</p>
+  </div>
+</div>
+
+<!-- Content Sections -->
+<div class="content-wrap">
+
+  <!-- 1 -->
+  <div class="section-block reveal" id="s1">
+    <div class="section-num">Section 01</div>
+    <div class="section-title">Who We Are</div>
+    <div class="section-body">
+      <p>MathMate is an AI-powered math learning platform that helps students understand math concepts instead of only receiving final answers. Students may use MathMate to submit math problems through typed input, photos, screenshots, worksheets, PDFs, or chat, and receive guided explanations, practice questions, quizzes, and learning recommendations.</p>
+      <div class="subsection">
+        <div class="subsection-title">Data Controller / Business Operator</div>
+        <ul>
+          <li>[Insert Legal Company Name]</li>
+          <li>[Insert Registered Address], [Insert Country]</li>
+          <li>Email: <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a></li>
+          <li>Website: mathmate.app</li>
+        </ul>
+        <p style="margin-top:10px">For privacy requests, parental requests, data deletion requests, or questions about this Privacy Policy, contact: <strong>Privacy Contact:</strong> <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section-block reveal" id="s2">
+    <div class="section-num">Section 02</div>
+    <div class="section-title">Scope of This Privacy Policy</div>
+    <div class="section-body">
+      <p>This Privacy Policy applies to personal information collected through:</p>
+      <ul>
+        <li>The MathMate mobile application</li>
+        <li>The MathMate website and web app</li>
+        <li>Student, parent or guardian, and teacher/school accounts</li>
+        <li>AI tutor conversations</li>
+        <li>Photo, screenshot, worksheet, or PDF uploads</li>
+        <li>Quizzes, practice activities, progress tracking, and learning recommendations</li>
+        <li>Customer support, emails, forms, surveys, and feedback</li>
+        <li>Cookies, analytics tools, and similar technologies on our website</li>
+      </ul>
+      <p>This Privacy Policy does not apply to third-party websites, services, app stores, payment processors, school platforms, or external links not controlled by MathMate.</p>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section-block reveal" id="s3">
+    <div class="section-num">Section 03</div>
+    <div class="section-title">Important Notice for Children, Students, Parents, and Schools</div>
+    <div class="section-body">
+      <p>MathMate may be used by children, teenagers, and school-age students. Because students' privacy is especially important, we apply additional protections to student information.</p>
+      <div class="highlight-card">
+        <p>Where required by law, students below the applicable age must use MathMate only with permission from a parent, legal guardian, school, or authorized educational institution. We do not knowingly collect personal information from children where parental, guardian, or school consent is legally required unless that consent has been obtained.</p>
+      </div>
+      <ul>
+        <li>We do not use student personal information for third-party targeted advertising</li>
+        <li>We do not sell student personal information</li>
+        <li>We do not allow third-party AI providers to use identifiable student personal information to train their general AI models, unless clearly disclosed and legally permitted with required consent</li>
+      </ul>
+      <p>If you are a parent or guardian and believe your child has used MathMate without required consent, contact us at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>.</p>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section-block reveal" id="s4">
+    <div class="section-num">Section 04</div>
+    <div class="section-title">Personal Information We Collect</div>
+    <div class="section-body">
+      <p>The personal information we collect depends on how you use MathMate.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">4.1 Account Information</div>
+        <ul>
+          <li>Name, email address, phone number (if provided), username, password</li>
+          <li>Account type (student, parent, teacher, tutor, or school user)</li>
+          <li>Language preference, country or region, profile photo (if uploaded)</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.2 Student Learning Profile</div>
+        <ul>
+          <li>Student name or nickname, grade, class, year group, or education level</li>
+          <li>Curriculum, board, school system, or country curriculum</li>
+          <li>Math goals, preferred language, topics selected</li>
+          <li>Weak and strong math concepts, learning roadmap, progress history</li>
+          <li>Quiz scores, practice attempts, correct and incorrect answers, time spent on questions</li>
+          <li>Step-level mistakes, learning streaks, badges, or achievement data</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.3 Math Problems, Photos, Screenshots, Worksheets, and PDFs</div>
+        <ul>
+          <li>Typed math questions, images taken through the camera, uploaded photos or screenshots</li>
+          <li>Uploaded worksheets or PDFs, OCR-extracted text, handwritten or printed math content</li>
+          <li>Diagrams, graphs, formulas, and equations</li>
+          <li>The AI-generated explanation or solution, and follow-up questions</li>
+        </ul>
+        <p style="margin-top:10px">You should avoid uploading images or documents that contain unnecessary personal information such as names, addresses, or identity documents.</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.4 AI Tutor Chat</div>
+        <ul>
+          <li>Messages you send, math problems you ask about, follow-up questions, AI responses</li>
+          <li>Feedback on whether an explanation was helpful, learning preferences</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.5 Quiz, Practice, and Progress Data</div>
+        <ul>
+          <li>Quiz and practice answers, correct and incorrect attempts, step-by-step selections</li>
+          <li>Topic mastery scores, concept-level performance, prerequisite weakness indicators</li>
+          <li>Revision history, recommended next lessons, completion status</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.6 Parent, Guardian, Teacher, or School Information</div>
+        <ul>
+          <li>Name, email, phone number, relationship to the student, school or organization name</li>
+          <li>Role or title, billing information (where applicable), linked student accounts, consent records</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.7 Payment and Subscription</div>
+        <ul>
+          <li>Subscription status, purchase history, plan type, renewal status, transaction ID, billing country</li>
+          <li>We do not store full credit card numbers, CVV codes, or complete payment credentials</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.8 Device, Usage, and Technical Information</div>
+        <ul>
+          <li>IP address, device type, browser type, operating system, app version, device identifiers</li>
+          <li>Pages viewed, features used, session duration, crash logs, error logs, performance data</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4.9–4.11 Customer Support, Marketing &amp; Information We Do Not Collect</div>
+        <ul>
+          <li>Support messages, screenshots or files you provide, feedback and survey responses</li>
+          <li>If you opt into updates: name, email, communication preferences, marketing consent status</li>
+          <li>We do not intentionally collect government IDs, passport numbers, financial passwords, health records, biometric identifiers, precise GPS location, religious beliefs, political opinions, or sexual orientation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="section-block reveal" id="s5">
+    <div class="section-num">Section 05</div>
+    <div class="section-title">How We Collect Information</div>
+    <div class="section-body">
+      <div class="subsection">
+        <div class="subsection-title">5.1 Information You Provide Directly</div>
+        <p>When you create an account, enter your grade or learning goal, type a math problem, upload content, use the AI tutor, complete quizzes, save progress, contact support, subscribe to paid features, sign up for emails, or submit feedback.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.2 Information Collected Automatically</div>
+        <p>Through app analytics, website analytics, cookies, device logs, crash reporting, security monitoring, and server logs.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.3 Information from Parents, Guardians, Teachers, or Schools</div>
+        <p>A parent, guardian, teacher, tutor, or school may provide student information to create or manage a learning account, monitor progress, assign activities, or support learning.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.4 Information from Service Providers</div>
+        <p>We may receive limited information from service providers such as payment confirmation, subscription status, authentication confirmation, delivery status from email providers, and analytics and crash reports.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="section-block reveal" id="s6">
+    <div class="section-num">Section 06</div>
+    <div class="section-title">How We Use Personal Information</div>
+    <div class="section-body">
+      <div class="subsection">
+        <div class="subsection-title">6.1 To Provide MathMate Services</div>
+        <p>Create and manage accounts, process math problems and images, generate step-by-step explanations, provide AI tutor responses, save learning history, track quiz and practice progress, recommend topics, build personalized learning roadmaps, and provide customer support.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">6.2 To Personalize Learning</div>
+        <p>Understand weak and strong areas, recommend next topics, suggest prerequisite concepts, adjust explanation difficulty, provide practice based on grade or curriculum, track improvement over time, reduce repeated mistakes, and provide parent or teacher insights where available.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">6.3 To Improve MathMate</div>
+        <p>Improve AI explanation quality, OCR accuracy, quizzes and practice flows, app speed and reliability, safety and abuse detection, and develop new educational features. Where possible, we use aggregated, anonymized, or de-identified data for product improvement.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">6.4 To Communicate With You</div>
+        <p>Send account-related messages, password resets, security alerts, support responses, subscription updates, parental consent notices, service announcements, and marketing messages only where allowed by law and your preferences.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">6.5–6.7 Payments, Safety, and Legal Compliance</div>
+        <p>Activate paid features, confirm subscriptions, prevent fraud, provide receipts. Protect accounts, detect unauthorized access, prevent abuse of AI features. Comply with applicable privacy, consumer protection, tax, accounting, child protection, and education laws.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="section-block reveal" id="s7">
+    <div class="section-num">Section 07</div>
+    <div class="section-title">Legal Bases for Processing Personal Information</div>
+    <div class="section-body">
+      <p>Where laws such as the GDPR, UK GDPR, or similar data protection laws apply, we rely on one or more of the following legal bases:</p>
+      <ul>
+        <li><strong>Contract:</strong> To provide MathMate Services you have requested, such as account access, AI explanations, quizzes, and subscriptions</li>
+        <li><strong>Consent:</strong> Where required, such as for parental consent for children, optional marketing emails, non-essential cookies, and certain analytics tools</li>
+        <li><strong>Legitimate Interests:</strong> To improve MathMate, secure accounts, prevent fraud, debug errors, and support users — not overriding your rights or child privacy interests</li>
+        <li><strong>Legal Obligation:</strong> To comply with legal, regulatory, tax, accounting, consumer protection, or child protection obligations</li>
+        <li><strong>Vital Interests:</strong> In rare cases, to protect the vital interests or safety of a user or another person</li>
+        <li><strong>Public Interest / School Authorization:</strong> Where MathMate is used by a school or educational institution</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="section-block reveal" id="s8">
+    <div class="section-num">Section 08</div>
+    <div class="section-title">AI, Automated Processing, and Learning Recommendations</div>
+    <div class="section-body">
+      <p>MathMate uses artificial intelligence and educational logic to help students understand math.</p>
+      <p>AI may be used to read and interpret math problems, generate step-by-step explanations, answer follow-up questions, identify possible weak concepts, recommend prerequisite topics, suggest personalized practice, adapt explanations to a student's level, and help parents, teachers, or schools understand learning progress.</p>
+      <div class="highlight-card">
+        <p><strong>MathMate's AI features are educational tools.</strong> They should not be treated as a replacement for teachers, parents, guardians, or professional educational judgment. MathMate does not use automated processing to make decisions that produce legal or similarly significant effects on users.</p>
+      </div>
+      <p>Learning recommendations are based on activity within MathMate — quiz results, incorrect answers, practice performance, topic history, and user-selected goals. Users, parents, guardians, teachers, or schools may contact us to ask about learning profile data, correct inaccurate information, request deletion, or object to certain processing.</p>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="section-block reveal" id="s9">
+    <div class="section-num">Section 09</div>
+    <div class="section-title">Use of Uploaded Math Content</div>
+    <div class="section-body">
+      <p>When you upload a photo, screenshot, worksheet, PDF, or typed math problem, we use it to read the problem, extract text, formulas, graphs, or diagrams, generate explanations, provide follow-up help, save problem history (if enabled), and improve learning recommendations.</p>
+      <ul>
+        <li>We do not claim ownership of your uploaded educational content</li>
+        <li>You are responsible for ensuring you have the right to upload any content you submit</li>
+        <li>Do not upload confidential school records, personal identity documents, private messages, or content belonging to someone else without permission</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="section-block reveal" id="s10">
+    <div class="section-num">Section 10</div>
+    <div class="section-title">Children's Privacy and Parental Rights</div>
+    <div class="section-body">
+      <p>MathMate is designed for students, including minors. We apply additional safeguards for children and student users.</p>
+      <div class="highlight-card">
+        <p><strong>We do not sell children's personal information.</strong> We do not use children's personal information for third-party targeted advertising.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">10.1 Consent</div>
+        <p>Where required by law, we obtain consent from a parent, legal guardian, school, or authorized educational institution before collecting personal information from a child. Required age for consent may vary by country or region.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">10.6 Parent and Guardian Rights</div>
+        <p>Parents and guardians may request to review, correct, or delete their child's personal information, withdraw consent, stop further collection, or request a data copy. Contact us at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a> with verification of your identity and relationship to the child.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">10.7 Unauthorized Child Use</div>
+        <p>If we learn that we collected personal information from a child without legally required consent, we will delete the information, disable the account, or obtain proper consent.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="section-block reveal" id="s11">
+    <div class="section-num">Section 11</div>
+    <div class="section-title">School and Educational Institution Use</div>
+    <div class="section-body">
+      <p>Where MathMate is used by a school, tutor, teacher, or educational institution, the school or institution may provide student information or authorize student use.</p>
+      <ul>
+        <li>We use student information only to provide educational services</li>
+        <li>We do not use student information for unrelated advertising</li>
+        <li>We do not sell student information</li>
+        <li>We follow the instructions of the school or institution where legally required</li>
+        <li>Schools may request access, correction, deletion, or export of student data</li>
+        <li>Parents may need to contact the school for certain requests depending on the arrangement</li>
+      </ul>
+      <p>If a school or institution has a separate agreement with MathMate, that agreement may include additional privacy, security, and data protection terms.</p>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="section-block reveal" id="s12">
+    <div class="section-num">Section 12</div>
+    <div class="section-title">When We Share Personal Information</div>
+    <div class="section-body">
+      <div class="highlight-card">
+        <p><strong>We do not sell personal information.</strong></p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">12.1 Service Providers</div>
+        <p>We may share information with trusted service providers for cloud hosting, databases, authentication, AI model processing, OCR, analytics, crash reporting, email delivery, customer support, payment processing, app stores, and security. These providers may only use the information to provide services to MathMate.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">12.2 AI and OCR Processing Providers</div>
+        <p>When you submit a math problem, image, or chat message, relevant content may be sent to AI or OCR providers to generate explanations. We require these providers not to use identifiable student personal information to train their general AI models unless clearly disclosed and legally permitted.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">12.3 Parents, Teachers, or Schools</div>
+        <p>Where applicable, student progress, quiz results, weak-topic indicators, saved work, or learning recommendations may be shared with a linked parent, guardian, teacher, tutor, school, or authorized administrator.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">12.4–12.7 Payments, Legal, Business Transfers, and Consent</div>
+        <p>Payment information is processed by app stores or payment providers. We may share information to comply with law, protect user safety, prevent fraud, or respond to lawful requests. In a merger or acquisition, personal information may be transferred. We may share for other purposes with your explicit consent.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="section-block reveal" id="s13">
+    <div class="section-num">Section 13</div>
+    <div class="section-title">Cookies and Similar Technologies</div>
+    <div class="section-body">
+      <p>MathMate's website may use cookies, pixels, local storage, SDKs, and similar technologies.</p>
+      <ul>
+        <li><strong>Essential Cookies:</strong> Required for login, security, navigation, account access, and core website functionality</li>
+        <li><strong>Preference Cookies:</strong> Used to remember language, region, display settings, and other preferences</li>
+        <li><strong>Analytics Cookies:</strong> Used to understand how visitors use our website and improve performance</li>
+        <li><strong>Marketing Cookies:</strong> Used only where permitted and with required consent</li>
+      </ul>
+      <p>We do not use children's personal information for third-party targeted advertising. You can manage cookies through browser settings, cookie banner settings, device settings, or consent preferences on our website.</p>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="section-block reveal" id="s14">
+    <div class="section-num">Section 14</div>
+    <div class="section-title">Marketing Communications</div>
+    <div class="section-body">
+      <p>We may send marketing communications only where permitted by law — if you signed up for updates, requested information, consented to marketing, or are a parent, teacher, or adult user where marketing is legally permitted.</p>
+      <p>You can opt out of marketing emails at any time by using the unsubscribe link or contacting us at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>. We will still send non-marketing messages where necessary (account, security, subscription, service messages). We do not send behavioral advertising to child users.</p>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="section-block reveal" id="s15">
+    <div class="section-num">Section 15</div>
+    <div class="section-title">Data Retention</div>
+    <div class="section-body">
+      <p>We keep personal information only as long as necessary for the purposes described in this Privacy Policy, unless a longer period is required by law.</p>
+      <table class="ret-table">
+        <thead>
+          <tr><th>Data Type</th><th>Retention Period</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Account information</td><td>While the account is active and for a reasonable period after deletion or inactivity</td></tr>
+          <tr><td>Student learning profile</td><td>While the account is active or as required by school/parent settings</td></tr>
+          <tr><td>Quiz and practice history</td><td>While needed for progress tracking or until deletion is requested</td></tr>
+          <tr><td>Uploaded math photos, worksheets, or PDFs</td><td>Deleted, anonymized, or retained according to user settings and service needs</td></tr>
+          <tr><td>AI chat history</td><td>Retained while needed for learning history, safety, or support, unless deleted</td></tr>
+          <tr><td>Consent records</td><td>Retained as long as needed to show valid consent and comply with law</td></tr>
+          <tr><td>Payment and transaction records</td><td>Retained as required for tax, accounting, fraud prevention, and legal obligations</td></tr>
+          <tr><td>Support messages</td><td>Retained as needed to resolve issues and maintain records</td></tr>
+          <tr><td>Security logs</td><td>Retained as needed for security, fraud prevention, and legal compliance</td></tr>
+          <tr><td>Marketing preferences</td><td>Retained until you unsubscribe or request deletion</td></tr>
+        </tbody>
+      </table>
+      <p>You may request deletion of your account or personal information by contacting <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>.</p>
+    </div>
+  </div>
+
+  <!-- 16 -->
+  <div class="section-block reveal" id="s16">
+    <div class="section-num">Section 16</div>
+    <div class="section-title">Security</div>
+    <div class="section-body">
+      <p>We use reasonable technical, administrative, and organizational measures to protect personal information, including encryption in transit, access controls, password protection, secure cloud infrastructure, account authentication, role-based access, monitoring for suspicious activity, and data minimization.</p>
+      <p>No online service is completely secure. Users should protect their login credentials and avoid sharing passwords. If you believe your account has been compromised, contact us immediately at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>.</p>
+    </div>
+  </div>
+
+  <!-- 17 -->
+  <div class="section-block reveal" id="s17">
+    <div class="section-num">Section 17</div>
+    <div class="section-title">International Data Transfers</div>
+    <div class="section-body">
+      <p>MathMate may process and store personal information in countries other than your country of residence because our service providers, cloud hosting, AI providers, OCR providers, analytics, or support systems may operate internationally.</p>
+      <p>Where required by law, we use appropriate safeguards such as contractual data protection commitments, standard contractual clauses, data processing agreements, transfer impact assessments, encryption and access controls, and other legally approved transfer mechanisms.</p>
+    </div>
+  </div>
+
+  <!-- 18 -->
+  <div class="section-block reveal" id="s18">
+    <div class="section-num">Section 18</div>
+    <div class="section-title">Your Privacy Rights</div>
+    <div class="section-body">
+      <p>Depending on your country, state, or region, you may have rights over your personal information, including:</p>
+      <ul>
+        <li>Right to access personal information</li>
+        <li>Right to request a copy of personal information</li>
+        <li>Right to correct inaccurate information</li>
+        <li>Right to delete personal information</li>
+        <li>Right to restrict or object to processing</li>
+        <li>Right to withdraw consent</li>
+        <li>Right to data portability</li>
+        <li>Right to opt out of marketing</li>
+        <li>Right to opt out of sale or sharing (where applicable)</li>
+        <li>Right to complain to a privacy authority</li>
+        <li>Right not to be discriminated against for exercising privacy rights</li>
+      </ul>
+      <p>To exercise your rights, contact us at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>. We may need to verify your identity before processing your request.</p>
+    </div>
+  </div>
+
+  <!-- 19 -->
+  <div class="section-block reveal" id="s19">
+    <div class="section-num">Section 19</div>
+    <div class="section-title">Rights for Users in Europe and the United Kingdom</div>
+    <div class="section-body">
+      <p>If you are located in the European Economic Area, Switzerland, or the United Kingdom, you may exercise the following rights: access, correct, delete, or restrict your personal data; object to processing based on legitimate interests; object to direct marketing; receive your data in a portable format; withdraw consent at any time; and lodge a complaint with your local data protection authority.</p>
+      <ul>
+        <li>EU Representative: [Insert if applicable]</li>
+        <li>UK Representative: [Insert if applicable]</li>
+        <li>Data Protection Officer / Privacy Lead: [Insert if applicable]</li>
+        <li>Contact: <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 20 -->
+  <div class="section-block reveal" id="s20">
+    <div class="section-num">Section 20</div>
+    <div class="section-title">Rights for Users in the United States</div>
+    <div class="section-body">
+      <p>Depending on your state, you may have specific privacy rights, including the right to know, access, delete, correct, and receive a portable copy of personal information, opt out of sale or sharing, opt out of targeted advertising, limit use of sensitive personal information, appeal a denied privacy request, and not be discriminated against.</p>
+      <div class="subsection">
+        <div class="subsection-title">20.1 California Privacy Notice</div>
+        <p>In the last 12 months, we may have collected identifiers, customer records, commercial information, internet or network activity, approximate geolocation (country/region from IP), education-related information, inferences, and sensitive personal information (login credentials or child/student information only where necessary). We do not sell personal information. We do not knowingly sell or share personal information of children. California residents may contact us at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">20.2–20.3 Global Privacy Control &amp; Children Under 13</div>
+        <p>Where required by law, we honor valid browser-based opt-out preference signals such as Global Privacy Control. Where US children's privacy law applies, MathMate requires verifiable parental consent before collecting personal information from children under 13.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 21 -->
+  <div class="section-block reveal" id="s21">
+    <div class="section-num">Section 21</div>
+    <div class="section-title">Rights for Users in the Middle East</div>
+    <div class="section-body">
+      <p>If you are located in the Middle East — including Saudi Arabia, the United Arab Emirates, Qatar, Bahrain, Oman, Kuwait, or other jurisdictions with personal data protection laws — you may have rights including access, correction, deletion, restriction, data portability, withdrawal of consent, and the right to complain to a local data protection authority.</p>
+      <p>Where local law requires specific consent for children, marketing, sensitive information, or international transfers, MathMate will seek such consent or use another legally permitted basis. Contact us at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>.</p>
+    </div>
+  </div>
+
+  <!-- 22 -->
+  <div class="section-block reveal" id="s22">
+    <div class="section-num">Section 22</div>
+    <div class="section-title">Sensitive Personal Information</div>
+    <div class="section-body">
+      <p>MathMate does not intentionally collect sensitive personal information unless necessary to provide the service, secure accounts, process payments, or comply with law. Sensitive information we may handle includes login credentials, children's personal information, student learning data, uploaded content that accidentally contains sensitive information, and payment-related metadata.</p>
+      <p>We use sensitive personal information only for permitted purposes and do not use it to infer unrelated characteristics about students.</p>
+    </div>
+  </div>
+
+  <!-- 23 -->
+  <div class="section-block reveal" id="s23">
+    <div class="section-num">Section 23</div>
+    <div class="section-title">Data Accuracy</div>
+    <div class="section-body">
+      <p>We try to keep personal information accurate and up to date. You may update certain account information through your account settings. Parents, guardians, teachers, schools, or users may contact us to correct inaccurate information at <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>.</p>
+    </div>
+  </div>
+
+  <!-- 24 -->
+  <div class="section-block reveal" id="s24">
+    <div class="section-num">Section 24</div>
+    <div class="section-title">Account Deletion</div>
+    <div class="section-body">
+      <p>You may request deletion of your MathMate account by using account settings (where available), contacting support, or sending a privacy request to <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a>.</p>
+      <p>When an account is deleted, we will delete or anonymize personal information unless we need to retain certain information for legal, security, fraud prevention, dispute resolution, school compliance, tax, or accounting purposes.</p>
+      <p>Deleting an account may remove access to saved problems, progress history, learning roadmaps, subscriptions, quiz history, and personalized recommendations.</p>
+    </div>
+  </div>
+
+  <!-- 25 -->
+  <div class="section-block reveal" id="s25">
+    <div class="section-num">Section 25</div>
+    <div class="section-title">Third-Party Links and Services</div>
+    <div class="section-body">
+      <p>MathMate may contain links to third-party websites, educational resources, app stores, payment providers, or other services. We are not responsible for the privacy practices of third-party services. Before using third-party services, review their privacy policies.</p>
+    </div>
+  </div>
+
+  <!-- 26 -->
+  <div class="section-block reveal" id="s26">
+    <div class="section-num">Section 26</div>
+    <div class="section-title">App Stores and Device Permissions</div>
+    <div class="section-body">
+      <p>If you download MathMate from an app store, the app store may collect information according to its own privacy policy. MathMate may request device permissions such as:</p>
+      <ul>
+        <li>Camera access to capture math problems</li>
+        <li>Photo or file access to upload worksheets, screenshots, or PDFs</li>
+        <li>Notifications to send learning reminders or account updates</li>
+        <li>Microphone access if voice features are offered and enabled</li>
+        <li>Storage access where needed to upload or save content</li>
+      </ul>
+      <p>You can manage permissions through your device settings. Some features may not work if required permissions are disabled.</p>
+    </div>
+  </div>
+
+  <!-- 27 -->
+  <div class="section-block reveal" id="s27">
+    <div class="section-num">Section 27</div>
+    <div class="section-title">Push Notifications</div>
+    <div class="section-body">
+      <p>If you enable notifications, we may send learning reminders, quiz reminders, progress updates, account messages, subscription updates, and important service alerts. You can disable push notifications through your device settings at any time.</p>
+    </div>
+  </div>
+
+  <!-- 28 -->
+  <div class="section-block reveal" id="s28">
+    <div class="section-num">Section 28</div>
+    <div class="section-title">De-Identified and Aggregated Information</div>
+    <div class="section-body">
+      <p>We may create de-identified, anonymized, or aggregated information from personal information. This information does not identify you directly. We may use it to improve MathMate, understand learning patterns, improve math explanations, improve quizzes, build better curriculum support, analyze product performance, conduct educational research, and report general usage trends.</p>
+      <p>We will not attempt to re-identify de-identified information except where permitted or required by law.</p>
+    </div>
+  </div>
+
+  <!-- 29 -->
+  <div class="section-block reveal" id="s29">
+    <div class="section-num">Section 29</div>
+    <div class="section-title">Data Breach and Security Incident Notices</div>
+    <div class="section-body">
+      <p>If a data breach or security incident affects your personal information, we will take appropriate steps to investigate, contain, and address the incident. Where required by law, we will notify affected users, parents, schools, regulators, or authorities.</p>
+    </div>
+  </div>
+
+  <!-- 30 -->
+  <div class="section-block reveal" id="s30">
+    <div class="section-num">Section 30</div>
+    <div class="section-title">Changes to This Privacy Policy</div>
+    <div class="section-body">
+      <p>We may update this Privacy Policy from time to time. If we make material changes, we may notify you by posting the updated policy on our website, showing an in-app notice, sending an email, or notifying parents, schools, or account administrators where appropriate.</p>
+      <p>The updated Privacy Policy will show the latest "Last Updated" date. Continued use of MathMate after an update means you accept the updated Privacy Policy, where permitted by law. Where consent is required for a new use of personal information, we will request consent.</p>
+    </div>
+  </div>
+
+  <!-- 31 -->
+  <div class="section-block reveal" id="s31">
+    <div class="section-num">Section 31</div>
+    <div class="section-title">Contact Us</div>
+    <div class="section-body">
+      <p>For questions, privacy requests, parental requests, school requests, or complaints, contact:</p>
+      <ul>
+        <li><strong>MathMate Privacy Team</strong></li>
+        <li>[Insert Legal Company Name]</li>
+        <li>[Insert Registered Address], [Insert Country]</li>
+        <li>Email: <a href="mailto:privacy@mathmate.app">privacy@mathmate.app</a></li>
+        <li>Support: <a href="mailto:support@mathmate.app">support@mathmate.app</a></li>
+        <li>Website: mathmate.app</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 32 -->
+  <div class="section-block reveal" id="s32">
+    <div class="section-num">Section 32</div>
+    <div class="section-title">Summary of Our Core Privacy Commitments</div>
+    <div class="section-body">
+      <div class="commitment-grid">
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We collect only the information needed to provide and improve MathMate</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We use student information for learning, personalization, progress tracking, safety, and service improvement</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We do not sell personal information or children's personal information</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We do not use student personal information for third-party targeted advertising</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We require parent, guardian, school, or legally valid consent where required</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We allow users, parents, and schools to request access, correction, deletion, or restriction</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We protect personal information using reasonable security measures</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commit-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p>We aim to make privacy information clear and understandable</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end content-wrap -->
+
+<!-- CTA Band -->
+<div class="cta-band">
+  <h2>Have Privacy Questions?</h2>
+  <p>Contact our privacy team directly or explore the app for yourself.</p>
+  <div class="cta-btns">
+    <a href="mailto:privacy@mathmate.app" class="btn-primary">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Contact Privacy Team
+    </a>
+    <a href="index.html" class="btn-secondary">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to MathMate
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav class="footer-nav">
+      <a href="snap-and-solve.html">Snap &amp; Solve</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="step-by-step-solutions.html">Step-by-Step Solutions</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="save-to-gallery.html">Save to Gallery</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="quiz-mode.html">Quiz Mode</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="progress-tracking.html">Progress Tracking</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="streak-rewards.html">Streak Rewards</a>
+    </nav>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 MathMate. All rights reserved.</span>
+      <a href="#top" class="back-to-top">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 9V2M2 5.5l3.5-3.5 3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to top
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Ghost math symbols
+  const syms = ['∑','∫','π','∞','√','Δ','θ','λ','α','β','≈','∂','§','∴','⊕'];
+  const gh = document.getElementById('ghostMath');
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('span');
+    s.textContent = syms[i % syms.length];
+    s.style.cssText = `left:${Math.random()*95}%;top:${Math.random()*95}%;font-size:${14+Math.random()*22}px;opacity:${0.018+Math.random()*0.022};transform:rotate(${(Math.random()-.5)*40}deg)`;
+    gh.appendChild(s);
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => obs.observe(el));
+  setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2200);
+</script>
+</body>
+</html>
