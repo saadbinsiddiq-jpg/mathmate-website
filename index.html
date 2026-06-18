@@ -54,8 +54,8 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
 @media(max-width:480px){[data-usp-grid]{grid-template-columns:1fr!important}[data-usp-quiz]{grid-column:1 / span 1!important}[data-usp-h2]{font-size:28px!important}}
 @keyframes probQFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(3deg)}}
 @media(max-width:1100px){#problem{padding:90px 60px 100px!important}}
-@media(max-width:900px){#problem{padding:70px 20px 80px!important}[data-prob-grid]{grid-template-columns:1fr!important;gap:36px!important}[data-prob-char]{display:none!important}#problem h2[style*="left: 216px"]{font-size:32px!important;left:20px!important;right:20px!important;top:16px!important;max-width:calc(100% - 40px)!important;}[dir="rtl"] #problem h2[style*="left: 216px"]{left:20px!important;right:20px!important;}#problem [style*="left: 501px"]{display:none!important;}}
-@media(max-width:480px){#problem{padding:60px 16px 70px!important}#problem h2[style*="left: 216px"]{font-size:26px!important;left:16px!important;right:16px!important;max-width:calc(100% - 32px)!important;}}
+@media(max-width:900px){#problem{padding:70px 20px 80px!important}[data-prob-grid]{grid-template-columns:1fr!important;gap:36px!important}[data-prob-char]{display:none!important}[data-prob-h2]{font-size:32px!important;}}
+@media(max-width:480px){#problem{padding:60px 16px 70px!important}[data-prob-h2]{font-size:26px!important;}}
 @media(max-width:1200px){#process{padding:100px 160px 120px 40px!important}}
 @media(max-width:1100px){#process{padding:90px 80px 100px 40px!important}}
 @media(max-width:900px){#process{padding:70px 20px 80px!important}[data-proc-grid]{grid-template-columns:1fr 1fr!important;row-gap:24px!important}[data-proc-conn]{display:none!important}}
@@ -85,9 +85,7 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
 [dir="rtl"] #purpose,[dir="rtl"] #usp,[dir="rtl"] #process{padding-left:240px!important;padding-right:64px!important;}
 [dir="rtl"] [data-hero]{padding-left:132px!important;padding-right:64px!important;}
 
-/* Problem section: visually-edited badge + h2 absolute positions mirror */
-[dir="rtl"] #problem [style*="left: 501px"]{left:auto!important;right:420px!important;}
-[dir="rtl"] #problem h2[style*="left: 216px"]{left:auto!important;right:180px!important;}
+/* Problem section: heading is in normal flow; RTL flips text direction automatically */
 
 /* Problem pain-chain spine: flip to right side */
 [dir="rtl"] #problem [style*="left:19px;top:21px"]{left:auto!important;right:19px!important;}
@@ -345,10 +343,7 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
   </div>
 
   <!-- VIGNETTE: edge-only, leaves center open -->
-  <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 90% 78% at 46% 50%,transparent 28%,rgba(8,5,9,.18) 60%,rgba(8,5,9,.7) 100%);"><div style="display: inline-flex; align-items: center; gap: 9px; background: rgba(239,85,51,.1); border: 1px solid rgba(239,85,51,.28); border-radius: 9999px; padding: 7px 18px; margin-bottom: 22px; position: absolute; left: 501px; top: 43px">
-        <span style="width:6px;height:6px;border-radius:50%;background:#EF5533;flex-shrink:0;animation:dp 2s ease infinite;"></span>
-        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#EF5533;">{{ t.prob_badge }}</span>
-      </div><h2 style="font-size: 46px; font-weight: 900; letter-spacing: -.04em; line-height: 1.1; color: #fff; margin: 0; text-wrap: pretty; position: absolute; left: 216px; top: 90px; max-width: 600px;">{{ t.prob_h2_1 }} <span style="background:linear-gradient(95deg,#EF5533 20%,#F5A623 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">{{ t.prob_h2_answers }}</span><br>{{ t.prob_h2_2 }} <span style="color:rgba(255,255,255,.3);font-style:italic;">{{ t.prob_h2_guidance }}</span></h2></div>
+  <div style="position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 90% 78% at 46% 50%,transparent 28%,rgba(8,5,9,.18) 60%,rgba(8,5,9,.7) 100%);"></div>
 
   <!-- FILM GRAIN -->
   <svg style="position:absolute;inset:-12%;width:124%;height:124%;z-index:0;pointer-events:none;opacity:0.038;animation:noiseShift 10s ease-in-out infinite 3s;" xmlns="http://www.w3.org/2000/svg">
@@ -359,10 +354,13 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
   <!-- MAIN CONTENT -->
   <div style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;">
 
-    <!-- Section header -->
-    <div style="text-align:center;margin-bottom:64px;">
-      
-      
+    <!-- Section header: badge + heading in normal flow so long translations push cards down -->
+    <div style="margin-bottom:48px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;background:rgba(239,85,51,.1);border:1px solid rgba(239,85,51,.28);border-radius:9999px;padding:7px 18px;margin-bottom:18px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:#EF5533;flex-shrink:0;animation:dp 2s ease infinite;"></span>
+        <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#EF5533;">{{ t.prob_badge }}</span>
+      </div>
+      <h2 data-prob-h2="" style="font-size:46px;font-weight:900;letter-spacing:-.04em;line-height:1.1;color:#fff;margin:0;text-wrap:pretty;max-width:600px;">{{ t.prob_h2_1 }} <span style="background:linear-gradient(95deg,#EF5533 20%,#F5A623 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">{{ t.prob_h2_answers }}</span><br>{{ t.prob_h2_2 }} <span style="color:rgba(255,255,255,.3);font-style:italic;">{{ t.prob_h2_guidance }}</span></h2>
     </div>
 
     <!-- 2-column grid -->
