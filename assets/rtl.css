@@ -1,0 +1,87 @@
+/* ================================================================
+   MathMate — RTL & Language Overflow Fix
+   Loaded by every footer-linked page.
+   Fixes Arabic (RTL layout) and French/Arabic header overflow.
+   ================================================================ */
+
+/* 1 ── Cairo font for Arabic */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+/* 2 ── Arabic font applied everywhere */
+[dir="rtl"] * {
+  font-family: 'Cairo', 'Inter', sans-serif !important;
+}
+/* Keep monospace font for step numbers, math symbols, code */
+[dir="rtl"] .step-num,
+[dir="rtl"] .bg-pi,
+[dir="rtl"] code,
+[dir="rtl"] pre,
+[dir="rtl"] [style*="JetBrains"],
+[dir="rtl"] [style*="monospace"] {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* 3 ── Flip directional arrows for RTL */
+/* Back-button ← arrow and breadcrumb › chevron both point wrong way in RTL */
+[dir="rtl"] .back-btn svg {
+  transform: scaleX(-1);
+}
+[dir="rtl"] .header-center > svg {
+  transform: scaleX(-1);
+}
+
+/* 4 ── Hero h1 slide-in: LTR slides from left, RTL must slide from right */
+[dir="rtl"] .hero h1 {
+  animation-name: slideRight !important;
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(38px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* 5 ── Steps connector line: shift from left edge to right edge */
+/* .steps-grid::before has left:27px which is the step-num centre in LTR */
+[dir="rtl"] .steps-grid::before {
+  left: auto !important;
+  right: 27px !important;
+}
+
+/* 6 ── Directional hover slides — flip toward reading end in RTL */
+[dir="rtl"] .step-body:hover  { transform: translateX(-6px) !important; }
+[dir="rtl"] .tl-body:hover    { transform: translateX(-6px) !important; }
+[dir="rtl"] .role-card:hover  { transform: translateX(-6px) !important; }
+
+/* 7 ── Language dropdown: open toward reading start in RTL */
+/* (lang.js also sets this dynamically; CSS fallback for load flash) */
+[dir="rtl"] #mm-lang-drop {
+  right: auto !important;
+  left: 0 !important;
+}
+
+/* 8 ── Footer links: dots between items flow correctly in RTL flex row */
+/* Browsers reverse row-direction automatically for dir=rtl; no change needed.
+   Separator dots remain visible because they are non-text elements. */
+
+/* ================================================================
+   HEADER OVERFLOW — French + Arabic long button text
+   At mid-range viewports the header-right (lang switcher + back-btn
+   + CTA) becomes wider than English and squeezes / overlaps the
+   centre breadcrumb nav.
+   Fix: hide .back-btn at the same breakpoint where .header-center
+   is already hidden (≤768 px); logo still provides home navigation.
+   At very small screens further shrink the CTA button.
+   ================================================================ */
+
+/* Hide back-btn when breadcrumb is already gone — saves ≈160 px */
+@media (max-width: 860px) {
+  .back-btn { display: none !important; }
+}
+
+/* Compact CTA on very small screens */
+@media (max-width: 500px) {
+  .header-cta {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    gap: 5px !important;
+  }
+}
