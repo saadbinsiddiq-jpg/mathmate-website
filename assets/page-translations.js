@@ -2967,4 +2967,278 @@
     "tutorials_p76": "قم بتنزيل MathMate وجرب كل ما تعلمته للتو — مجانًا."
 }
   });
+
+  /* ── Button / badge translations added for full i18n coverage ── */
+  extend({
+    en: {
+      /* Snap & Solve */
+      snap_cta1: "See How It Works",
+      snap_cta2: "Snap a Problem",
+      /* Step-by-Step Solutions */
+      steps_cta1: "See What MathMate Explains",
+      steps_cta2: "Understand the Steps",
+      /* Save to Gallery */
+      gallery_cta1: "See What You Can Save",
+      gallery_cta2: "Save to Gallery",
+      /* Quiz Mode */
+      quiz_cta1: "See What Quiz Mode Covers",
+      quiz_cta2: "Start Practice",
+      /* Progress Tracking */
+      progress_badge1: "What Progress Tracking Can Show",
+      progress_cta1: "See What It Tracks",
+      progress_cta2: "Track Progress",
+      /* Streak Rewards */
+      streaks_badge1: "What Builds a Streak",
+      streaks_cta0: "Get Premium",
+      streaks_cta1: "See What Builds a Streak",
+      streaks_cta2: "Build Your Streak",
+      /* How It Works */
+      how_badge: "The MathMate Learning Loop",
+      how_step1: "Diagnose",
+      how_step2: "Learn",
+      how_step3: "Practice",
+      how_step4: "Progress",
+      how_badge2: "Repeatable Loop",
+      how_cta2: "Read the FAQ",
+      /* Math Topics */
+      topics_badge: "Complete Coverage",
+      topics_cta_badge: "All Topics, One App",
+      topics_cta2: "Try Practice Problems",
+      /* Practice Problems */
+      practice_badge: "Practise & Improve",
+      /* Tutorials */
+      tutorials_badge: "Get Started Fast",
+      /* Press Kit */
+      press_badge: "Media Resources",
+      /* About */
+      about_badge: "Our Story",
+      about_cta1: "Read Our Story",
+      about_cta2: "Join Our Team",
+      /* Careers */
+      careers_badge: "We're Hiring",
+      careers_cta1: "See Open Roles",
+      careers_cta2: "Life at MathMate",
+      careers_cta3: "Send a Speculative Application",
+      careers_cta4: "Get in Touch",
+      /* Contact */
+      contact_badge: "We're Here to Help",
+      /* FAQ */
+      faq_badge: "Everything You Need to Know",
+      faq_g1: "What Is MathMate",
+      faq_g3: "Personalised Learning",
+      faq_g4: "Quizzes & Concepts",
+      faq_g5: "Homework & Exams",
+      faq_g6: "Who It's For",
+      faq_q1: "What is MathMate?",
+      faq_q2: "Is MathMate just an AI math solver?",
+      faq_q3: "How is MathMate different from other math apps?",
+      faq_q4: "Is MathMate an AI math tutor?",
+      faq_q5: "What is the main goal of MathMate?",
+      faq_q6: "How does MathMate help students understand math?",
+      faq_q7: "Can MathMate explain step-by-step solutions?",
+      faq_q8: "Does MathMate only give the final answer?",
+      faq_q9: "What happens if a student is stuck on one step?",
+      faq_q10: "Can students ask questions inside MathMate?",
+      faq_q11: "How does MathMate make math easier?",
+      faq_q12: "Does MathMate create a personalised learning roadmap?",
+      faq_q13: "How does MathMate identify weak areas?",
+      faq_q14: "Can MathMate track a student's progress?",
+      faq_q15: "Does MathMate recommend what to learn next?",
+      faq_q16: "Does MathMate include quizzes?",
+      faq_q17: "Are MathMate quizzes personalised?",
+      faq_q18: "What is concept-based learning in MathMate?",
+      faq_q19: "Why does MathMate teach one concept at a time?",
+      faq_q20: "Does MathMate follow a curriculum-based approach?",
+      faq_q21: "What kind of math topics can students learn on MathMate?",
+      faq_q22: "Can MathMate help with math homework?",
+      faq_q23: "Can MathMate help students prepare for exams?",
+      faq_q24: "Why is MathMate better than getting only the final answer?",
+      faq_q25: "Who is MathMate for?",
+      faq_q26: "Is MathMate useful for parents?",
+      faq_q27: "Does MathMate replace a teacher or tutor?",
+      faq_q28: "Does MathMate support different languages?",
+      faq_q29: "Why should students choose MathMate?",
+      faq_q30: "Why should parents choose MathMate for their child?"
+    },
+    fr: {
+      /* Snap & Solve */
+      snap_cta1: "Voir Comment ça Marche",
+      snap_cta2: "Photographier un Problème",
+      /* Step-by-Step Solutions */
+      steps_cta1: "Voir Ce que MathMate Explique",
+      steps_cta2: "Comprendre les Étapes",
+      /* Save to Gallery */
+      gallery_cta1: "Voir Ce que Vous Pouvez Enregistrer",
+      gallery_cta2: "Enregistrer dans la Galerie",
+      /* Quiz Mode */
+      quiz_cta1: "Voir Ce que Couvre le Mode Quiz",
+      quiz_cta2: "Commencer la Pratique",
+      /* Progress Tracking */
+      progress_badge1: "Ce que le Suivi des Progrès Peut Montrer",
+      progress_cta1: "Voir Ce qu'Il Suit",
+      progress_cta2: "Suivre les Progrès",
+      /* Streak Rewards */
+      streaks_badge1: "Ce qui Construit une Série",
+      streaks_cta0: "Obtenir Premium",
+      streaks_cta1: "Voir Ce qui Construit une Série",
+      streaks_cta2: "Construire votre Série",
+      /* How It Works */
+      how_badge: "La Boucle d'Apprentissage MathMate",
+      how_step1: "Diagnostiquer",
+      how_step2: "Apprendre",
+      how_step3: "Pratiquer",
+      how_step4: "Progresser",
+      how_badge2: "Boucle Répétable",
+      how_cta2: "Lire la FAQ",
+      /* Math Topics */
+      topics_badge: "Couverture Complète",
+      topics_cta_badge: "Tous les Sujets, Une Seule App",
+      topics_cta2: "Essayer les Problèmes de Pratique",
+      /* Practice Problems */
+      practice_badge: "Pratiquer et Progresser",
+      /* Tutorials */
+      tutorials_badge: "Démarrer Rapidement",
+      /* Press Kit */
+      press_badge: "Ressources Médias",
+      /* About */
+      about_badge: "Notre Histoire",
+      about_cta1: "Lire Notre Histoire",
+      about_cta2: "Rejoindre Notre Équipe",
+      /* Careers */
+      careers_badge: "On Recrute",
+      careers_cta1: "Voir les Postes Ouverts",
+      careers_cta2: "La Vie chez MathMate",
+      careers_cta3: "Envoyer une Candidature Spontanée",
+      careers_cta4: "Nous Contacter",
+      /* Contact */
+      contact_badge: "Nous Sommes Là pour Vous Aider",
+      /* FAQ */
+      faq_badge: "Tout Ce que Vous Devez Savoir",
+      faq_g1: "Qu'est-ce que MathMate",
+      faq_g3: "Apprentissage Personnalisé",
+      faq_g4: "Quiz et Concepts",
+      faq_g5: "Devoirs et Examens",
+      faq_g6: "Pour Qui C'est",
+      faq_q1: "Qu'est-ce que MathMate ?",
+      faq_q2: "MathMate est-il juste un solveur de maths IA ?",
+      faq_q3: "En quoi MathMate est-il différent des autres applications de maths ?",
+      faq_q4: "MathMate est-il un tuteur de maths IA ?",
+      faq_q5: "Quel est l'objectif principal de MathMate ?",
+      faq_q6: "Comment MathMate aide-t-il les élèves à comprendre les maths ?",
+      faq_q7: "MathMate peut-il expliquer des solutions étape par étape ?",
+      faq_q8: "MathMate donne-t-il uniquement la réponse finale ?",
+      faq_q9: "Que se passe-t-il si un élève est bloqué sur une étape ?",
+      faq_q10: "Les élèves peuvent-ils poser des questions dans MathMate ?",
+      faq_q11: "Comment MathMate rend-il les maths plus faciles ?",
+      faq_q12: "MathMate crée-t-il une feuille de route d'apprentissage personnalisée ?",
+      faq_q13: "Comment MathMate identifie-t-il les points faibles ?",
+      faq_q14: "MathMate peut-il suivre les progrès d'un élève ?",
+      faq_q15: "MathMate recommande-t-il ce qu'il faut apprendre ensuite ?",
+      faq_q16: "MathMate comprend-il des quiz ?",
+      faq_q17: "Les quiz MathMate sont-ils personnalisés ?",
+      faq_q18: "Qu'est-ce que l'apprentissage basé sur les concepts dans MathMate ?",
+      faq_q19: "Pourquoi MathMate enseigne-t-il un concept à la fois ?",
+      faq_q20: "MathMate suit-il une approche basée sur le programme scolaire ?",
+      faq_q21: "Quels types de sujets mathématiques les élèves peuvent-ils apprendre sur MathMate ?",
+      faq_q22: "MathMate peut-il aider avec les devoirs de maths ?",
+      faq_q23: "MathMate peut-il aider les élèves à se préparer aux examens ?",
+      faq_q24: "Pourquoi MathMate est-il meilleur que d'obtenir uniquement la réponse finale ?",
+      faq_q25: "Pour qui est MathMate ?",
+      faq_q26: "MathMate est-il utile pour les parents ?",
+      faq_q27: "MathMate remplace-t-il un enseignant ou un tuteur ?",
+      faq_q28: "MathMate prend-il en charge différentes langues ?",
+      faq_q29: "Pourquoi les élèves devraient-ils choisir MathMate ?",
+      faq_q30: "Pourquoi les parents devraient-ils choisir MathMate pour leur enfant ?"
+    },
+    ar: {
+      /* Snap & Solve */
+      snap_cta1: "شاهد كيف يعمل",
+      snap_cta2: "صوِّر مسألة",
+      /* Step-by-Step Solutions */
+      steps_cta1: "شاهد ما يشرحه ماث ميت",
+      steps_cta2: "افهم الخطوات",
+      /* Save to Gallery */
+      gallery_cta1: "شاهد ما يمكنك حفظه",
+      gallery_cta2: "حفظ في المعرض",
+      /* Quiz Mode */
+      quiz_cta1: "شاهد ما يغطيه وضع الاختبار",
+      quiz_cta2: "ابدأ التدريب",
+      /* Progress Tracking */
+      progress_badge1: "ما يمكن لتتبع التقدم إظهاره",
+      progress_cta1: "شاهد ما يتتبعه",
+      progress_cta2: "تتبع التقدم",
+      /* Streak Rewards */
+      streaks_badge1: "ما يبني الإنجاز",
+      streaks_cta0: "احصل على بريميوم",
+      streaks_cta1: "شاهد ما يبني الإنجاز",
+      streaks_cta2: "ابنِ إنجازك",
+      /* How It Works */
+      how_badge: "حلقة تعلم ماث ميت",
+      how_step1: "تشخيص",
+      how_step2: "تعلم",
+      how_step3: "تدرّب",
+      how_step4: "تقدَّم",
+      how_badge2: "دورة متكررة",
+      how_cta2: "اقرأ الأسئلة الشائعة",
+      /* Math Topics */
+      topics_badge: "تغطية شاملة",
+      topics_cta_badge: "جميع المواضيع في تطبيق واحد",
+      topics_cta2: "جرّب مسائل التدريب",
+      /* Practice Problems */
+      practice_badge: "تدرّب وتحسّن",
+      /* Tutorials */
+      tutorials_badge: "ابدأ بسرعة",
+      /* Press Kit */
+      press_badge: "موارد الإعلام",
+      /* About */
+      about_badge: "قصتنا",
+      about_cta1: "اقرأ قصتنا",
+      about_cta2: "انضم إلى فريقنا",
+      /* Careers */
+      careers_badge: "نحن نوظف",
+      careers_cta1: "شاهد الوظائف المتاحة",
+      careers_cta2: "الحياة في ماث ميت",
+      careers_cta3: "أرسل طلباً عفوياً",
+      careers_cta4: "تواصل معنا",
+      /* Contact */
+      contact_badge: "نحن هنا لمساعدتك",
+      /* FAQ */
+      faq_badge: "كل ما تحتاج معرفته",
+      faq_g1: "ما هو ماث ميت",
+      faq_g3: "التعلم الشخصي",
+      faq_g4: "الاختبارات والمفاهيم",
+      faq_g5: "الواجبات والامتحانات",
+      faq_g6: "لمن هذا",
+      faq_q1: "ما هو ماث ميت؟",
+      faq_q2: "هل ماث ميت مجرد حلّال مسائل رياضيات بالذكاء الاصطناعي؟",
+      faq_q3: "كيف يختلف ماث ميت عن تطبيقات الرياضيات الأخرى؟",
+      faq_q4: "هل ماث ميت مدرّس رياضيات ذكاء اصطناعي؟",
+      faq_q5: "ما الهدف الرئيسي من ماث ميت؟",
+      faq_q6: "كيف يساعد ماث ميت الطلاب على فهم الرياضيات؟",
+      faq_q7: "هل يمكن لماث ميت شرح الحلول خطوة بخطوة؟",
+      faq_q8: "هل يعطي ماث ميت الإجابة النهائية فقط؟",
+      faq_q9: "ماذا يحدث إذا توقف الطالب عند خطوة واحدة؟",
+      faq_q10: "هل يمكن للطلاب طرح أسئلة داخل ماث ميت؟",
+      faq_q11: "كيف يجعل ماث ميت الرياضيات أسهل؟",
+      faq_q12: "هل يُنشئ ماث ميت خارطة تعلم شخصية؟",
+      faq_q13: "كيف يحدد ماث ميت نقاط الضعف؟",
+      faq_q14: "هل يمكن لماث ميت تتبع تقدم الطالب؟",
+      faq_q15: "هل يوصي ماث ميت بما يجب تعلمه بعد ذلك؟",
+      faq_q16: "هل يتضمن ماث ميت اختبارات؟",
+      faq_q17: "هل اختبارات ماث ميت مخصصة؟",
+      faq_q18: "ما التعلم القائم على المفاهيم في ماث ميت؟",
+      faq_q19: "لماذا يُعلّم ماث ميت مفهوماً واحداً في كل مرة؟",
+      faq_q20: "هل يتبع ماث ميت نهجاً قائماً على المنهج الدراسي؟",
+      faq_q21: "ما أنواع مواضيع الرياضيات التي يمكن للطلاب تعلمها على ماث ميت؟",
+      faq_q22: "هل يمكن لماث ميت المساعدة في الواجبات الرياضية؟",
+      faq_q23: "هل يمكن لماث ميت مساعدة الطلاب في التحضير للامتحانات؟",
+      faq_q24: "لماذا ماث ميت أفضل من مجرد الحصول على الإجابة النهائية؟",
+      faq_q25: "لمن ماث ميت؟",
+      faq_q26: "هل ماث ميت مفيد للوالدين؟",
+      faq_q27: "هل يحل ماث ميت محل المعلم أو المدرّس الخاص؟",
+      faq_q28: "هل يدعم ماث ميت لغات مختلفة؟",
+      faq_q29: "لماذا يجب على الطلاب اختيار ماث ميت؟",
+      faq_q30: "لماذا يجب على الوالدين اختيار ماث ميت لأطفالهم؟"
+    }
+  });
 })();
