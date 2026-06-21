@@ -93,6 +93,35 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
 /* Responsive RTL padding resets */
 @media(max-width:1200px){[dir="rtl"] #purpose{padding-left:150px!important;padding-right:40px!important;}[dir="rtl"] #usp,[dir="rtl"] #process{padding-left:160px!important;padding-right:40px!important;}}
 @media(max-width:900px){[dir="rtl"] #purpose,[dir="rtl"] #usp,[dir="rtl"] #process,[dir="rtl"] [data-hero]{padding-left:20px!important;padding-right:20px!important;}[dir="rtl"] [data-rail]{display:none!important;}}
+
+/* ════════════════════ MOBILE FIXES ════════════════════ */
+
+/* ── Hero: character image was 520 px tall inside a 300 px container,
+   bleeding 220 px above the viewport / into the fixed header.
+   Clip the stage and size the image to fit. ── */
+@media(max-width:900px){
+  [data-stage]{overflow:hidden!important;}
+  [data-stage]>img{height:260px!important;width:auto!important;}
+  [data-stats]{gap:16px!important;}
+}
+@media(max-width:480px){
+  [data-stage]>img{height:210px!important;}
+}
+
+/* ── Purpose & Process h2 had no mobile breakpoint (stuck at 54 px) ── */
+@media(max-width:900px){
+  #purpose h2{font-size:36px!important;letter-spacing:-.03em!important;}
+  #process h2{font-size:36px!important;letter-spacing:-.03em!important;}
+}
+@media(max-width:480px){
+  #purpose h2{font-size:28px!important;}
+  #process h2{font-size:28px!important;}
+  /* Footer: collapse to 1-column on very small phones */
+  [data-ft-grid]{grid-template-columns:1fr!important;}
+  [data-ft-brand]{grid-column:1!important;}
+  /* Footer bottom bar: let the link group wrap */
+  [data-ft-bottom]>div:last-child{flex-wrap:wrap!important;gap:10px!important;}
+}
 </style>
 </helmet>
 
