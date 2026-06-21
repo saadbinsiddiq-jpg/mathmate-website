@@ -156,34 +156,39 @@ body{background:#070D1F;font-family:'Inter',-apple-system,sans-serif;overflow-x:
   }
 }
 
-/* ── USP bento cards: 300px tall → 180px, 44px badge → 34px,
-   23px title → 16px, quiz banner 160px → 110px ── */
+/* ── USP bento cards: the bottom content is position:absolute, so a fixed
+   height clips wrapped text. On mobile we let the cards FLOW (auto height,
+   content in normal flow) — text + icon always fit, card hugs its content. ── */
 @media(max-width:900px){
-  /* Feature tiles */
-  [data-usp-grid]>div:not([data-usp-char]):not([data-usp-quiz]){height:180px!important;}
-  /* Quiz full-width banner */
-  [data-usp-quiz]{height:110px!important;}
-  /* Icon badge: reposition + shrink */
+  /* Feature tiles → auto height */
+  [data-usp-grid]>div:not([data-usp-char]):not([data-usp-quiz]){height:auto!important;min-height:0!important;}
+  /* Icon badge: shrink + reposition to corner */
   [data-usp-grid] [style*="top:22px;left:24px"]{
     top:14px!important;left:14px!important;
     width:34px!important;height:34px!important;border-radius:9px!important;
   }
-  /* Icon SVG inside badge */
-  [data-usp-grid] [style*="top:22px;left:24px"] svg,
-  [data-usp-grid] [style*="top:14px;left:14px"] svg{width:17px!important;height:17px!important;}
-  /* Bottom content area */
-  [data-usp-grid] [style*="bottom:0;left:0;right:0"]{padding:12px 14px!important;}
-  [data-usp-grid] [style*="bottom:0;left:0;right:0"]>div{font-size:15px!important;margin-bottom:4px!important;}
-  [data-usp-grid] [style*="bottom:0;left:0;right:0"]>p{font-size:12.5px!important;line-height:1.5!important;}
-  /* Quiz card inner row */
-  [data-usp-quiz] [style*="inset:0;padding:0 36px"]{padding:0 16px!important;gap:12px!important;}
-  [data-usp-quiz] [style*="width:52px;height:52px"]{
-    width:36px!important;height:36px!important;border-radius:10px!important;
+  [data-usp-grid] [style*="top:22px;left:24px"] svg{width:17px!important;height:17px!important;}
+  /* Bottom content → into normal flow, padded to clear the icon badge */
+  [data-usp-grid] [style*="bottom:0;left:0;right:0"]{
+    position:relative!important;padding:60px 16px 18px!important;
   }
+  [data-usp-grid] [style*="bottom:0;left:0;right:0"]>div{font-size:17px!important;margin-bottom:5px!important;}
+  [data-usp-grid] [style*="bottom:0;left:0;right:0"]>p{font-size:13px!important;line-height:1.55!important;}
+  /* Quiz banner → auto height, inner row into flow */
+  [data-usp-quiz]{height:auto!important;}
+  [data-usp-quiz] [style*="inset:0;padding:0 36px"]{
+    position:relative!important;padding:18px 16px!important;gap:14px!important;
+  }
+  [data-usp-quiz] [style*="width:52px;height:52px"]{
+    width:38px!important;height:38px!important;border-radius:10px!important;
+  }
+  [data-usp-quiz] [style*="width:52px;height:52px"] svg{width:19px!important;height:19px!important;}
+  [data-usp-quiz] [style*="font-size:23px"]{font-size:17px!important;}
+  [data-usp-quiz] p{font-size:13px!important;}
   /* USP section header */
   #usp [style*="margin-bottom:68px"]{margin-bottom:28px!important;}
   /* USP bento grid gap */
-  [data-usp-grid]{gap:12px!important;}
+  [data-usp-grid]{gap:14px!important;}
 }
 
 /* ── Process step cards: min-height:320px → auto,
