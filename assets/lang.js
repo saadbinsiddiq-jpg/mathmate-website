@@ -5,7 +5,7 @@
 
   var T = {
     en: {
-      back_mm: 'Back to MathMate',
+      back_mm: 'Back to iMathMate',
       back_blog: 'Back to Blog',
       get_app: 'Get the App',
       nav_home: 'Home',
@@ -47,7 +47,7 @@
       ft_topics: 'Math Topics',
       ft_practice: 'Practice Problems',
       ft_tutorials: 'Tutorials',
-      copyright: '© 2026 MathMate. All rights reserved.',
+      copyright: '© 2026 iMathMate. All rights reserved.',
       back_top: 'Back to top',
       lbl_free_start: 'Free to Get Started',
       lbl_free_to_start: 'Free to Start',
@@ -61,7 +61,7 @@
       lbl_contact_us: 'Contact Us',
     },
     fr: {
-      back_mm: 'Retour à MathMate',
+      back_mm: 'Retour à iMathMate',
       back_blog: 'Retour au Blog',
       get_app: "Télécharger l'App",
       nav_home: 'Accueil',
@@ -103,7 +103,7 @@
       ft_topics: 'Sujets Mathématiques',
       ft_practice: 'Problèmes de Pratique',
       ft_tutorials: 'Tutoriels',
-      copyright: '© 2026 MathMate. Tous droits réservés.',
+      copyright: '© 2026 iMathMate. Tous droits réservés.',
       back_top: 'Retour en haut',
       lbl_free_start: 'Gratuit pour Commencer',
       lbl_free_to_start: 'Gratuit pour Commencer',
