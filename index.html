@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<!-- ── ANIMATION LAYER (additive) — to revert, remove these 2 lines; see ANIMATIONS-README.md ── -->
+<link rel="stylesheet" href="./animations.css">
+<script defer src="./animations.js"></script>
 </head>
 <body>
 <x-dc>
@@ -1608,15 +1611,28 @@ class Component extends DCLogic {
       });
     }, 1500);
 
-    // State fallback: force-activate all sections after 2.5s if observers haven't fired
+    // State fallback: after 2.5s force-activate only sections already in view.
+    // (Previously this activated ALL sections, which silently completed every
+    // scroll entrance before the user reached it — the page looked static.)
     this._stateReveal = setTimeout(() => {
+      const inView = id => {
+        const el = document.getElementById(id);
+        return !el || el.getBoundingClientRect().top < window.innerHeight * 0.9;
+      };
       const upd = {};
-      if (!this.state.purActivated)  upd.purActivated  = true;
-      if (!this.state.uspActivated)  upd.uspActivated  = true;
-      if (!this.state.probActivated) upd.probActivated = true;
-      if (!this.state.procActivated) upd.procActivated = true;
+      if (!this.state.purActivated  && inView('purpose')) upd.purActivated  = true;
+      if (!this.state.uspActivated  && inView('usp'))     upd.uspActivated  = true;
+      if (!this.state.probActivated && inView('problem')) upd.probActivated = true;
+      if (!this.state.procActivated && inView('process')) upd.procActivated = true;
       if (Object.keys(upd).length) {
-        this.setState(upd, () => setTimeout(() => this.setState({ purHoverReady:true, uspHoverReady:true, probHoverReady:true, procHoverReady:true }), 900));
+        this.setState(upd, () => setTimeout(() => {
+          const hr = {};
+          if (this.state.purActivated)  hr.purHoverReady  = true;
+          if (this.state.uspActivated)  hr.uspHoverReady  = true;
+          if (this.state.probActivated) hr.probHoverReady = true;
+          if (this.state.procActivated) hr.procHoverReady = true;
+          this.setState(hr);
+        }, 900));
       }
     }, 2500);
 
@@ -1683,12 +1699,21 @@ class Component extends DCLogic {
       this._procObs.observe(procSect);
     }
 
-    // Scroll-based nav: highlight active section in the side rail
+    // Scroll-based nav: highlight active section in the side rail.
+    // Also acts as the entrance-animation safety net: if a section's
+    // IntersectionObserver never fired, activate it once it's reached.
+    const actMap = { problem:['probActivated','probHoverReady'], purpose:['purActivated','purHoverReady'], usp:['uspActivated','uspHoverReady'], process:['procActivated','procHoverReady'] };
+    this._ensureActivated = id => {
+      const m = actMap[id];
+      if (!m || this.state[m[0]]) return;
+      this.setState({ [m[0]]: true }, () => setTimeout(() => this.setState({ [m[1]]: true }), 900));
+    };
     const navIds = ['contact','process','usp','purpose','problem','home'];
     const updateNav = () => {
       for (const id of navIds) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.45) {
+          this._ensureActivated(id);
           if (this.state.activeSectionId !== id) {
             this.setState(s => {
               const secs  = this._baseSections;
