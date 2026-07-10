@@ -1,0 +1,36 @@
+# iMathMate
+
+> iMathMate is an AI math tuition system that turns a photo of any math problem into a clear, step-by-step lesson. It is built to teach the method and the reasoning behind each step — not just hand over the final answer — and to identify and close each student's weak areas over time.
+
+iMathMate is a mobile app (iOS and Android) for K–12 and early-college students. Core capabilities: snap-and-solve from a photo, step-by-step explanations (the "why", "how" and "what" of every step), an AI chat tutor, concept-based learning, quizzes, progress tracking, and personalised learning roadmaps.
+
+## Product
+- [How It Works](https://imathmate.com/how-it-works): The four-stage flow from a photo of a problem to real understanding.
+- [Snap & Solve](https://imathmate.com/snap-and-solve): Take a photo of any math problem and get a guided learning path.
+- [Step-by-Step Solutions](https://imathmate.com/step-by-step-solutions): Explanations of the method behind every step, not just the answer.
+- [Quiz Mode](https://imathmate.com/quiz-mode): Focused quizzes to check understanding and find weak areas.
+- [Progress Tracking](https://imathmate.com/progress-tracking): Track solved problems, quiz performance and weak topics over time.
+- [Save to Gallery](https://imathmate.com/save-to-gallery): Save solved problems for later revision.
+- [Streak Rewards](https://imathmate.com/streak-rewards): Rewards for consistent daily practice.
+- [Math Topics](https://imathmate.com/math-topics): Coverage from arithmetic through calculus.
+- [Practice Problems](https://imathmate.com/practice-problems): Sample problems across Algebra, Geometry, Trigonometry and Calculus.
+
+## Learn & Support
+- [FAQ](https://imathmate.com/faq): Answers to the most common questions about iMathMate.
+- [Tutorials](https://imathmate.com/tutorials): Guides for using every feature.
+- [Best Practices](https://imathmate.com/best-practices): How to get the most accurate help and steady progress.
+- [Contact Us](https://imathmate.com/contact-us): Reach the iMathMate team.
+
+## Blog
+- [Blog](https://imathmate.com/blog): Articles on math education and learning strategies.
+- [How AI Is Changing Math Education](https://imathmate.com/blog-ai-math-education)
+- [5 Common Math Mistakes Students Make](https://imathmate.com/blog-math-mistakes)
+- [A Parent's Guide to Building Math Confidence](https://imathmate.com/blog-parent-guide)
+- [Why Showing Your Work Matters More Than the Right Answer](https://imathmate.com/blog-why-steps-matter)
+
+## Company
+- [About](https://imathmate.com/about): Why iMathMate was built and its mission.
+- [Careers](https://imathmate.com/careers)
+- [Press Kit](https://imathmate.com/press-kit)
+- [Privacy Policy](https://imathmate.com/privacy-policy)
+- [Terms of Service](https://imathmate.com/terms-of-service)
