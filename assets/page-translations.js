@@ -3798,4 +3798,76 @@
       bp_cta_btn: "احصل على ماث ميت مجانًا"
     }
   });
+
+  extend({
+    en: {
+      dd_h10: 'Data Deletion <span class="accent">Instructions</span>',
+      dd_p2: "This page explains what information iMathMate receives when you sign in with Facebook, and how you can request full deletion of your account and data at any time.",
+      dd_p3: "iMathMate is committed to giving you full control over your data. Whether you signed in using Facebook or simply want to delete your iMathMate account entirely, this page explains exactly what we collect and how to remove it — permanently.",
+      dd_p4: "When you choose \"Continue with Facebook\" to sign in to iMathMate, we request the following Facebook permissions:",
+      dd_li1: '<strong>public_profile</strong> — your name and public profile picture',
+      dd_li2: '<strong>email</strong> — your email address',
+      dd_p5: "We do not request or receive your Facebook friends list, posts, photos, messages, or any other information beyond what is listed above. This data is used only to create and authenticate your iMathMate account — the same way it would be if you signed up with an email and password instead.",
+      dd_p6: "You can request full, permanent deletion of your iMathMate account and all associated data using either of the two methods below.",
+      dd_p7: "Open the iMathMate app → tap your Profile icon → Settings → Delete Account. Confirming this permanently deletes your account, including any data originally received through Facebook Login.",
+      dd_p8: 'If you can\'t access the app, email <a href="mailto:Privacy@imathmate.com">Privacy@imathmate.com</a> with the subject line <strong>"Data Deletion Request"</strong>, sent from the email address associated with your account. Our team will process your request and permanently delete your data within 30 days.',
+      dd_p9: "We may ask you to verify your identity before completing an email deletion request, to protect your account from being deleted by someone else.",
+      dd_p10: "When your account is deleted, we permanently remove:",
+      dd_li3: "Your account and profile information",
+      dd_li4: "Your learning progress, quiz history, and skill data",
+      dd_li5: "Your saved math problems and solutions",
+      dd_li6: "Any information originally received from Facebook Login (name, email, profile picture)",
+      dd_p11: "This action cannot be undone. Once deletion is complete, this information cannot be recovered, except where we are legally required to retain limited records for security, fraud-prevention, or accounting purposes.",
+      dd_p12: "Removing iMathMate from your Facebook settings (Facebook Settings & Privacy → Settings → Apps and Websites → remove iMathMate) only stops iMathMate from being able to use Facebook to sign you in again. It does not delete your iMathMate account or any data already stored with us.",
+      dd_p13: "To fully delete your account and data, you must use one of the two methods described in Section 02 above.",
+      dd_h21: "Ready to Delete Your Data?",
+      dd_p14: "Use the in-app option for instant deletion, or email our privacy team for help."
+    },
+    fr: {
+      dd_h10: 'Instructions de <span class="accent">Suppression des Données</span>',
+      dd_p2: "Cette page explique quelles informations iMathMate reçoit lorsque vous vous connectez avec Facebook, et comment vous pouvez demander la suppression complète de votre compte et de vos données à tout moment.",
+      dd_p3: "iMathMate s'engage à vous donner un contrôle total sur vos données. Que vous vous soyez connecté avec Facebook ou que vous souhaitiez simplement supprimer entièrement votre compte iMathMate, cette page explique exactement ce que nous collectons et comment le supprimer — définitivement.",
+      dd_p4: "Lorsque vous choisissez « Continuer avec Facebook » pour vous connecter à iMathMate, nous demandons les autorisations Facebook suivantes :",
+      dd_li1: '<strong>public_profile</strong> — votre nom et votre photo de profil publique',
+      dd_li2: '<strong>email</strong> — votre adresse e-mail',
+      dd_p5: "Nous ne demandons ni ne recevons votre liste d'amis Facebook, vos publications, vos photos, vos messages ou toute autre information au-delà de celles listées ci-dessus. Ces données servent uniquement à créer et authentifier votre compte iMathMate — de la même manière que si vous vous étiez inscrit avec un e-mail et un mot de passe.",
+      dd_p6: "Vous pouvez demander la suppression complète et définitive de votre compte iMathMate et de toutes les données associées grâce à l'une des deux méthodes ci-dessous.",
+      dd_p7: "Ouvrez l'application iMathMate → appuyez sur votre icône de profil → Paramètres → Supprimer le compte. En confirmant, vous supprimez définitivement votre compte, y compris toute donnée initialement reçue via la connexion Facebook.",
+      dd_p8: 'Si vous ne pouvez pas accéder à l\'application, envoyez un e-mail à <a href="mailto:Privacy@imathmate.com">Privacy@imathmate.com</a> avec l\'objet <strong>« Data Deletion Request »</strong>, depuis l\'adresse e-mail associée à votre compte. Notre équipe traitera votre demande et supprimera définitivement vos données sous 30 jours.',
+      dd_p9: "Nous pouvons vous demander de vérifier votre identité avant de finaliser une demande de suppression par e-mail, afin de protéger votre compte contre une suppression par une autre personne.",
+      dd_p10: "Lorsque votre compte est supprimé, nous supprimons définitivement :",
+      dd_li3: "Votre compte et vos informations de profil",
+      dd_li4: "Votre progression d'apprentissage, votre historique de quiz et vos données de compétences",
+      dd_li5: "Vos problèmes mathématiques et solutions enregistrés",
+      dd_li6: "Toute information initialement reçue via la connexion Facebook (nom, e-mail, photo de profil)",
+      dd_p11: "Cette action est irréversible. Une fois la suppression terminée, ces informations ne peuvent pas être récupérées, sauf lorsque nous sommes légalement tenus de conserver certains registres limités à des fins de sécurité, de prévention de la fraude ou de comptabilité.",
+      dd_p12: "Retirer iMathMate de vos paramètres Facebook (Paramètres et confidentialité Facebook → Paramètres → Applications et sites web → supprimer iMathMate) empêche seulement iMathMate d'utiliser Facebook pour vous reconnecter à l'avenir. Cela ne supprime pas votre compte iMathMate ni les données déjà stockées chez nous.",
+      dd_p13: "Pour supprimer entièrement votre compte et vos données, vous devez utiliser l'une des deux méthodes décrites à la Section 02 ci-dessus.",
+      dd_h21: "Prêt à Supprimer Vos Données ?",
+      dd_p14: "Utilisez l'option intégrée à l'application pour une suppression instantanée, ou envoyez un e-mail à notre équipe de confidentialité pour obtenir de l'aide."
+    },
+    ar: {
+      dd_h10: 'تعليمات <span class="accent">حذف البيانات</span>',
+      dd_p2: "توضح هذه الصفحة المعلومات التي يتلقاها iMathMate عند تسجيل الدخول عبر فيسبوك، وكيف يمكنك طلب حذف حسابك وبياناتك بالكامل في أي وقت.",
+      dd_p3: "يلتزم iMathMate بمنحك تحكمًا كاملاً في بياناتك. سواء سجّلت الدخول باستخدام فيسبوك أو أردت ببساطة حذف حسابك في iMathMate بالكامل، توضح هذه الصفحة بالضبط ما نجمعه وكيفية حذفه — نهائيًا.",
+      dd_p4: "عندما تختار «المتابعة باستخدام فيسبوك» لتسجيل الدخول إلى iMathMate، نطلب أذونات فيسبوك التالية:",
+      dd_li1: '<strong>public_profile</strong> — اسمك وصورة ملفك الشخصي العامة',
+      dd_li2: '<strong>email</strong> — عنوان بريدك الإلكتروني',
+      dd_p5: "نحن لا نطلب أو نتلقى قائمة أصدقائك على فيسبوك، أو منشوراتك، أو صورك، أو رسائلك، أو أي معلومات أخرى غير المذكورة أعلاه. تُستخدم هذه البيانات فقط لإنشاء حسابك في iMathMate والتحقق منه — بنفس الطريقة التي كانت ستتم بها لو سجّلت باستخدام بريد إلكتروني وكلمة مرور.",
+      dd_p6: "يمكنك طلب حذف حسابك في iMathMate وجميع البيانات المرتبطة به بالكامل ونهائيًا باستخدام إحدى الطريقتين أدناه.",
+      dd_p7: "افتح تطبيق iMathMate ← اضغط على أيقونة ملفك الشخصي ← الإعدادات ← حذف الحساب. عند التأكيد، سيُحذف حسابك نهائيًا، بما في ذلك أي بيانات تم استلامها أصلاً عبر تسجيل الدخول بفيسبوك.",
+      dd_p8: 'إذا تعذّر عليك الوصول إلى التطبيق، أرسل بريدًا إلكترونيًا إلى <a href="mailto:Privacy@imathmate.com">Privacy@imathmate.com</a> بعنوان <strong>«Data Deletion Request»</strong>، من عنوان البريد الإلكتروني المرتبط بحسابك. سيقوم فريقنا بمعالجة طلبك وحذف بياناتك نهائيًا خلال 30 يومًا.',
+      dd_p9: "قد نطلب منك التحقق من هويتك قبل إتمام طلب الحذف عبر البريد الإلكتروني، لحماية حسابك من الحذف من قبل شخص آخر.",
+      dd_p10: "عند حذف حسابك، نقوم بإزالة ما يلي نهائيًا:",
+      dd_li3: "حسابك ومعلومات ملفك الشخصي",
+      dd_li4: "تقدّمك التعليمي، وسجل الاختبارات، وبيانات المهارات",
+      dd_li5: "المسائل الرياضية والحلول المحفوظة لديك",
+      dd_li6: "أي معلومات تم استلامها أصلاً من تسجيل الدخول بفيسبوك (الاسم، البريد الإلكتروني، صورة الملف الشخصي)",
+      dd_p11: "لا يمكن التراجع عن هذا الإجراء. بمجرد اكتمال الحذف، لا يمكن استرجاع هذه المعلومات، إلا في الحالات التي يُطلب منا فيها قانونيًا الاحتفاظ بسجلات محدودة لأغراض الأمان أو منع الاحتيال أو المحاسبة.",
+      dd_p12: "إزالة iMathMate من إعدادات فيسبوك الخاصة بك (إعدادات وخصوصية فيسبوك ← الإعدادات ← التطبيقات والمواقع الإلكترونية ← إزالة iMathMate) توقف فقط قدرة iMathMate على استخدام فيسبوك لتسجيل دخولك مستقبلاً. وهي لا تحذف حسابك في iMathMate أو أي بيانات مخزّنة لدينا بالفعل.",
+      dd_p13: "لحذف حسابك وبياناتك بالكامل، يجب عليك استخدام إحدى الطريقتين الموضحتين في القسم 02 أعلاه.",
+      dd_h21: "هل أنت مستعد لحذف بياناتك؟",
+      dd_p14: "استخدم خيار الحذف داخل التطبيق للحذف الفوري، أو راسل فريق الخصوصية لدينا للحصول على المساعدة."
+    }
+  });
 })();

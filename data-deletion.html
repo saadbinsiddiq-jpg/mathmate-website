@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N5P8LNS0S6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N5P8LNS0S6');
+</script>
+<link rel="apple-touch-icon" href="/assets/MathMateIconLogo.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<title>Data Deletion Instructions — iMathMate</title>
+<meta name="description" content="Learn what information iMathMate receives from Facebook Login, and how to request full, permanent deletion of your iMathMate account and data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#070D1F;color:#fff;overflow-x:hidden;min-height:100vh}
+
+/* ── 7-layer background ── */
+.bg-base{position:fixed;inset:0;z-index:0;background:#070D1F}
+.bg-mesh{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.bg-mesh::before{content:'';position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(45,144,232,.13) 0%,transparent 70%);top:-200px;left:-180px;animation:blobDrift 22s ease-in-out infinite alternate}
+.bg-mesh::after{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.09) 0%,transparent 70%);bottom:-160px;right:-120px;animation:blobDrift 28s ease-in-out infinite alternate-reverse}
+@keyframes blobDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(60px,40px) scale(1.08)}}
+.bg-grid{position:fixed;inset:0;z-index:2;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:72px 72px}
+.bg-ghost-math{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.bg-ghost-math span{position:absolute;font-size:18px;font-weight:700;color:rgba(255,255,255,.028);user-select:none;white-space:nowrap}
+.bg-grain{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.28;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");animation:noiseShift 8s steps(2) infinite}
+@keyframes noiseShift{0%{background-position:0 0}25%{background-position:-40px 20px}50%{background-position:20px -30px}75%{background-position:-20px 40px}100%{background-position:0 0}}
+.bg-vignette{position:fixed;inset:0;z-index:5;pointer-events:none;background:radial-gradient(ellipse 84% 72% at 50% 50%,transparent 20%,rgba(6,9,28,.28) 55%,rgba(6,9,28,.68) 100%)}
+.bg-watermark{position:fixed;z-index:3;pointer-events:none;font-size:460px;font-weight:900;color:rgba(45,144,232,.025);user-select:none;right:-60px;bottom:-80px;line-height:1;letter-spacing:-.04em;animation:watermarkPulse 14s ease-in-out infinite alternate}
+@keyframes watermarkPulse{0%{opacity:.6;transform:scale(1)}100%{opacity:1;transform:scale(1.03)}}
+
+/* ── Header ── */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;padding:0 40px;background:rgba(7,13,31,.72);backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.06)}
+.header-inner{width:100%;max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:20px}
+.logo-link{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-link img{height:32px;width:32px;object-fit:contain;border-radius:8px}
+.logo-link span{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.header-sep{width:1px;height:18px;background:rgba(255,255,255,.12);flex-shrink:0}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.42)}
+.breadcrumb a{color:rgba(255,255,255,.42);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:rgba(255,255,255,.8)}
+.breadcrumb span{color:rgba(255,255,255,.22)}
+.breadcrumb-current{color:rgba(255,255,255,.72);font-weight:500}
+.header-spacer{flex:1}
+.back-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:8px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;transition:background .15s,border-color .15s,color .15s;white-space:nowrap}
+.back-btn:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.22);color:#fff}
+
+/* ── Hero ── */
+.hero{position:relative;z-index:10;padding:130px 40px 70px;max-width:1440px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,144,232,.12);border:1px solid rgba(45,144,232,.28);border-radius:9999px;padding:8px 18px;font-size:12px;font-weight:700;color:#2D90E8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#2D90E8;box-shadow:0 0 8px rgba(45,144,232,.8);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.08;letter-spacing:-.03em;max-width:800px;margin:0 auto 24px}
+.hero h1 .accent{background:linear-gradient(135deg,#2D90E8 0%,#8B5CF6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:clamp(15px,2vw,18px);color:rgba(255,255,255,.58);max-width:560px;margin:0 auto 32px;line-height:1.65}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.meta-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:7px 14px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.meta-chip svg{flex-shrink:0}
+.hero-divider{width:60px;height:3px;background:linear-gradient(90deg,#2D90E8,#8B5CF6);border-radius:9999px;margin:36px auto 0}
+
+/* ── TOC ── */
+.toc-section{position:relative;z-index:10;padding:60px 40px 20px;max-width:1100px;margin:0 auto}
+.toc-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px 36px}
+.toc-title{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#2D90E8;margin-bottom:20px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.toc-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;text-decoration:none;color:rgba(255,255,255,.48);font-size:13px;font-weight:500;transition:background .15s,color .15s}
+.toc-item:hover{background:rgba(45,144,232,.08);color:rgba(255,255,255,.88)}
+.toc-num{font-size:11px;font-weight:700;color:#2D90E8;min-width:22px}
+
+/* ── Content sections ── */
+.content-wrap{position:relative;z-index:10;padding:40px 40px 80px;max-width:1100px;margin:0 auto}
+.section-block{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:32px 36px;margin-bottom:20px;transition:border-color .2s}
+.section-block:hover{border-color:rgba(45,144,232,.2)}
+.section-block.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.25,1,.5,1),border-color .2s}
+.section-block.reveal.visible{opacity:1;transform:translateY(0)}
+.section-num{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#2D90E8;margin-bottom:10px}
+.section-title{font-size:19px;font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-.01em}
+.section-body{font-size:14.5px;color:rgba(255,255,255,.6);line-height:1.75}
+.section-body p{margin-bottom:12px}
+.section-body p:last-child{margin-bottom:0}
+.section-body ul{padding-left:0;list-style:none;margin:10px 0}
+.section-body ul li{display:block;position:relative;padding:5px 0 5px 13px;color:rgba(255,255,255,.58);font-size:14px;line-height:1.6}
+.section-body ul li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:#2D90E8}
+.section-body strong{color:rgba(255,255,255,.88);font-weight:600}
+.section-body a{color:#2D90E8;text-decoration:none}
+.section-body a:hover{text-decoration:underline}
+
+/* Subsections */
+.subsection{margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.06)}
+.subsection-title{font-size:14px;font-weight:700;color:rgba(255,255,255,.82);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.subsection-title::before{content:'';width:3px;height:14px;border-radius:2px;background:#2D90E8;flex-shrink:0}
+
+/* Highlight card */
+.highlight-card{background:rgba(45,144,232,.07);border:1px solid rgba(45,144,232,.2);border-radius:14px;padding:20px 24px;margin:18px 0}
+.highlight-card p{color:rgba(255,255,255,.72);font-size:14px;line-height:1.7}
+
+/* ── CTA band ── */
+.cta-band{position:relative;z-index:10;padding:80px 40px;background:linear-gradient(135deg,rgba(45,144,232,.07) 0%,rgba(139,92,246,.06) 100%);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);text-align:center}
+.cta-band h2{font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-.025em;margin-bottom:14px}
+.cta-band p{font-size:16px;color:rgba(255,255,255,.52);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#2D90E8;color:#fff;text-decoration:none;border-radius:9999px;padding:15px 32px;font-size:15px;font-weight:700;box-shadow:0 10px 32px rgba(45,144,232,.38);transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(45,144,232,.56)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);text-decoration:none;border:1.5px solid rgba(255,255,255,.14);border-radius:9999px;padding:15px 26px;font-size:15px;font-weight:600;transition:background .15s,border-color .15s}
+.btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+
+/* ── Footer ── */
+.site-footer{position:relative;z-index:10;padding:56px 40px 36px;border-top:1px solid rgba(255,255,255,.06)}
+.footer-inner{max-width:1440px;margin:0 auto}
+.footer-nav{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.footer-nav a{font-size:13px;color:rgba(255,255,255,.36);text-decoration:none;padding:6px 12px;border-radius:8px;transition:color .15s,background .15s}
+.footer-nav a:hover{color:rgba(255,255,255,.82);background:rgba(255,255,255,.05)}
+.footer-nav-sep{font-size:12px;color:rgba(255,255,255,.14)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,.06);padding-top:24px}
+.footer-copy{font-size:12.5px;color:rgba(255,255,255,.2)}
+.back-to-top{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:9999px;padding:7px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.36);text-decoration:none;transition:background .15s,color .15s}
+.back-to-top:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.72)}
+
+/* Responsive */
+@media(max-width:768px){
+  .site-header{padding:0 20px}
+  .hero{padding:110px 24px 50px}
+  .toc-section,.content-wrap{padding-left:24px;padding-right:24px}
+  .toc-card,.section-block{padding:22px 20px}
+  .breadcrumb{display:none}
+  .header-sep{display:none}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:560px){
+  .toc-grid{grid-template-columns:1fr 1fr}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-secondary{justify-content:center}
+}
+</style>
+  <link rel="stylesheet" href="assets/rtl.css">
+
+<link rel="canonical" href="https://imathmate.com/data-deletion">
+<meta name="theme-color" content="#070D1F">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="iMathMate">
+<meta property="og:title" content="Data Deletion Instructions — iMathMate">
+<meta property="og:description" content="Learn what information iMathMate receives from Facebook Login, and how to request full, permanent deletion of your iMathMate account and data.">
+<meta property="og:url" content="https://imathmate.com/data-deletion">
+<meta property="og:image" content="https://imathmate.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="iMathMate — AI Math Tutor: Snap, Solve &amp; Understand Math" />
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Data Deletion Instructions — iMathMate">
+<meta name="twitter:description" content="Learn what information iMathMate receives from Facebook Login, and how to request full, permanent deletion of your iMathMate account and data.">
+<meta name="twitter:image" content="https://imathmate.com/assets/og-image.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://imathmate.com/#organization","name":"iMathMate","url":"https://imathmate.com/","logo":{"@type":"ImageObject","url":"https://imathmate.com/assets/MathMateLogo.png"},"sameAs":["https://facebook.com/imathmate","https://instagram.com/iMathMate","https://tiktok.com/@iMathMate_","https://youtube.com/@iMathMate"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://imathmate.com/"},{"@type":"ListItem","position":2,"name":"Data Deletion Instructions","item":"https://imathmate.com/data-deletion"}]},{"@type":"WebPage","url":"https://imathmate.com/data-deletion","name":"Data Deletion Instructions — iMathMate","description":"Learn what information iMathMate receives from Facebook Login, and how to request full, permanent deletion of your iMathMate account and data.","isPartOf":{"@id":"https://imathmate.com/#website"},"publisher":{"@id":"https://imathmate.com/#organization"},"inLanguage":"en"}]}</script>
+</head>
+<body>
+
+<!-- 7-layer background -->
+<div class="bg-base"></div>
+<div class="bg-mesh"></div>
+<div class="bg-grid"></div>
+<div class="bg-ghost-math" id="ghostMath"></div>
+<div class="bg-grain"></div>
+<div class="bg-vignette"></div>
+<div class="bg-watermark">§</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo-link">
+      <img src="assets/MathMateIconLogo.png" alt="iMathMate">
+      <span>iMathMate</span>
+    </a>
+    <div class="header-sep"></div>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/"><span data-i18n="nav_home">Home</span></a>
+      <span>›</span>
+      <span class="breadcrumb-current" data-i18n="page_data_deletion">Data Deletion Instructions</span>
+    </nav>
+    <div class="header-spacer"></div>
+    <div id="mm-lang-wrap"></div>
+    <a href="/" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-i18n="back_mm">Back to iMathMate</span>
+    </a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Legal &amp; Privacy
+  </div>
+  <h1 data-i18n-html="dd_h10">Data Deletion <span class="accent">Instructions</span></h1>
+  <p class="hero-desc" data-i18n="dd_p2">This page explains what information iMathMate receives when you sign in with Facebook, and how you can request full deletion of your account and data at any time.</p>
+  <div class="hero-meta">
+    <div class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Effective Date: August 28, 2026
+    </div>
+    <div class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Last Updated: August 28, 2026
+    </div>
+    <div class="meta-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      4 Sections
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- Table of Contents -->
+<div class="toc-section reveal">
+  <div class="toc-card">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-grid">
+      <a href="#s1" class="toc-item"><span class="toc-num">01</span>Data From Facebook Login</a>
+      <a href="#s2" class="toc-item"><span class="toc-num">02</span>How to Request Deletion</a>
+      <a href="#s3" class="toc-item"><span class="toc-num">03</span>What Gets Deleted</a>
+      <a href="#s4" class="toc-item"><span class="toc-num">04</span>Disconnecting Facebook</a>
+    </div>
+  </div>
+</div>
+
+<!-- Intro banner -->
+<div class="content-wrap" style="padding-bottom:0">
+  <div class="highlight-card reveal" style="border-color:rgba(45,144,232,.3);background:rgba(45,144,232,.06);margin-bottom:0">
+    <p data-i18n="dd_p3">iMathMate is committed to giving you full control over your data. Whether you signed in using Facebook or simply want to delete your iMathMate account entirely, this page explains exactly what we collect and how to remove it — permanently.</p>
+  </div>
+</div>
+
+<!-- Content Sections -->
+<div class="content-wrap">
+
+  <!-- 1 -->
+  <div class="section-block reveal" id="s1">
+    <div class="section-num">Section 01</div>
+    <div class="section-title">Data We Receive From Facebook Login</div>
+    <div class="section-body">
+      <p data-i18n="dd_p4">When you choose "Continue with Facebook" to sign in to iMathMate, we request the following Facebook permissions:</p>
+      <ul>
+        <li data-i18n-html="dd_li1"><strong>public_profile</strong> — your name and public profile picture</li>
+        <li data-i18n-html="dd_li2"><strong>email</strong> — your email address</li>
+      </ul>
+      <p data-i18n="dd_p5">We do not request or receive your Facebook friends list, posts, photos, messages, or any other information beyond what is listed above. This data is used only to create and authenticate your iMathMate account — the same way it would be if you signed up with an email and password instead.</p>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section-block reveal" id="s2">
+    <div class="section-num">Section 02</div>
+    <div class="section-title">How to Request Deletion of Your Data</div>
+    <div class="section-body">
+      <p data-i18n="dd_p6">You can request full, permanent deletion of your iMathMate account and all associated data using either of the two methods below.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">In-App Deletion (Fastest)</div>
+        <p data-i18n="dd_p7">Open the iMathMate app → tap your Profile icon → Settings → Delete Account. Confirming this permanently deletes your account, including any data originally received through Facebook Login.</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Email Request</div>
+        <p data-i18n-html="dd_p8">If you can't access the app, email <a href="mailto:Privacy@imathmate.com">Privacy@imathmate.com</a> with the subject line <strong>"Data Deletion Request"</strong>, sent from the email address associated with your account. Our team will process your request and permanently delete your data within 30 days.</p>
+      </div>
+
+      <div class="highlight-card">
+        <p data-i18n="dd_p9">We may ask you to verify your identity before completing an email deletion request, to protect your account from being deleted by someone else.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section-block reveal" id="s3">
+    <div class="section-num">Section 03</div>
+    <div class="section-title">What Happens When Your Data Is Deleted</div>
+    <div class="section-body">
+      <p data-i18n="dd_p10">When your account is deleted, we permanently remove:</p>
+      <ul>
+        <li data-i18n="dd_li3">Your account and profile information</li>
+        <li data-i18n="dd_li4">Your learning progress, quiz history, and skill data</li>
+        <li data-i18n="dd_li5">Your saved math problems and solutions</li>
+        <li data-i18n="dd_li6">Any information originally received from Facebook Login (name, email, profile picture)</li>
+      </ul>
+      <p data-i18n="dd_p11">This action cannot be undone. Once deletion is complete, this information cannot be recovered, except where we are legally required to retain limited records for security, fraud-prevention, or accounting purposes.</p>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section-block reveal" id="s4">
+    <div class="section-num">Section 04</div>
+    <div class="section-title">Disconnecting Facebook Does Not Delete Your Account</div>
+    <div class="section-body">
+      <p data-i18n="dd_p12">Removing iMathMate from your Facebook settings (Facebook Settings &amp; Privacy → Settings → Apps and Websites → remove iMathMate) only stops iMathMate from being able to use Facebook to sign you in again. It does not delete your iMathMate account or any data already stored with us.</p>
+      <p data-i18n="dd_p13">To fully delete your account and data, you must use one of the two methods described in Section 02 above.</p>
+    </div>
+  </div>
+
+</div><!-- end content-wrap -->
+
+<!-- CTA Band -->
+<div class="cta-band">
+  <h2 data-i18n="dd_h21">Ready to Delete Your Data?</h2>
+  <p data-i18n="dd_p14">Use the in-app option for instant deletion, or email our privacy team for help.</p>
+  <div class="cta-btns">
+    <a href="mailto:Privacy@imathmate.com" class="btn-primary">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Contact Privacy Team
+    </a>
+    <a href="/" class="btn-secondary">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span data-i18n="back_mm">Back to iMathMate</span>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav class="footer-nav">
+      <a href="snap-and-solve" data-i18n="ft_snap">Snap &amp; Solve</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="step-by-step-solutions" data-i18n="ft_steps">Step-by-Step Solutions</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="save-to-gallery" data-i18n="ft_gallery">Save to Gallery</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="quiz-mode" data-i18n="ft_quiz">Quiz Mode</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="progress-tracking" data-i18n="ft_progress">Progress Tracking</a>
+      <span class="footer-nav-sep">·</span>
+      <a href="streak-rewards" data-i18n="ft_streaks">Streak Rewards</a>
+    </nav>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-i18n="copyright">© 2026 iMathMate. All rights reserved.</span>
+      <a href="#top" class="back-to-top">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 9V2M2 5.5l3.5-3.5 3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="back_top">Back to top</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Ghost math symbols
+  const syms = ['∑','∫','π','∞','√','Δ','θ','λ','α','β','≈','∂','§','∴','⊕'];
+  const gh = document.getElementById('ghostMath');
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('span');
+    s.textContent = syms[i % syms.length];
+    s.style.cssText = `left:${Math.random()*95}%;top:${Math.random()*95}%;font-size:${14+Math.random()*22}px;opacity:${0.018+Math.random()*0.022};transform:rotate(${(Math.random()-.5)*40}deg)`;
+    gh.appendChild(s);
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => obs.observe(el));
+  setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 2200);
+</script>
+<script src="assets/lang.js"></script>
+<script src="assets/page-translations.js"></script>
+</body>
+</html>
